@@ -1,0 +1,26 @@
+<html>
+<head>
+    <title>cron</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="/static/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <!-- 1. Load libraries -->
+    <!-- Polyfill(s) for older browsers -->
+    <script src="/static/lib/core-js/client/shim.min.js"></script>
+    <script src="/static/lib/zone.js/dist/zone.js"></script>
+    <script src="/static/lib/reflect-metadata/Reflect.js"></script>
+    <script src="/static/lib/systemjs/dist/system.src.js"></script>
+
+    <!-- 2. Configure SystemJS -->
+    <script src="/static/systemjs.config.js"></script>
+    <script>
+        System.import('/static/app/main.js').then(null, console.error.bind(console));
+    </script>
+
+</head>
+
+<!-- 3. Display the application -->
+<body>
+<app>Loading...</app>
+</body>
+</html>
