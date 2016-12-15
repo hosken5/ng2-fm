@@ -7,7 +7,9 @@ import {TasklogComponent} from "./pages/tasklog/tasklog.components";
 import {TasklistComponent} from "./pages/tasklist/tasklist.components";
 import {ResourcelistComponent} from "./pages/resourcelist/resourcelist.components";
 import {TaskaddComponent} from "./pages/taskadd/taskadd.components";
-
+import {BuyComponent}  from "./pages/buy/buy.components"
+import {BuylistComponent} from "./pages/buylist/buylist.components";
+import {TeamlistComponent} from "./pages/teamlist/teamlist.components";
 const appRoutes: Routes = <Routes>[
     {
         path:'',
@@ -33,7 +35,20 @@ const appRoutes: Routes = <Routes>[
     {
         path:'taskadd',
         component:TaskaddComponent
+    },
+    {
+        path:'buy',
+        component:BuyComponent
+    },
+    {
+        path:'buylist',
+        component:BuylistComponent
+    },
+    {
+        path:'teamlist',
+        component:TeamlistComponent
     }
+
 ];
 
 export const appRoutingProviders: any[] = [];

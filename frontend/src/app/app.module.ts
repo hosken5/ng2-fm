@@ -18,6 +18,11 @@ import {ResourcelistComponent} from "./pages/resourcelist/resourcelist.component
 import { PaginationModule } from 'ng2-bootstrap/ng2-bootstrap';
 import {ConfirmModule} from 'angular2-bootstrap-confirm';
 import { TooltipModule } from 'ng2-bootstrap/ng2-bootstrap';
+import {BuyComponent}  from "./pages/buy/buy.components"
+import {BuylistComponent} from "./pages/buylist/buylist.components";
+import {TeamlistComponent} from "./pages/teamlist/teamlist.components";
+
+
 
 @NgModule({
     imports: [
@@ -36,7 +41,10 @@ import { TooltipModule } from 'ng2-bootstrap/ng2-bootstrap';
         TasklogComponent,
         TasklistComponent,
         TaskaddComponent,
-        ResourcelistComponent
+        ResourcelistComponent,
+        BuyComponent,
+        BuylistComponent,
+        TeamlistComponent
         ],
     providers: [
         appRoutingProviders

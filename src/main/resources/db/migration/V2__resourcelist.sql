@@ -1,10 +1,18 @@
-CREATE TABLE `resource` (
+CREATE TABLE `coalbuy` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `ip` varchar(50) DEFAULT NULL COMMENT 'ip地址',
-  `port` int(11) DEFAULT NULL,
-  `url` varchar(200) DEFAULT NULL,
-  `creator` varchar(50) DEFAULT NULL,
-  `createtime` timestamp NULL DEFAULT NULL,
+  `ywtd` varchar(50) DEFAULT NULL COMMENT '业务团队',
+  `fydate` int(11) DEFAULT NULL  COMMENT '发运日期',
+  `ywlx` varchar(8) DEFAULT NULL  COMMENT  '业务类型',
+  `rzfs` varchar(8) DEFAULT NULL COMMENT '融资方式',
+  `rzll` FLOAT DEFAULT NULL  COMMENT '融资利率',
+  `yfkbl` INTEGER DEFAULT  NULL  COMMENT '预付款比例',
+  `ysfs` VARCHAR(8) DEFAULT  null COMMENT  '运输方式',
+  `mz` VARCHAR(2) DEFAULT NULL  COMMENT '煤种',
+  `ch`VARCHAR(2) DEFAULT  NULL  COMMENT  '船号',
+  customerid  INT(11) unsigned NOT NULL COMMENT '客户id',
+  cgdw DECIMAL(20,2)  null DEFAULT  0 COMMENT '采购吨位',
+  cgmze  DECIMAL(20,2) null  DEFAULT  0  COMMENT '采购煤款总额',
+  `createtime` timestamp NULL DEFAULT NULL  COMMENT '',
   `lastupdatetime` timestamp NULL DEFAULT NULL,
   `valid` int(11) DEFAULT NULL,
   `validtime` timestamp NULL DEFAULT NULL,
@@ -12,6 +20,6 @@ CREATE TABLE `resource` (
   `lastaccessstatus` varchar(11) DEFAULT NULL,
   `lastaccessmsg` varchar(200) DEFAULT NULL,
   `lastaccessendtime` timestamp NULL DEFAULT NULL,
-  `fullurl` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+

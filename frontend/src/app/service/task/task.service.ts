@@ -76,11 +76,7 @@ export class TaskService{
             .toPromise()
             .then(resp=>resp.json().data as Task)
             .catch(this.handleError) ;
-
     }
-
-
-
     delete(id:number):Promise<void>{
         let url =  `${this.taskUrl}/${id}` ;
         return this.http
