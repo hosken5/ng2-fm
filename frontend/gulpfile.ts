@@ -72,7 +72,8 @@ gulp.task("libs", () => {
             'angular-confirmation-popover/dist/umd/angular-confirmation-popover.js',
             'angular2-bootstrap-confirm/dist/umd/angular2-bootstrap-confirm.js',
             'angular2-bootstrap-confirm/position/*',
-            'angular2-in-memory-web-api/**'
+            'angular2-in-memory-web-api/**',
+            'angular2-select/**'
         ], {cwd: "node_modules/**"}) /* Glob required here. */
         .pipe(gulp.dest("build/lib"));
 });

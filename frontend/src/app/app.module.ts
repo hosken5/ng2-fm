@@ -15,14 +15,13 @@ import {TasklogComponent} from "./pages/tasklog/tasklog.components";
 import {TasklistComponent} from "./pages/tasklist/tasklist.components";
 import {TaskaddComponent} from "./pages/taskadd/taskadd.components";
 import {ResourcelistComponent} from "./pages/resourcelist/resourcelist.components";
-import { PaginationModule } from 'ng2-bootstrap/ng2-bootstrap';
+import {PaginationModule} from 'ng2-bootstrap/ng2-bootstrap';
 import {ConfirmModule} from 'angular2-bootstrap-confirm';
-import { TooltipModule } from 'ng2-bootstrap/ng2-bootstrap';
-import {BuyComponent}  from "./pages/buy/buy.components"
+import {TooltipModule} from 'ng2-bootstrap/ng2-bootstrap';
 import {BuylistComponent} from "./pages/buylist/buylist.components";
 import {TeamlistComponent} from "./pages/teamlist/teamlist.components";
-
-
+import {CoalbuyaddComponent} from "./pages/coalbuy/coalbuyadd.components"
+import {SelectModule} from 'angular2-select';
 
 @NgModule({
     imports: [
@@ -33,7 +32,8 @@ import {TeamlistComponent} from "./pages/teamlist/teamlist.components";
         TooltipModule,
         HttpModule,
         ReactiveFormsModule,
-        ConfirmModule
+        ConfirmModule,
+        SelectModule
     ],
     declarations: [
         AppComponent,
@@ -42,9 +42,9 @@ import {TeamlistComponent} from "./pages/teamlist/teamlist.components";
         TasklistComponent,
         TaskaddComponent,
         ResourcelistComponent,
-        BuyComponent,
         BuylistComponent,
-        TeamlistComponent
+        TeamlistComponent,
+        CoalbuyaddComponent
         ],
     providers: [
         appRoutingProviders

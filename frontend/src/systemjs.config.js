@@ -9,7 +9,6 @@
             // our app is within the app folder
             app: '/static/app/',
             sample: '/static/sample/',
-            // angular bundles
             '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
             '@angular/common': 'npm:@angular/common/bundles/common.umd.js',
             '@angular/compiler': 'npm:@angular/compiler/bundles/compiler.umd.js',
@@ -23,6 +22,7 @@
             'ng2-bootstrap/ng2-bootstrap': 'npm:ng2-bootstrap/bundles/ng2-bootstrap.umd.min.js',
             'angular2-bootstrap-confirm':'npm:angular2-bootstrap-confirm',
             'angular2-bootstrap-confirm/position':'npm:angular2-bootstrap-confirm/position/index.js',
+            'angular2-select': 'npm:angular2-select',
             // other libraries
             'rxjs': 'npm:rxjs'
         },
@@ -47,6 +47,10 @@
             {
                 defaultExtension: 'js',
                 main:'./dist/umd/angular2-bootstrap-confirm.js'
+            },
+            'angular2-select': {
+                main: 'index.js',
+                defaultExtension: 'js'
             }
         }
     });

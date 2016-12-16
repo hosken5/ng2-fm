@@ -1,2 +1,23 @@
 <h1>welcome</h1>
 <p>content</p>
+
+
+<!--<ng-select-->
+        <!--[multiple]="true"-->
+        <!--[options]="myOptions"-->
+        <!--[(ngModel)]="mySelectValue">-->
+<!--</ng-select>-->
+
+<form
+        [formGroup]="form">
+    <ng-select
+            [allowClear]="true"
+            [options]="myOptions"
+            [multiple]="false"
+            formControlName="mySelect">
+    </ng-select>
+</form>
+<hr>
+<div>
+    Selected option id: {{form.value.mySelect}}
+</div>

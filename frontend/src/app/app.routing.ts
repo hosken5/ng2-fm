@@ -7,9 +7,10 @@ import {TasklogComponent} from "./pages/tasklog/tasklog.components";
 import {TasklistComponent} from "./pages/tasklist/tasklist.components";
 import {ResourcelistComponent} from "./pages/resourcelist/resourcelist.components";
 import {TaskaddComponent} from "./pages/taskadd/taskadd.components";
-import {BuyComponent}  from "./pages/buy/buy.components"
 import {BuylistComponent} from "./pages/buylist/buylist.components";
 import {TeamlistComponent} from "./pages/teamlist/teamlist.components";
+import {CoalbuyaddComponent} from "./pages/coalbuy/coalbuyadd.components"
+
 const appRoutes: Routes = <Routes>[
     {
         path:'',
@@ -37,8 +38,8 @@ const appRoutes: Routes = <Routes>[
         component:TaskaddComponent
     },
     {
-        path:'buy',
-        component:BuyComponent
+        path:'coalbuy',
+        component:CoalbuyaddComponent
     },
     {
         path:'buylist',

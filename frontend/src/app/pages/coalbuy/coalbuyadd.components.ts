@@ -1,27 +1,30 @@
 import {Component} from "@angular/core";
 import {OnInit} from "@angular/core";
-import {TaskService} from "../../service/task/task.service";
-import {Task} from  "../../service/task/task"
+import {Task} from  "../../service/coalbuy/coalbuy"
 import {FormGroup,Validators,FormBuilder,FormControl} from  '@angular/forms';
 import {Router}  from  '@angular/router' ;
+import {CoalbuyService} from "../../service/coalbuy/coalbuy.service";
+import {Coalbuy} from "../../service/coalbuy/coalbuy";
+import {TeamService} from "../../service/team/team.service";
 
 declare var __moduleName: string;
 
 @Component({
     moduleId    : __moduleName || module.id,
-    templateUrl: 'taskadd.html',
-    styleUrls:['taskadd.css'],
-    providers:[TaskService]
+    templateUrl: 'coalbuyadd.html',
+    styleUrls:['coalbuyadd.css'],
+    providers:[CoalbuyService,TeamService]
 })
-export class TaskaddComponent implements OnInit {
+export class CoalbuyaddComponent implements OnInit {
     private saving : boolean  = false ;
     constructor(
         private  router : Router,
-        private taskService:TaskService ,
-        private builder:FormBuilder
+        private coalbuyService:CoalbuyService ,
+        private builder:FormBuilder,
+        private teamService:TeamService
     ){
         this.form = builder.group({
-            taskname:this.taskname,
+            coalbuyname:this.coalbuyname,
             description:this.description,
             triggertype:this.triggertype,
             timeunit:this.timeunit,
@@ -32,15 +35,18 @@ export class TaskaddComponent implements OnInit {
             resource:this.resource,
             cron:this.cron,
             teamid:this.teamid
-        }) ;
+            //this.form.addControl('selectSingle', new FormControl());
+    }) ;
     }
     ngOnInit() {
-        //this.startSec.valueChanges.subscribe((value:string)=>{
-        //    console.log(value);
-        //})
+        this.teamService.getTeams().then(data=>{
+            console.log(data)  ;
+            
+            this.teaminfo = data || [] ;
+        });
     }
     form:FormGroup ;
-    taskname =     new FormControl("", Validators.required);
+    coalbuyname =     new FormControl("", Validators.required);
     triggertype =  new FormControl(2);
     description =  new FormControl("", Validators.maxLength(200));
     timeunit =     new FormControl("our")  ;
@@ -50,14 +56,10 @@ export class TaskaddComponent implements OnInit {
     startSec =     new FormControl();
     resource =     new FormControl();
     cron =         new FormControl();
-    teamid = new FormControl(['b', 'c']) ;
-    goBack():void {
-        //Array.prototype.forEach((control:FormControl)=>{
-        //    control.markAsDirty();
-        //},this.form.controls) ;
-        //console.log(Object.keys(this.form.value));
-    }
-    task :Task;
+    teamid=        new FormControl();
+    teaminfo = [];
+    goBack():void {}
+    coalbuy :Coalbuy;
     description:string;
     save():void {
         for( let key in this.form.value){
@@ -68,17 +70,11 @@ export class TaskaddComponent implements OnInit {
 
         console.log(this.form.value);
 
-        this.taskService.create(this.form.value).then(()=>{
-            this.router.navigate(['/tasklist']) ;
+        this.coalbuyService.create(this.form.value).then(()=>{
+            this.router.navigate(['/coalbuylist']) ;
             console.log("succes");
         }).catch((error)=>{
             console.log("failure:"+error);
         });
     }
-    //
-    //skuValidator(control: FormControl): { [s: string]: boolean } {
-    //    if (!control.value.match(/^123/)) {
-    //        return {invalidSku: true};
-    //    }
-    //}
 }
