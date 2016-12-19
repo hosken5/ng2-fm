@@ -6,6 +6,7 @@ import {Router}  from  '@angular/router' ;
 import {CoalbuyService} from "../../service/coalbuy/coalbuy.service";
 import {Coalbuy} from "../../service/coalbuy/coalbuy";
 import {TeamService} from "../../service/team/team.service";
+import {InputTextModule} from 'primeng/primeng';
 
 declare var __moduleName: string;
 
@@ -23,40 +24,58 @@ export class CoalbuyaddComponent implements OnInit {
         private builder:FormBuilder,
         private teamService:TeamService
     ){
+        //teamid:number ;
+        //fydate:string  ;
+        //rzfs:string  ;
+        //rzll:string  ;
+        //yfkbl:string  ;
+        //ysfs:string  ;
+        //mz:string;
+        //ch:string;
+        //customerid:number;
+        //cgdw:string  ;
+        //cgmze:string  ;
+        //createtime:string  ;
+        //lastupdatetime:string  ;
+
         this.form = builder.group({
-            coalbuyname:this.coalbuyname,
-            description:this.description,
-            triggertype:this.triggertype,
-            timeunit:this.timeunit,
-            time:this.time,
-            startHour:this.startHour,
-            startMin:this.startMin,
-            startSec:this.startSec,
-            resource:this.resource,
-            cron:this.cron,
-            teamid:this.teamid
+            teamid:this.teamid,
+            fydate:this.fydate,
+            //fydate:this.fydate,
+            //rzfs:this.rzfs,
+            //rzll:this.rzll,
+            //yfkbl:this.yfkbl,
+            //ysfs:this.ysfs,
+            //mz:this.mz,
+            //ch:this.ch,
+            //customerid:this.customerid,
+            //cgdw:this.cgdw,
+            //cgmze:this.cgmze,
+            //coalbuyname:this.coalbuyname
             //this.form.addControl('selectSingle', new FormControl());
     }) ;
     }
     ngOnInit() {
         this.teamService.getTeams().then(data=>{
             console.log(data)  ;
-            
             this.teaminfo = data || [] ;
         });
     }
     form:FormGroup ;
-    coalbuyname =     new FormControl("", Validators.required);
-    triggertype =  new FormControl(2);
-    description =  new FormControl("", Validators.maxLength(200));
-    timeunit =     new FormControl("our")  ;
-    time =         new FormControl();
-    startHour =    new FormControl();
-    startMin =     new FormControl();
-    startSec =     new FormControl();
-    resource =     new FormControl();
-    cron =         new FormControl();
+    fydate =  new FormControl() ;
+    //coalbuyname =  new FormControl() ;
+    //coalbuyname =     new FormControl("", Validators.required);
+    //triggertype =  new FormControl(2);
+    //description =  new FormControl("", Validators.maxLength(200));
+    //timeunit =     new FormControl("our")  ;
+    //time =         new FormControl();
+    //startHour =    new FormControl();
+    //startMin =     new FormControl();
+    //startSec =     new FormControl();
+    //resource =     new FormControl();
+    //cron =         new FormControl();
     teamid=        new FormControl();
+
     teaminfo = [];
     goBack():void {}
     coalbuy :Coalbuy;

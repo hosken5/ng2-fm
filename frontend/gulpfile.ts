@@ -73,7 +73,10 @@ gulp.task("libs", () => {
             'angular2-bootstrap-confirm/dist/umd/angular2-bootstrap-confirm.js',
             'angular2-bootstrap-confirm/position/*',
             'angular2-in-memory-web-api/**',
-            'angular2-select/**'
+            'angular2-select/**',
+            'primeng/**',
+            'font-awesome/css/**',
+            'font-awesome/fonts/**',
         ], {cwd: "node_modules/**"}) /* Glob required here. */
         .pipe(gulp.dest("build/lib"));
 });
@@ -102,7 +105,7 @@ gulp.task("build", ['compile', 'resources', 'libs'], () => {
 
 gulp.task("default",[],()=>{
     runSequence(
-        ['watch'],['sync']
+       ['build'], ['watch'],['sync']
     );
 });
 

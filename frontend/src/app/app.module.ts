@@ -22,6 +22,9 @@ import {BuylistComponent} from "./pages/buylist/buylist.components";
 import {TeamlistComponent} from "./pages/teamlist/teamlist.components";
 import {CoalbuyaddComponent} from "./pages/coalbuy/coalbuyadd.components"
 import {SelectModule} from 'angular2-select';
+import {DropdownModule} from 'primeng/primeng';
+import {ButtonModule} from 'primeng/primeng';
+import {CalendarModule} from 'primeng/primeng';
 
 @NgModule({
     imports: [
@@ -33,7 +36,10 @@ import {SelectModule} from 'angular2-select';
         HttpModule,
         ReactiveFormsModule,
         ConfirmModule,
-        SelectModule
+        SelectModule,
+        DropdownModule,
+        ButtonModule,
+        CalendarModule
     ],
     declarations: [
         AppComponent,

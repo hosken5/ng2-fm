@@ -1,7 +1,6 @@
 <h4>新增上游采购信息</h4>
 <div class="form-wrap">
     <form  [formGroup]="form"  action="" class="form-horizontal">
-
         <div class="form-group">
             <label class="control-label col-sm-2">团队:</label>
             <div class="col-sm-10">
@@ -16,71 +15,95 @@
             </div>
         </div>
 
-        <div class="form-group"  [class.has-error] ="!coalbuyname.valid && coalbuyname.dirty ">
-            <label class="control-label col-sm-2">jobname:</label>
-            <div class="col-sm-10">
-                <input type="text" formControlName="coalbuyname"  class="form-control" placeholder="请输入任务名称...">
-                <!--<span class="help-block">This is some help text...</span>-->
-                <small *ngIf="coalbuyname.dirty && coalbuyname.hasError('required')" class="text-danger" >必输项</small>
-            </div>
-        </div>
         <div class="form-group">
-            <label class="control-label col-sm-2">description:</label>
+            <label class="control-label col-sm-2">发运日期:</label>
             <div class="col-sm-10">
-                <textarea formControlName="description"   class="form-control" rows="5"></textarea>
-                <small *ngIf="description.dirty && !description.valid" class="text-danger" >必输字段</small>
+                <p-calendar formControlName="fydate"
+                            dateFormat="yy-mm-dd"
+                            readonlyInput="readonlyInput"
+                            showOtherMonths="true"
+                            selectOtherMonths="true"
+                            showIcon="true"
+                ></p-calendar>
+                <small *ngIf="teamid.dirty && !teamid.valid" class="text-danger" >必输字段</small>
             </div>
         </div>
 
-        <div  class="form-group">
-            <label class="control-label col-sm-2">触发方式:</label>
-            <div class="col-sm-10">
-                <select class="my-form-control" formControlName="triggertype">
-                    <option value="1">cron</option>
-                    <option value="2">自定义</option>
-                </select>
-            </div>
-        </div>
+        <!--fydate:string  ;-->
+        <!--<div class="form-group">-->
+            <!--<label class="control-label col-sm-2">发运日期:</label>-->
+            <!--<div class="col-sm-10">-->
+                <!--&lt;!&ndash;<p-calendar formControlName="fydate"></p-calendar>&ndash;&gt;-->
+                <!--<small *ngIf="fydate.dirty && !fydate.valid" class="text-danger" >必输字段</small>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--&lt;!&ndash;&ndash;&gt;-->
 
-        <div  *ngIf="triggertype.value=='2'"  class="form-group" [class.has-error]="!startSec.valid">
-            <label class="control-label col-sm-2">自定义触发条件:</label>
-            <div class="col-sm-10">
-                <div class="pull-left  h34">每隔</div>
-                <input type="text" class="my-form-control pull-left" formControlName="time" placeholder="">
-                <select class="my-form-control pull-left" formControlName="timeunit"  >
-                    <option value="sec">秒</option>
-                    <option value="min">分</option>
-                    <option value="our">时</option>
-                    <option value="day">天</option>
-                </select>
-                <div class="pull-left  h34">执行</div>
-                <div class="pull-left  h34">,首次执行时间:</div>
+        <!--<div class="form-group"  [class.has-error] ="!coalbuyname.valid && coalbuyname.dirty ">-->
+            <!--<label class="control-label col-sm-2">jobname:</label>-->
+            <!--<div class="col-sm-10">-->
+                <!--<input type="text" formControlName="coalbuyname"  class="form-control" placeholder="请输入任务名称...">-->
+                <!--&lt;!&ndash;<span class="help-block">This is some help text...</span>&ndash;&gt;-->
+                <!--<small *ngIf="coalbuyname.dirty && coalbuyname.hasError('required')" class="text-danger" >必输项</small>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label class="control-label col-sm-2">description:</label>-->
+            <!--<div class="col-sm-10">-->
+                <!--<textarea formControlName="description"   class="form-control" rows="5"></textarea>-->
+                <!--<small *ngIf="description.dirty && !description.valid" class="text-danger" >必输字段</small>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <!--<div  class="form-group">-->
+            <!--<label class="control-label col-sm-2">触发方式:</label>-->
+            <!--<div class="col-sm-10">-->
+                <!--<select class="my-form-control" formControlName="triggertype">-->
+                    <!--<option value="1">cron</option>-->
+                    <!--<option value="2">自定义</option>-->
+                <!--</select>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <!--<div  *ngIf="triggertype.value=='2'"  class="form-group" [class.has-error]="!startSec.valid">-->
+            <!--<label class="control-label col-sm-2">自定义触发条件:</label>-->
+            <!--<div class="col-sm-10">-->
+                <!--<div class="pull-left  h34">每隔</div>-->
+                <!--<input type="text" class="my-form-control pull-left" formControlName="time" placeholder="">-->
+                <!--<select class="my-form-control pull-left" formControlName="timeunit"  >-->
+                    <!--<option value="sec">秒</option>-->
+                    <!--<option value="min">分</option>-->
+                    <!--<option value="our">时</option>-->
+                    <!--<option value="day">天</option>-->
+                <!--</select>-->
+                <!--<div class="pull-left  h34">执行</div>-->
+                <!--<div class="pull-left  h34">,首次执行时间:</div>-->
 
 
-                <input type="text" class="my-form-control pull-left" formControlName="startHour" placeholder="">
-                <div class="pull-left  h34">时</div>
-                <input type="text" class="my-form-control pull-left" formControlName="startMin" placeholder="">
-                <div class="pull-left  h34">分</div>
-                <input type="text" class="my-form-control pull-left" formControlName="startSec" placeholder="">
-                <div class="pull-left  h34">秒</div>
+                <!--<input type="text" class="my-form-control pull-left" formControlName="startHour" placeholder="">-->
+                <!--<div class="pull-left  h34">时</div>-->
+                <!--<input type="text" class="my-form-control pull-left" formControlName="startMin" placeholder="">-->
+                <!--<div class="pull-left  h34">分</div>-->
+                <!--<input type="text" class="my-form-control pull-left" formControlName="startSec" placeholder="">-->
+                <!--<div class="pull-left  h34">秒</div>-->
+                <!--&lt;!&ndash;<span class="help-block">"0/5 * * * * ?" 为每隔5秒钟执行</span>&ndash;&gt;-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div *ngIf="triggertype.value=='1'" class="form-group">-->
+            <!--<label class="control-label col-sm-2">cron:</label>-->
+            <!--<div class="col-sm-10">-->
+                <!--<input type="text" class="form-control" placeholder="" formControlName="cron" >-->
                 <!--<span class="help-block">"0/5 * * * * ?" 为每隔5秒钟执行</span>-->
-            </div>
-        </div>
-        <div *ngIf="triggertype.value=='1'" class="form-group">
-            <label class="control-label col-sm-2">cron:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" placeholder="" formControlName="cron" >
-                <span class="help-block">"0/5 * * * * ?" 为每隔5秒钟执行</span>
-            </div>
-        </div>
+            <!--</div>-->
+        <!--</div>-->
 
-        <div class="form-group">
-            <label class="control-label col-sm-2">resource:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" placeholder=""  formControlName="resource" >
-                <span class="help-block">localhost:8080/path/to/your/resource</span>
-            </div>
-        </div>
+        <!--<div class="form-group">-->
+            <!--<label class="control-label col-sm-2">resource:</label>-->
+            <!--<div class="col-sm-10">-->
+                <!--<input type="text" class="form-control" placeholder=""  formControlName="resource" >-->
+                <!--<span class="help-block">localhost:8080/path/to/your/resource</span>-->
+            <!--</div>-->
+        <!--</div>-->
         <div class="form-group">
             <div class="col-sm-offset-3 col-sm-9">
                 <button type="button" (click)="save()" [class.disabled]="saving"  class="btn btn-primary">确认</button>

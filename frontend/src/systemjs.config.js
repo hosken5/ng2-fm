@@ -24,7 +24,8 @@
             'angular2-bootstrap-confirm/position':'npm:angular2-bootstrap-confirm/position/index.js',
             'angular2-select': 'npm:angular2-select',
             // other libraries
-            'rxjs': 'npm:rxjs'
+            'rxjs': 'npm:rxjs',
+            'primeng':                   'npm:primeng'
         },
         // packages tells the System loader how to load when no filename and/or no extension
         packages: {
@@ -50,6 +51,9 @@
             },
             'angular2-select': {
                 main: 'index.js',
+                defaultExtension: 'js'
+            },
+            primeng: {
                 defaultExtension: 'js'
             }
         }
