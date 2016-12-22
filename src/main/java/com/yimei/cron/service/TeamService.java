@@ -24,4 +24,11 @@ public class TeamService {
         return teamMapper.loadTeamList();
     }
 
+    public void addTeam(Team team) {
+        teamMapper.addTeam(team);
+    }
+
+    public void updateTeam(Team team) {
+        teamMapper.updateTeam(team);
+    }
 }

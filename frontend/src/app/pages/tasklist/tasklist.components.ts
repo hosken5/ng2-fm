@@ -15,13 +15,6 @@ declare var __moduleName: string;
 })
 export class TasklistComponent implements OnInit {
     ngOnInit() {
-        //this.taskService.getTaskes({page:1,pageSize:15}).then(page=>{
-        //    console.log(page);
-        //    this.tasks = page.data  ;
-        //    this.totalItems =page.total ;
-        //    this.itemsPerPage = page.pageSize ;
-        //    this.currentPage = page.page;
-        //});
         this.load({page:1,pageSize:15});
     }
     lastparam:any ;
@@ -44,13 +37,6 @@ export class TasklistComponent implements OnInit {
         private taskService: TaskService
     ){}
 
-    //title: string = 'Are you sure?';
-    //message: string = 'Are you really <b>sure</b> you want to do this?';
-    //confirmText: string = '确定 <i class="glyphicon glyphicon-ok"></i> ';
-    //cancelText: string = '取消 <i class="glyphicon glyphicon-remove"></i>';
-    //confirmClicked: boolean = false;
-    //cancelClicked: boolean = false;
-
     public tasks:Task[]  = [] ;
 
     itemsPerPage:number=20 ;
@@ -65,18 +51,6 @@ export class TasklistComponent implements OnInit {
 
     public pageChanged(event:any):void {
         this.load({page:event.page,pageSize:event.itemsPerPage});
-        //console.log('Page changed to: ' + event.page);
-        //console.log('Number items per page: ' + event.itemsPerPage);
-        //this.taskService.getTaskes({page:event.page,pageSize:event.itemsPerPage})
-        //.then(
-        //    page=>{
-        //        console.log(page);
-        //        this.tasks = page.data  ;
-        //        this.totalItems =page.total ;
-        //        this.itemsPerPage = page.pageSize ;
-        //        this.currentPage = page.page;
-        //    }
-        //);
     };
 
     public gotoTaskLog(task:Task){

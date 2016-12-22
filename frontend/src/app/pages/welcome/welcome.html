@@ -1,26 +1,5 @@
-<h1>welcome</h1>
-<p>content</p>
+<div>hello</div>
 
-<button pButton type="button" class="ui-button-info" label="Click" ></button>
+<my-date-picker class="hello" [options]="myDatePickerOptions"></my-date-picker>
 
-
-<p-dropdown [options]="cars" [(ngModel)]="selectedCar" filter="filter" ></p-dropdown>
-<!--<ng-select-->
-        <!--[multiple]="true"-->
-        <!--[options]="myOptions"-->
-        <!--[(ngModel)]="mySelectValue">-->
-<!--</ng-select>-->
-
-<form
-        [formGroup]="form">
-    <ng-select
-            [allowClear]="true"
-            [options]="myOptions"
-            [multiple]="false"
-            formControlName="mySelect">
-    </ng-select>
-</form>
-<hr>
-<div>
-    Selected option id: {{form.value.mySelect}}
-</div>
+Selected date is: {{ date }}

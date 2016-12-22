@@ -77,6 +77,7 @@ gulp.task("libs", () => {
             'primeng/**',
             'font-awesome/css/**',
             'font-awesome/fonts/**',
+            'mydatepicker/dist/**'
         ], {cwd: "node_modules/**"}) /* Glob required here. */
         .pipe(gulp.dest("build/lib"));
 });

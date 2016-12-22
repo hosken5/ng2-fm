@@ -11,7 +11,7 @@ public class Team   implements Serializable {
     private  String message ;
 
     public String getName() {
-        return name;
+        return name ;
     }
 
     public void setName(String name) {
@@ -32,5 +32,14 @@ public class Team   implements Serializable {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    @Override
+    public String toString() {
+        return "Team{" +
+                "name='" + name + '\'' +
+                ", id=" + id +
+                ", message='" + message + '\'' +
+                '}';
     }
 }

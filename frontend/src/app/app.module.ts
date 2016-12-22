@@ -20,11 +20,17 @@ import {ConfirmModule} from 'angular2-bootstrap-confirm';
 import {TooltipModule} from 'ng2-bootstrap/ng2-bootstrap';
 import {BuylistComponent} from "./pages/buylist/buylist.components";
 import {TeamlistComponent} from "./pages/teamlist/teamlist.components";
-import {CoalbuyaddComponent} from "./pages/coalbuy/coalbuyadd.components"
 import {SelectModule} from 'angular2-select';
 import {DropdownModule} from 'primeng/primeng';
 import {ButtonModule} from 'primeng/primeng';
-import {CalendarModule} from 'primeng/primeng';
+import { Ng2BootstrapModule } from 'ng2-bootstrap/ng2-bootstrap';
+import {CalendarModule,MenuModule,PanelMenuModule,MenubarModule} from 'primeng/primeng';
+import {CoalselllistComponent} from  './pages/coalselllist/coalselllist.components';
+import {CoalsellComponent} from "./pages/coalsell/coalsell.components";
+//import { MyDatePickerModule } from 'mydatepicker/dist/my-date-picker.module';
+import { MyDatePickerModule } from 'mydatepicker/dist/my-date-picker.module';
+import {FinancecelllistComponent} from './pages/financecelllist/financecelllist.components' ;
+import {CoalselladdComponent} from "./pages/coalselladd/coalselladd.components";
 
 @NgModule({
     imports: [
@@ -39,7 +45,12 @@ import {CalendarModule} from 'primeng/primeng';
         SelectModule,
         DropdownModule,
         ButtonModule,
-        CalendarModule
+        CalendarModule,
+        MenuModule,
+        PanelMenuModule,
+        MenubarModule,
+        Ng2BootstrapModule,
+        MyDatePickerModule
     ],
     declarations: [
         AppComponent,
@@ -50,7 +61,10 @@ import {CalendarModule} from 'primeng/primeng';
         ResourcelistComponent,
         BuylistComponent,
         TeamlistComponent,
-        CoalbuyaddComponent
+        CoalselladdComponent,
+        CoalselllistComponent,
+        CoalsellComponent,
+        FinancecelllistComponent
         ],
     providers: [
         appRoutingProviders

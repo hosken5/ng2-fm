@@ -1,83 +1,72 @@
-import {Component,Input} from "@angular/core";
+import {Component,Input,ViewChild} from "@angular/core";
 import {OnInit} from "@angular/core";
 import {Router}  from  '@angular/router' ;
 import {ConfirmOptions, Position} from 'angular2-bootstrap-confirm';
+import {FormGroup,Validators,FormBuilder,FormControl} from  '@angular/forms';
 import {Positioning} from 'angular2-bootstrap-confirm/position';
-import {TaskService} from "../../service/task/task.service";
-import {Task} from  "../../service/task/task"
+import {TeamService} from "../../service/team/team.service";
+import {Team} from  "../../service/team/team"
+import { ModalModule,ModalDirective } from 'ng2-bootstrap/ng2-bootstrap';
+import {Team} from "../../service/team/team";
 declare var __moduleName: string;
 
 @Component({
     moduleId    : __moduleName || module.id,
     templateUrl: 'teamlist.html',
     styleUrls:['teamlist.css'],
-    providers:[TaskService,ConfirmOptions,{provide: Position, useClass: Positioning}]
+    providers:[TeamService,ConfirmOptions,{provide: Position, useClass: Positioning}]
 })
 export class TeamlistComponent implements OnInit {
+
+    @ViewChild('staticModal') public staticModal:ModalDirective;
+
     ngOnInit() {
-        this.load({page:1,pageSize:15});
+        this.load({});
     }
-    lastparam:any ;
+    lastparam:any;
     reload(){
         this.load(this.lastparam);
     }
+    public openEditView(team:Team):void {
+        this.addTeamForm.setValue(team);
+        this.staticModal.show();
+    }
+    saveOrUpdate():void {
+        for( let key in this.addTeamForm.value){
+            this.addTeamForm.controls[key].markAsDirty();
+        }
+        if(!this.addTeamForm.valid) return ;
+        console.log(this.addTeamForm.value);
+        this.teamService.addOrUpdateTeam(this.addTeamForm.value).then(()=>{
+            this.addTeamForm.reset();
+            this.staticModal.hide() ;
+            this.reload();
+            console.log("succes");
+        }).catch((error)=>{
+            console.log("failure:"+error);
+        });
+    }
+
     load(param){
         this.lastparam = param  ;
-        this.taskService.getTaskes(param).then(page=>{
-            console.log(page);
-            this.tasks = page.data  ;
-            this.totalItems =page.total ;
-            this.itemsPerPage = page.pageSize ;
-            this.currentPage = page.page;
-        });
+        this.teamService.getTeamList(param).then(data=>{
+            console.log(data) ;
+            this.teams= data ||[]  ;
+        }) ;
     }
-
+    addTeamForm:FormGroup ;
+    addTeamName =  new FormControl("", Validators.required);
+    addTeamMessage =  new FormControl() ;
     constructor(
+        private builder:FormBuilder,
         private  router : Router,
-        private taskService: TaskService
-    ){}
-
-    public tasks:Task[]  = [] ;
-
-    itemsPerPage:number=20 ;
-    public totalItems:number = 0;
-    public  currentPage:number = 4 ;
-    public maxSize:number = 11;
-
-
-    public setPage(pageNo:number):void {
-        this.currentPage = pageNo;
-    };
-
-    public pageChanged(event:any):void {
-        this.load({page:event.page,pageSize:event.itemsPerPage});
-    };
-
-    public gotoTaskLog(task:Task){
-        this.router.navigate(['/tasklog',task.id]) ;
+        private teamService: TeamService
+    ){
+        this.addTeamForm = builder.group({
+            id:new FormControl(),
+            name:this.addTeamName,
+            message:this.addTeamMessage,
+        }) ;
     }
-
-    public deleteTask(task:Task):void {
-        this.taskService.deleteTask(task).then((t)=>{
-           this.reload() ;
-        });
-    }
-    public stopTask(task:Task):void {
-        task.stopping = true  ;
-        this.taskService.stopTask(task).then((t)=>{
-            console.log(t);
-            task.stopping = false ;
-            task.status = 0 ;
-
-        });
-    }
-
-    public startTask(task:Task):void {
-        task.starting = true  ;
-        this.taskService.startTask(task).then((t)=>{
-            console.log(t);
-            task.starting = false ;
-            task.status = 1  ;
-        });
-    }
+    public teams:Team[]  = [] ;
 }

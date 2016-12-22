@@ -23,9 +23,10 @@
             'angular2-bootstrap-confirm':'npm:angular2-bootstrap-confirm',
             'angular2-bootstrap-confirm/position':'npm:angular2-bootstrap-confirm/position/index.js',
             'angular2-select': 'npm:angular2-select',
-            // other libraries
+            'mydatepicker': 'npm:mydatepicker',
+            'ng2-datepicker':'npm:ng2-datepicker',
             'rxjs': 'npm:rxjs',
-            'primeng':                   'npm:primeng'
+            'primeng':'npm:primeng'
         },
         // packages tells the System loader how to load when no filename and/or no extension
         packages: {
@@ -54,6 +55,9 @@
                 defaultExtension: 'js'
             },
             primeng: {
+                defaultExtension: 'js'
+            },
+            mydatepicker: {
                 defaultExtension: 'js'
             }
         }

@@ -1,0 +1,38 @@
+<h4>新增上游采购信息</h4>
+<div class="form-wrap">
+    <form  [formGroup]="form"  action="" class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-sm-2">团队:</label>
+            <div class="col-sm-10">
+                <ng-select
+                        [allowClear]="true"
+                        [options]="teaminfo"
+                        [multiple]="false"
+                        formControlName="teamid"
+                >
+                </ng-select>
+                <small *ngIf="teamid.dirty && !teamid.valid" class="text-danger" >必输字段</small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-2">发运日期:</label>
+            <div class="col-sm-10">
+                <p-calendar formControlName="fydate"
+                            dateFormat="yy-mm-dd"
+                            showOtherMonths="true"
+                            selectOtherMonths="true"
+                            showIcon="true"
+                ></p-calendar>
+                <small *ngIf="teamid.dirty && !teamid.vaslid" class="text-danger" >必输字段</small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-9">
+                <button type="button" (click)="save()" [class.disabled]="saving"  class="btn btn-primary">确认</button>
+                <button type="button" (click)="goBack()"   class="btn btn-default btn-sm">取消</button>
+            </div>
+        </div>
+    </form>
+</div>

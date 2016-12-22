@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yimei.cron.mapper.CoalsellMapper" >
+  <resultMap id="BaseResultMap" type="com.yimei.cron.domain.Coalsell" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="teamid" property="teamid" jdbcType="INTEGER" />
+    <result column="financecellid" property="financecellid" jdbcType="INTEGER" />
+    <result column="uppercomp" property="uppercomp" jdbcType="VARCHAR" />
+    <result column="lowercomp" property="lowercomp" jdbcType="VARCHAR" />
+    <result column="ywx" property="ywx" jdbcType="VARCHAR" />
+    <result column="rzfs" property="rzfs" jdbcType="VARCHAR" />
+    <result column="htzjll" property="htzjll" jdbcType="DECIMAL" />
+    <result column="zrll" property="zrll" jdbcType="DECIMAL" />
+    <result column="yfkbl" property="yfkbl" jdbcType="DECIMAL" />
+    <result column="jsl" property="jsl" jdbcType="INTEGER" />
+    <result column="upperjsrq" property="upperjsrq" jdbcType="DATE" />
+    <result column="lowerjsrq" property="lowerjsrq" jdbcType="DATE" />
+    <result column="ysfs" property="ysfs" jdbcType="VARCHAR" />
+    <result column="fyrq" property="fyrq" jdbcType="DATE" />
+    <result column="xshsze" property="xshsze" jdbcType="DECIMAL" />
+    <result column="cgmze" property="cgmze" jdbcType="DECIMAL" />
+    <result column="rmtzsy" property="rmtzsy" jdbcType="DECIMAL" />
+    <result column="upperzjzy" property="upperzjzy" jdbcType="DECIMAL" />
+    <result column="lowerzjzy" property="lowerzjzy" jdbcType="DECIMAL" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="lastupdatetime" property="lastupdatetime" jdbcType="TIMESTAMP" />
+    <result column="creator" property="creator" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, teamid, financecellid, uppercomp, lowercomp, ywx, rzfs, htzjll, zrll, yfkbl, 
+    jsl, upperjsrq, lowerjsrq, ysfs, fyrq, xshsze, cgmze, rmtzsy, upperzjzy, lowerzjzy, 
+    createtime, lastupdatetime, creator
+  </sql>
+  <select id="loadCoalsell" resultMap="BaseResultMap"  parameterType="com.yimei.cron.web.dto.CoalsellParam"  >
+    select * from   coalsell  t  where  1=1
+    <if test="teamid!=null">
+      and t.teamid = #{teamid}
+    </if>
+    <if test="financecellid!=null">
+      and t.financecellid = #{financecellid}
+    </if>
+    <if test="sfydate!=null">
+      and t.fyrq  &gt;= #{sfydate}
+    </if>
+    <if test="efydate!=null">
+      and t.fyrq  &lt;= #{efydate}
+    </if>
+    <if test="uppercomp!=null">
+      and t.uppercomp like  CONCAT('%',#{uppercomp},'%')
+    </if>
+    <if test="lowercomp!=null">
+      and t.lowercomp = like  CONCAT('%',#{lowercomp},'%')
+    </if>
+
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from coalsell
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from coalsell
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yimei.cron.domain.Coalsell" >
+    insert into coalsell (id, teamid, financecellid, 
+      uppercomp, lowercomp, ywx, 
+      rzfs, htzjll, zrll, 
+      yfkbl, jsl, upperjsrq, 
+      lowerjsrq, ysfs, fyrq, xshsze, 
+      cgmze, rmtzsy, upperzjzy, 
+      lowerzjzy, createtime, lastupdatetime, 
+      creator)
+    values (#{id,jdbcType=INTEGER}, #{teamid,jdbcType=INTEGER}, #{financecellid,jdbcType=INTEGER}, 
+      #{uppercomp,jdbcType=VARCHAR}, #{lowercomp,jdbcType=VARCHAR}, #{ywx,jdbcType=VARCHAR}, 
+      #{rzfs,jdbcType=VARCHAR}, #{htzjll,jdbcType=DECIMAL}, #{zrll,jdbcType=DECIMAL}, 
+      #{yfkbl,jdbcType=DECIMAL}, #{jsl,jdbcType=INTEGER}, #{upperjsrq,jdbcType=DATE}, 
+      #{lowerjsrq,jdbcType=DATE}, #{ysfs,jdbcType=VARCHAR}, #{fyrq,jdbcType=DATE}, #{xshsze,jdbcType=DECIMAL}, 
+      #{cgmze,jdbcType=DECIMAL}, #{rmtzsy,jdbcType=DECIMAL}, #{upperzjzy,jdbcType=DECIMAL}, 
+      #{lowerzjzy,jdbcType=DECIMAL}, #{createtime,jdbcType=TIMESTAMP}, #{lastupdatetime,jdbcType=TIMESTAMP}, 
+      #{creator,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yimei.cron.domain.Coalsell" >
+    insert into coalsell
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="teamid != null" >
+        teamid,
+      </if>
+      <if test="financecellid != null" >
+        financecellid,
+      </if>
+      <if test="uppercomp != null" >
+        uppercomp,
+      </if>
+      <if test="lowercomp != null" >
+        lowercomp,
+      </if>
+      <if test="ywx != null" >
+        ywx,
+      </if>
+      <if test="rzfs != null" >
+        rzfs,
+      </if>
+      <if test="htzjll != null" >
+        htzjll,
+      </if>
+      <if test="zrll != null" >
+        zrll,
+      </if>
+      <if test="yfkbl != null" >
+        yfkbl,
+      </if>
+      <if test="jsl != null" >
+        jsl,
+      </if>
+      <if test="upperjsrq != null" >
+        upperjsrq,
+      </if>
+      <if test="lowerjsrq != null" >
+        lowerjsrq,
+      </if>
+      <if test="ysfs != null" >
+        ysfs,
+      </if>
+      <if test="fyrq != null" >
+        fyrq,
+      </if>
+      <if test="xshsze != null" >
+        xshsze,
+      </if>
+      <if test="cgmze != null" >
+        cgmze,
+      </if>
+      <if test="rmtzsy != null" >
+        rmtzsy,
+      </if>
+      <if test="upperzjzy != null" >
+        upperzjzy,
+      </if>
+      <if test="lowerzjzy != null" >
+        lowerzjzy,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="lastupdatetime != null" >
+        lastupdatetime,
+      </if>
+      <if test="creator != null" >
+        creator,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="teamid != null" >
+        #{teamid,jdbcType=INTEGER},
+      </if>
+      <if test="financecellid != null" >
+        #{financecellid,jdbcType=INTEGER},
+      </if>
+      <if test="uppercomp != null" >
+        #{uppercomp,jdbcType=VARCHAR},
+      </if>
+      <if test="lowercomp != null" >
+        #{lowercomp,jdbcType=VARCHAR},
+      </if>
+      <if test="ywx != null" >
+        #{ywx,jdbcType=VARCHAR},
+      </if>
+      <if test="rzfs != null" >
+        #{rzfs,jdbcType=VARCHAR},
+      </if>
+      <if test="htzjll != null" >
+        #{htzjll,jdbcType=DECIMAL},
+      </if>
+      <if test="zrll != null" >
+        #{zrll,jdbcType=DECIMAL},
+      </if>
+      <if test="yfkbl != null" >
+        #{yfkbl,jdbcType=DECIMAL},
+      </if>
+      <if test="jsl != null" >
+        #{jsl,jdbcType=INTEGER},
+      </if>
+      <if test="upperjsrq != null" >
+        #{upperjsrq,jdbcType=DATE},
+      </if>
+      <if test="lowerjsrq != null" >
+        #{lowerjsrq,jdbcType=DATE},
+      </if>
+      <if test="ysfs != null" >
+        #{ysfs,jdbcType=VARCHAR},
+      </if>
+      <if test="fyrq != null" >
+        #{fyrq,jdbcType=DATE},
+      </if>
+      <if test="xshsze != null" >
+        #{xshsze,jdbcType=DECIMAL},
+      </if>
+      <if test="cgmze != null" >
+        #{cgmze,jdbcType=DECIMAL},
+      </if>
+      <if test="rmtzsy != null" >
+        #{rmtzsy,jdbcType=DECIMAL},
+      </if>
+      <if test="upperzjzy != null" >
+        #{upperzjzy,jdbcType=DECIMAL},
+      </if>
+      <if test="lowerzjzy != null" >
+        #{lowerzjzy,jdbcType=DECIMAL},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdatetime != null" >
+        #{lastupdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yimei.cron.domain.Coalsell" >
+    update coalsell
+    <set >
+      <if test="teamid != null" >
+        teamid = #{teamid,jdbcType=INTEGER},
+      </if>
+      <if test="financecellid != null" >
+        financecellid = #{financecellid,jdbcType=INTEGER},
+      </if>
+      <if test="uppercomp != null" >
+        uppercomp = #{uppercomp,jdbcType=VARCHAR},
+      </if>
+      <if test="lowercomp != null" >
+        lowercomp = #{lowercomp,jdbcType=VARCHAR},
+      </if>
+      <if test="ywx != null" >
+        ywx = #{ywx,jdbcType=VARCHAR},
+      </if>
+      <if test="rzfs != null" >
+        rzfs = #{rzfs,jdbcType=VARCHAR},
+      </if>
+      <if test="htzjll != null" >
+        htzjll = #{htzjll,jdbcType=DECIMAL},
+      </if>
+      <if test="zrll != null" >
+        zrll = #{zrll,jdbcType=DECIMAL},
+      </if>
+      <if test="yfkbl != null" >
+        yfkbl = #{yfkbl,jdbcType=DECIMAL},
+      </if>
+      <if test="jsl != null" >
+        jsl = #{jsl,jdbcType=INTEGER},
+      </if>
+      <if test="upperjsrq != null" >
+        upperjsrq = #{upperjsrq,jdbcType=DATE},
+      </if>
+      <if test="lowerjsrq != null" >
+        lowerjsrq = #{lowerjsrq,jdbcType=DATE},
+      </if>
+      <if test="ysfs != null" >
+        ysfs = #{ysfs,jdbcType=VARCHAR},
+      </if>
+      <if test="fyrq != null" >
+        fyrq = #{fyrq,jdbcType=DATE},
+      </if>
+      <if test="xshsze != null" >
+        xshsze = #{xshsze,jdbcType=DECIMAL},
+      </if>
+      <if test="cgmze != null" >
+        cgmze = #{cgmze,jdbcType=DECIMAL},
+      </if>
+      <if test="rmtzsy != null" >
+        rmtzsy = #{rmtzsy,jdbcType=DECIMAL},
+      </if>
+      <if test="upperzjzy != null" >
+        upperzjzy = #{upperzjzy,jdbcType=DECIMAL},
+      </if>
+      <if test="lowerzjzy != null" >
+        lowerzjzy = #{lowerzjzy,jdbcType=DECIMAL},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdatetime != null" >
+        lastupdatetime = #{lastupdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null" >
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yimei.cron.domain.Coalsell" >
+    update coalsell
+    set teamid = #{teamid,jdbcType=INTEGER},
+      financecellid = #{financecellid,jdbcType=INTEGER},
+      uppercomp = #{uppercomp,jdbcType=VARCHAR},
+      lowercomp = #{lowercomp,jdbcType=VARCHAR},
+      ywx = #{ywx,jdbcType=VARCHAR},
+      rzfs = #{rzfs,jdbcType=VARCHAR},
+      htzjll = #{htzjll,jdbcType=DECIMAL},
+      zrll = #{zrll,jdbcType=DECIMAL},
+      yfkbl = #{yfkbl,jdbcType=DECIMAL},
+      jsl = #{jsl,jdbcType=INTEGER},
+      upperjsrq = #{upperjsrq,jdbcType=DATE},
+      lowerjsrq = #{lowerjsrq,jdbcType=DATE},
+      ysfs = #{ysfs,jdbcType=VARCHAR},
+      fyrq = #{fyrq,jdbcType=DATE},
+      xshsze = #{xshsze,jdbcType=DECIMAL},
+      cgmze = #{cgmze,jdbcType=DECIMAL},
+      rmtzsy = #{rmtzsy,jdbcType=DECIMAL},
+      upperzjzy = #{upperzjzy,jdbcType=DECIMAL},
+      lowerzjzy = #{lowerzjzy,jdbcType=DECIMAL},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      lastupdatetime = #{lastupdatetime,jdbcType=TIMESTAMP},
+      creator = #{creator,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+</mapper>

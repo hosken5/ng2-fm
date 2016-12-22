@@ -9,7 +9,10 @@ import {ResourcelistComponent} from "./pages/resourcelist/resourcelist.component
 import {TaskaddComponent} from "./pages/taskadd/taskadd.components";
 import {BuylistComponent} from "./pages/buylist/buylist.components";
 import {TeamlistComponent} from "./pages/teamlist/teamlist.components";
-import {CoalbuyaddComponent} from "./pages/coalbuy/coalbuyadd.components"
+import {CoalselllistComponent} from "./pages/coalselllist/coalselllist.components";
+import {CoalsellComponent} from "./pages/coalsell/coalsell.components";
+import {FinancecelllistComponent} from "./pages/financecelllist/financecelllist.components";
+import {CoalselladdComponent} from "./pages/coalselladd/coalselladd.components";
 
 const appRoutes: Routes = <Routes>[
     {
@@ -38,8 +41,8 @@ const appRoutes: Routes = <Routes>[
         component:TaskaddComponent
     },
     {
-        path:'coalbuy',
-        component:CoalbuyaddComponent
+        path:'coalselladd',
+        component:CoalselladdComponent
     },
     {
         path:'buylist',
@@ -48,8 +51,19 @@ const appRoutes: Routes = <Routes>[
     {
         path:'teamlist',
         component:TeamlistComponent
-    }
-
+    },
+    {
+        path:'coalselllist',
+        component:CoalselllistComponent
+    },
+    {
+        path:'coalsell/:id',
+        component:CoalsellComponent
+    },
+    {
+        path:'financecell',
+        component:FinancecelllistComponent
+    },
 ];
 
 export const appRoutingProviders: any[] = [];
