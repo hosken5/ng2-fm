@@ -81,12 +81,9 @@
       #{lowerzjzy,jdbcType=DECIMAL}, #{createtime,jdbcType=TIMESTAMP}, #{lastupdatetime,jdbcType=TIMESTAMP}, 
       #{creator,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.yimei.cron.domain.Coalsell" >
+  <insert id="insertSelective" keyProperty="id"  useGeneratedKeys="true"  parameterType="com.yimei.cron.domain.Coalsell" >
     insert into coalsell
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
       <if test="teamid != null" >
         teamid,
       </if>
@@ -144,20 +141,12 @@
       <if test="lowerzjzy != null" >
         lowerzjzy,
       </if>
-      <if test="createtime != null" >
-        createtime,
-      </if>
-      <if test="lastupdatetime != null" >
-        lastupdatetime,
-      </if>
       <if test="creator != null" >
         creator,
       </if>
+      createtime,
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
       <if test="teamid != null" >
         #{teamid,jdbcType=INTEGER},
       </if>
@@ -215,15 +204,10 @@
       <if test="lowerzjzy != null" >
         #{lowerzjzy,jdbcType=DECIMAL},
       </if>
-      <if test="createtime != null" >
-        #{createtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="lastupdatetime != null" >
-        #{lastupdatetime,jdbcType=TIMESTAMP},
-      </if>
       <if test="creator != null" >
         #{creator,jdbcType=VARCHAR},
       </if>
+       now(),
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.yimei.cron.domain.Coalsell" >

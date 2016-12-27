@@ -93,8 +93,11 @@ export class CoalselllistComponent implements OnInit {
             this.currentPage = page.page;
         });
     }
-    goToCoalsell(coalsell){
-        this.router.navigate(['/coalsell',coalsell.id]) ;
+    gotoaddcoalsell(){
+        this.router.navigate(['/coalselladd']) ;
+    }
+    editCoalsell(coalsell){
+        this.router.navigate(['/coalselledit',coalsell.id]) ;
     }
     public setPage(pageNo:number):void {
         this.currentPage = pageNo;
@@ -103,5 +106,7 @@ export class CoalselllistComponent implements OnInit {
     public pageChanged(event:any):void {
         this.load({page:event.page,pageSize:event.itemsPerPage});
     };
-
+    detailCoalsell(coalsell){
+        this.router.navigate(['/coalselldetail',coalsell.id]) ;
+    }
 }

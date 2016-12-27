@@ -1,5 +1,4 @@
-<h4  *ngIf="isedit" >修改上游采购信息</h4>
-<h4  *ngIf="!isedit" >新增上游采购信息</h4>
+<h4>上游采购信息详情</h4>
 
 <div class="form-wrap">
     <form  [formGroup]="form"  action="" class="form-horizontal">
@@ -41,8 +40,6 @@
                 <small *ngIf="lowercomp.dirty && !lowercomp.valid" class="text-danger" >必输项</small>
             </div>
         </div>
-
-
 
         <div class="form-group">
             <label class="control-label col-sm-1">业务线:</label>
@@ -134,7 +131,7 @@
 
         <div class="form-group">
             <div class="col-sm-offset-3 col-sm-3">
-                <button type="button" (click)="save()" [disabled]='saving'    class="btn btn-primary">确认</button>
+                <button *ngIf="isedit"  type="button" (click)="save()" [disabled]='saving'    class="btn btn-primary">确认</button>
             </div>
             <div class="col-sm-6">
                 <button type="button" (click)="goBack()"   class="btn btn-default btn-sm">取消</button>
@@ -142,3 +139,18 @@
         </div>
     </form>
 </div>
+
+<p-tabView>
+    <p-tabPanel header="开票信息">
+        开票信息
+    </p-tabPanel>
+    <p-tabPanel header="外部融资(借/还)款">
+        外部融资(借/还)款
+    </p-tabPanel>
+    <p-tabPanel header="自营付款">
+        自营付款
+    </p-tabPanel>
+    <p-tabPanel header="下游回款">
+        下游回款
+    </p-tabPanel>
+</p-tabView>

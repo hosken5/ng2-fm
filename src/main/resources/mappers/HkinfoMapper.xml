@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yimei.cron.mapper.HkinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.yimei.cron.domain.Hkinfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="coalsellid" property="coalsellid" jdbcType="INTEGER" />
+    <result column="hkrq" property="hkrq" jdbcType="DATE" />
+    <result column="hkje" property="hkje" jdbcType="DECIMAL" />
+    <result column="hkfs" property="hkfs" jdbcType="VARCHAR" />
+    <result column="ll" property="ll" jdbcType="INTEGER" />
+    <result column="dqr" property="dqr" jdbcType="DATE" />
+    <result column="txts" property="txts" jdbcType="INTEGER" />
+    <result column="txx" property="txx" jdbcType="DECIMAL" />
+    <result column="bz" property="bz" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="lastupdatetime" property="lastupdatetime" jdbcType="TIMESTAMP" />
+    <result column="creator" property="creator" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, coalsellid, hkrq, hkje, hkfs, ll, dqr, txts, txx, bz, createtime, lastupdatetime, 
+    creator
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from hkinfo
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from hkinfo
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyProperty="id"  useGeneratedKeys="true"  parameterType="com.yimei.cron.domain.Hkinfo" >
+    insert into hkinfo (coalsellid, hkrq,
+      hkje, hkfs, ll, dqr, 
+      txts, txx, bz, createtime, creator)
+    values (#{coalsellid,jdbcType=INTEGER}, #{hkrq,jdbcType=DATE},
+      #{hkje,jdbcType=DECIMAL}, #{hkfs,jdbcType=VARCHAR}, #{ll,jdbcType=INTEGER}, #{dqr,jdbcType=DATE}, 
+      #{txts,jdbcType=INTEGER}, #{txx,jdbcType=DECIMAL}, #{bz,jdbcType=VARCHAR}, now() ,
+      #{creator,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yimei.cron.domain.Hkinfo" >
+    insert into hkinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="coalsellid != null" >
+        coalsellid,
+      </if>
+      <if test="hkrq != null" >
+        hkrq,
+      </if>
+      <if test="hkje != null" >
+        hkje,
+      </if>
+      <if test="hkfs != null" >
+        hkfs,
+      </if>
+      <if test="ll != null" >
+        ll,
+      </if>
+      <if test="dqr != null" >
+        dqr,
+      </if>
+      <if test="txts != null" >
+        txts,
+      </if>
+      <if test="txx != null" >
+        txx,
+      </if>
+      <if test="bz != null" >
+        bz,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="lastupdatetime != null" >
+        lastupdatetime,
+      </if>
+      <if test="creator != null" >
+        creator,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="coalsellid != null" >
+        #{coalsellid,jdbcType=INTEGER},
+      </if>
+      <if test="hkrq != null" >
+        #{hkrq,jdbcType=DATE},
+      </if>
+      <if test="hkje != null" >
+        #{hkje,jdbcType=DECIMAL},
+      </if>
+      <if test="hkfs != null" >
+        #{hkfs,jdbcType=VARCHAR},
+      </if>
+      <if test="ll != null" >
+        #{ll,jdbcType=INTEGER},
+      </if>
+      <if test="dqr != null" >
+        #{dqr,jdbcType=DATE},
+      </if>
+      <if test="txts != null" >
+        #{txts,jdbcType=INTEGER},
+      </if>
+      <if test="txx != null" >
+        #{txx,jdbcType=DECIMAL},
+      </if>
+      <if test="bz != null" >
+        #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdatetime != null" >
+        #{lastupdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yimei.cron.domain.Hkinfo" >
+    update hkinfo
+    <set >
+      <if test="coalsellid != null" >
+        coalsellid = #{coalsellid,jdbcType=INTEGER},
+      </if>
+      <if test="hkrq != null" >
+        hkrq = #{hkrq,jdbcType=DATE},
+      </if>
+      <if test="hkje != null" >
+        hkje = #{hkje,jdbcType=DECIMAL},
+      </if>
+      <if test="hkfs != null" >
+        hkfs = #{hkfs,jdbcType=VARCHAR},
+      </if>
+      <if test="ll != null" >
+        ll = #{ll,jdbcType=INTEGER},
+      </if>
+      <if test="dqr != null" >
+        dqr = #{dqr,jdbcType=DATE},
+      </if>
+      <if test="txts != null" >
+        txts = #{txts,jdbcType=INTEGER},
+      </if>
+      <if test="txx != null" >
+        txx = #{txx,jdbcType=DECIMAL},
+      </if>
+      <if test="bz != null" >
+        bz = #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdatetime != null" >
+        lastupdatetime = #{lastupdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null" >
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yimei.cron.domain.Hkinfo" >
+    update hkinfo
+    set coalsellid = #{coalsellid,jdbcType=INTEGER},
+      hkrq = #{hkrq,jdbcType=DATE},
+      hkje = #{hkje,jdbcType=DECIMAL},
+      hkfs = #{hkfs,jdbcType=VARCHAR},
+      ll = #{ll,jdbcType=INTEGER},
+      dqr = #{dqr,jdbcType=DATE},
+      txts = #{txts,jdbcType=INTEGER},
+      txx = #{txx,jdbcType=DECIMAL},
+      bz = #{bz,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      lastupdatetime = #{lastupdatetime,jdbcType=TIMESTAMP},
+      creator = #{creator,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

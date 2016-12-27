@@ -23,13 +23,23 @@ public class CoalsellController {
     CoalsellService coalsellService;
 
 
+    /**
+     * add or update
+     * @param coalsell
+     * @return
+     */
+
     @RequestMapping(value = "/coalsell/add", method = RequestMethod.POST)
     @ResponseBody
     public Object add(
             @RequestBody Coalsell coalsell
     ){
-        logger.info("create coalsell:"+coalsell);
-        coalsellService.insertSelective(coalsell);
+        if(coalsell.getId()==null){
+            logger.info("create coalsell",coalsell);
+            coalsellService.insertSelective(coalsell);
+        }else {
+            coalsellService.updateByPrimaryKeySelective(coalsell);
+        }
         return Result.success();
     }
     @RequestMapping(value = "/coalsell/query/{coalsellid}", method = RequestMethod.POST)

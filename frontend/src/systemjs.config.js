@@ -26,7 +26,8 @@
             'mydatepicker': 'npm:mydatepicker',
             'ng2-datepicker':'npm:ng2-datepicker',
             'rxjs': 'npm:rxjs',
-            'primeng':'npm:primeng'
+            'primeng':'npm:primeng',
+            'angular2-localstorage':'npm:angular2-localstorage'
         },
         // packages tells the System loader how to load when no filename and/or no extension
         packages: {
@@ -59,6 +60,9 @@
             },
             mydatepicker: {
                 defaultExtension: 'js'
+            },
+            'angular2-localstorage':{
+                main: 'index.js'
             }
         }
     });

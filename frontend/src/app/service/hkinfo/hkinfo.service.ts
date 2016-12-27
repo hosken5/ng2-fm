@@ -3,17 +3,17 @@ import  {Http,Headers}  from  '@angular/http' ;
 import {Page} from "../common/page";
 import 'rxjs/add/operator/toPromise';
 import {toPromise} from "rxjs/operator/toPromise";
-import {Financecell}  from './financecell';
+import {Hkinfo}  from './hkinfo';
 
 @Injectable()
-export class FinancecellService{
+export class HkinfoService{
     private headers =  new Headers({'Content-type':'application/json'});
     constructor(private http:Http){}
-    getFinancecells(param):Promise<Financecell[]>{
-        return this.http.post("financecell/list",param
+    getHkinfos(param):Promise<Hkinfo[]>{
+        return this.http.post("hkinfo/list",param
         ).toPromise()
             .then(response=> {
-                var res = response.json()  as Financecell[] ;
+                var res = response.json()  as Hkinfo[] ;
                 var opts = []  ;
                 for (let i = 0; i < res.length; i++){
                     opts[i] = {
@@ -25,21 +25,21 @@ export class FinancecellService{
             })
             .catch(this.handleError) ;
     };
-    getFinancecellList(param):Promise<Financecell[]>{
-        return this.http.post("financecell/list",param)
+    getHkinfoList(param):Promise<Hkinfo[]>{
+        return this.http.post("hkinfo/list",param)
             .toPromise()
-            .then(response=>response.json() as Financecell[])
+            .then(response=>response.json() as Hkinfo[])
             .catch(this.handleError) ;
     };
     handleError(error:any):Promise<any>{
         console.error('An error occurred',error);
         return  Promise.reject(error.message||error);
     };
-    addOrUpdateFinancecell(financecell:Financecell):Promise<Financecell>{
-        const url = 'financecell/addorupdate' ;
-        return this.http.post(url,JSON.stringify(financecell),{headers:this.headers})
+    addOrUpdateHkinfo(hkinfo:Hkinfo):Promise<Hkinfo>{
+        const url = 'hkinfo/addorupdate' ;
+        return this.http.post(url,JSON.stringify(hkinfo),{headers:this.headers})
             .toPromise()
-            .then(resp=>resp.json().data as Financecell)
+            .then(resp=>resp.json().data as Hkinfo)
             .catch(this.handleError) ;
     }
 }

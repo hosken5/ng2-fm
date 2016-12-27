@@ -5,8 +5,6 @@ import {toPromise} from "rxjs/operator/toPromise";
 import {Task} from "./task";
 import {Page} from "../common/page";
 import {TaskaddComponent} from "../../pages/taskadd/taskadd.components";
-import {Task} from "../../todo/models/task";
-import {TaskaddComponent} from "../../pages/taskadd/taskadd.components";
 
 @Injectable()
 export class TaskService{

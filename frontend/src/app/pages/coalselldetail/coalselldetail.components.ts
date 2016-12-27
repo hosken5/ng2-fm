@@ -8,6 +8,7 @@ import {Coalsell} from "../../service/coalsell/coalsell";
 import {TeamService} from "../../service/team/team.service";
 import {InputTextModule} from 'primeng/primeng';
 import {FinancecellService} from "../../service/financecell/financecell.service";
+import {TabViewModule} from 'primeng/primeng';
 
 declare var __moduleName: string;
 
@@ -22,11 +23,11 @@ class CustomerValidator {
 
 @Component({
     moduleId    : __moduleName || module.id,
-    templateUrl: 'coalselladd.html',
-    styleUrls:['coalselladd.css'],
+    templateUrl: 'coalselldetail.html',
+    styleUrls:['coalselldetail.css'],
     providers:[CoalsellService,TeamService,FinancecellService]
 })
-export class CoalselladdComponent implements OnInit {
+export class CoalselldetailComponent implements OnInit {
     constructor(
         private router : ActivatedRoute,
         private route :Router,
@@ -108,18 +109,12 @@ export class CoalselladdComponent implements OnInit {
                     this.fyrqv =  this.parseDate(data.fyrq) ;
                     this.upperjsrqv =  this.parseDate(data.upperjsrq) ;
                     this.form.setValue(data);
-                    this.isedit = true;
                 });
-            }else {
-                this.isedit = false;
             }
         })
     }
 
     parseDate(date){
-        if(!date){
-            return null ;
-        }
         var array = date.split("-") ;
         return  {year:parseInt(array[0]),month:parseInt(array[1]),day:parseInt(array[2])}
     }

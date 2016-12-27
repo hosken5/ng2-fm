@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yimei.cron.mapper.PaymentinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.yimei.cron.domain.Paymentinfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="coalsellid" property="coalsellid" jdbcType="INTEGER" />
+    <result column="fkrq" property="fkrq" jdbcType="DATE" />
+    <result column="fkje" property="fkje" jdbcType="DECIMAL" />
+    <result column="jxts" property="jxts" jdbcType="INTEGER" />
+    <result column="ll" property="ll" jdbcType="DECIMAL" />
+    <result column="rmtsy" property="rmtsy" jdbcType="DECIMAL" />
+    <result column="hkrq" property="hkrq" jdbcType="DATE" />
+    <result column="hkje" property="hkje" jdbcType="DECIMAL" />
+    <result column="hkjxts" property="hkjxts" jdbcType="INTEGER" />
+    <result column="hkll" property="hkll" jdbcType="DECIMAL" />
+    <result column="hkrmtsy" property="hkrmtsy" jdbcType="DECIMAL" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="lastupdatetime" property="lastupdatetime" jdbcType="TIMESTAMP" />
+    <result column="creator" property="creator" jdbcType="VARCHAR" />
+    <result column="bz" property="bz" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, coalsellid, fkrq, fkje, jxts, ll, rmtsy, hkrq, hkje, hkjxts, hkll, hkrmtsy, createtime, 
+    lastupdatetime, creator, bz
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from paymentinfo
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from paymentinfo
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyProperty="id"  useGeneratedKeys="true"  parameterType="com.yimei.cron.domain.Paymentinfo" >
+    insert into paymentinfo (coalsellid, fkrq,
+      fkje, jxts, ll, rmtsy, 
+      hkrq, hkje, hkjxts, hkll, 
+      hkrmtsy, createtime,
+      creator, bz)
+    values (#{coalsellid,jdbcType=INTEGER}, #{fkrq,jdbcType=DATE},
+      #{fkje,jdbcType=DECIMAL}, #{jxts,jdbcType=INTEGER}, #{ll,jdbcType=DECIMAL}, #{rmtsy,jdbcType=DECIMAL}, 
+      #{hkrq,jdbcType=DATE}, #{hkje,jdbcType=DECIMAL}, #{hkjxts,jdbcType=INTEGER}, #{hkll,jdbcType=DECIMAL}, 
+      #{hkrmtsy,jdbcType=DECIMAL}, now(),#{creator,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yimei.cron.domain.Paymentinfo" >
+    insert into paymentinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="coalsellid != null" >
+        coalsellid,
+      </if>
+      <if test="fkrq != null" >
+        fkrq,
+      </if>
+      <if test="fkje != null" >
+        fkje,
+      </if>
+      <if test="jxts != null" >
+        jxts,
+      </if>
+      <if test="ll != null" >
+        ll,
+      </if>
+      <if test="rmtsy != null" >
+        rmtsy,
+      </if>
+      <if test="hkrq != null" >
+        hkrq,
+      </if>
+      <if test="hkje != null" >
+        hkje,
+      </if>
+      <if test="hkjxts != null" >
+        hkjxts,
+      </if>
+      <if test="hkll != null" >
+        hkll,
+      </if>
+      <if test="hkrmtsy != null" >
+        hkrmtsy,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="lastupdatetime != null" >
+        lastupdatetime,
+      </if>
+      <if test="creator != null" >
+        creator,
+      </if>
+      <if test="bz != null" >
+        bz,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="coalsellid != null" >
+        #{coalsellid,jdbcType=INTEGER},
+      </if>
+      <if test="fkrq != null" >
+        #{fkrq,jdbcType=DATE},
+      </if>
+      <if test="fkje != null" >
+        #{fkje,jdbcType=DECIMAL},
+      </if>
+      <if test="jxts != null" >
+        #{jxts,jdbcType=INTEGER},
+      </if>
+      <if test="ll != null" >
+        #{ll,jdbcType=DECIMAL},
+      </if>
+      <if test="rmtsy != null" >
+        #{rmtsy,jdbcType=DECIMAL},
+      </if>
+      <if test="hkrq != null" >
+        #{hkrq,jdbcType=DATE},
+      </if>
+      <if test="hkje != null" >
+        #{hkje,jdbcType=DECIMAL},
+      </if>
+      <if test="hkjxts != null" >
+        #{hkjxts,jdbcType=INTEGER},
+      </if>
+      <if test="hkll != null" >
+        #{hkll,jdbcType=DECIMAL},
+      </if>
+      <if test="hkrmtsy != null" >
+        #{hkrmtsy,jdbcType=DECIMAL},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdatetime != null" >
+        #{lastupdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null" >
+        #{bz,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yimei.cron.domain.Paymentinfo" >
+    update paymentinfo
+    <set >
+      <if test="coalsellid != null" >
+        coalsellid = #{coalsellid,jdbcType=INTEGER},
+      </if>
+      <if test="fkrq != null" >
+        fkrq = #{fkrq,jdbcType=DATE},
+      </if>
+      <if test="fkje != null" >
+        fkje = #{fkje,jdbcType=DECIMAL},
+      </if>
+      <if test="jxts != null" >
+        jxts = #{jxts,jdbcType=INTEGER},
+      </if>
+      <if test="ll != null" >
+        ll = #{ll,jdbcType=DECIMAL},
+      </if>
+      <if test="rmtsy != null" >
+        rmtsy = #{rmtsy,jdbcType=DECIMAL},
+      </if>
+      <if test="hkrq != null" >
+        hkrq = #{hkrq,jdbcType=DATE},
+      </if>
+      <if test="hkje != null" >
+        hkje = #{hkje,jdbcType=DECIMAL},
+      </if>
+      <if test="hkjxts != null" >
+        hkjxts = #{hkjxts,jdbcType=INTEGER},
+      </if>
+      <if test="hkll != null" >
+        hkll = #{hkll,jdbcType=DECIMAL},
+      </if>
+      <if test="hkrmtsy != null" >
+        hkrmtsy = #{hkrmtsy,jdbcType=DECIMAL},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdatetime != null" >
+        lastupdatetime = #{lastupdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null" >
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null" >
+        bz = #{bz,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yimei.cron.domain.Paymentinfo" >
+    update paymentinfo
+    set coalsellid = #{coalsellid,jdbcType=INTEGER},
+      fkrq = #{fkrq,jdbcType=DATE},
+      fkje = #{fkje,jdbcType=DECIMAL},
+      jxts = #{jxts,jdbcType=INTEGER},
+      ll = #{ll,jdbcType=DECIMAL},
+      rmtsy = #{rmtsy,jdbcType=DECIMAL},
+      hkrq = #{hkrq,jdbcType=DATE},
+      hkje = #{hkje,jdbcType=DECIMAL},
+      hkjxts = #{hkjxts,jdbcType=INTEGER},
+      hkll = #{hkll,jdbcType=DECIMAL},
+      hkrmtsy = #{hkrmtsy,jdbcType=DECIMAL},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      lastupdatetime = #{lastupdatetime,jdbcType=TIMESTAMP},
+      creator = #{creator,jdbcType=VARCHAR},
+      bz = #{bz,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

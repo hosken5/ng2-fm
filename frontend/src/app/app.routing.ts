@@ -13,11 +13,15 @@ import {CoalselllistComponent} from "./pages/coalselllist/coalselllist.component
 import {CoalsellComponent} from "./pages/coalsell/coalsell.components";
 import {FinancecelllistComponent} from "./pages/financecelllist/financecelllist.components";
 import {CoalselladdComponent} from "./pages/coalselladd/coalselladd.components";
+import {CoalselldetailComponent} from "./pages/coalselldetail/coalselldetail.components";
+import {BillinfolistComponent} from "./pages/billinfolist/billinfolist.components";
+import {PaymentinfolistComponent} from "./pages/paymentinfolist/paymentinfolist.components";
+import {HkinfolistComponent} from "./pages/hkinfolist/hkinfolist.components";
 
 const appRoutes: Routes = <Routes>[
     {
         path:'',
-        redirectTo:'welcome',
+        redirectTo:'coalselllist',
         pathMatch:'full'
     },
     {
@@ -61,8 +65,26 @@ const appRoutes: Routes = <Routes>[
         component:CoalsellComponent
     },
     {
+        path:'coalselledit/:id',
+        component:CoalselladdComponent
+    },
+    {
         path:'financecell',
         component:FinancecelllistComponent
+    },{
+        path:'coalselldetail/:id',
+        component:CoalselldetailComponent
+    },
+    {
+        path:'billinfolist',
+        component:BillinfolistComponent
+    },
+    {
+        path:'paymentinfolist',
+        component:PaymentinfolistComponent
+    },{
+        path:'hkinfolist',
+        component:HkinfolistComponent
     },
 ];
 

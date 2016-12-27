@@ -31,6 +31,15 @@ export class CoalsellService{
 
     private headers =  new Headers({'Content-type':'application/json'});
 
+    create(coalsell:Coalsell):Promise<Coalsell>{
+        const url = `${this.coalsellUrl}/add` ;
+        return this.http.post(url,JSON.stringify(coalsell),{headers:this.headers})
+            .toPromise()
+            .then(resp=>resp.json().data as Coalsell)
+            .catch(this.handleError) ;
+    }
+
+
     //deleteCoalsell(task:Coalsell):Promise<Coalsell>{
     //    const url = `${this.coalsellUrl}/delete` ;
     //    return this.http.post(url,JSON.stringify({id:task.id}),{headers:this.headers})

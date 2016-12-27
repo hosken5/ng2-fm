@@ -1,7 +1,7 @@
 package com.yimei.cron.domain;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Coalsell {
     private Integer id;
@@ -26,13 +26,13 @@ public class Coalsell {
 
     private Integer jsl;
 
-    private Date upperjsrq;
+    private LocalDate upperjsrq;
 
-    private Date lowerjsrq;
+    private LocalDate lowerjsrq;
 
     private String ysfs;
 
-    private Date fyrq;
+    private LocalDate fyrq;
 
     private BigDecimal xshsze;
 
@@ -44,9 +44,9 @@ public class Coalsell {
 
     private BigDecimal lowerzjzy;
 
-    private Date createtime;
+    private LocalDate createtime;
 
-    private Date lastupdatetime;
+    private LocalDate lastupdatetime;
 
     private String creator;
 
@@ -138,19 +138,19 @@ public class Coalsell {
         this.jsl = jsl;
     }
 
-    public Date getUpperjsrq() {
+    public LocalDate getUpperjsrq() {
         return upperjsrq;
     }
 
-    public void setUpperjsrq(Date upperjsrq) {
+    public void setUpperjsrq(LocalDate upperjsrq) {
         this.upperjsrq = upperjsrq;
     }
 
-    public Date getLowerjsrq() {
+    public LocalDate getLowerjsrq() {
         return lowerjsrq;
     }
 
-    public void setLowerjsrq(Date lowerjsrq) {
+    public void setLowerjsrq(LocalDate lowerjsrq) {
         this.lowerjsrq = lowerjsrq;
     }
 
@@ -162,11 +162,11 @@ public class Coalsell {
         this.ysfs = ysfs == null ? null : ysfs.trim();
     }
 
-    public Date getFyrq() {
+    public LocalDate getFyrq() {
         return fyrq;
     }
 
-    public void setFyrq(Date fyrq) {
+    public void setFyrq(LocalDate fyrq) {
         this.fyrq = fyrq;
     }
 
@@ -210,19 +210,19 @@ public class Coalsell {
         this.lowerzjzy = lowerzjzy;
     }
 
-    public Date getCreatetime() {
+    public LocalDate getCreatetime() {
         return createtime;
     }
 
-    public void setCreatetime(Date createtime) {
+    public void setCreatetime(LocalDate createtime) {
         this.createtime = createtime;
     }
 
-    public Date getLastupdatetime() {
+    public LocalDate getLastupdatetime() {
         return lastupdatetime;
     }
 
-    public void setLastupdatetime(Date lastupdatetime) {
+    public void setLastupdatetime(LocalDate lastupdatetime) {
         this.lastupdatetime = lastupdatetime;
     }
 

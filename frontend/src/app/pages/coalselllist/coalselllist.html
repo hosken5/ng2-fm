@@ -1,5 +1,5 @@
 <h3 style="text-align: center">煤炭销售信息</h3>
-<button class="btn btn-primary btn-sm" style="margin-bottom: 10px;margin-top: 5px">新增业务线</button>
+<button class="btn btn-primary btn-sm" (click)="gotoaddcoalsell()" style="margin-bottom: 10px;margin-top: 5px">新增业务线</button>
 
 <div class="panel panel-default">
     <div class="panel-body">
@@ -73,7 +73,10 @@
             <td>{{coalsell.lowercomp}}</td>
             <td>
                 <span>
-                  <a href="javascript:void(0);" (click)="goToCoalsell(coalsell)" class="btn btn-hover-blue btn-default btn-xs">查看详情</a>
+                  <a href="javascript:void(0);" (click)="detailCoalsell(coalsell)" class="btn btn-hover-blue btn-default btn-xs">查看详情</a>
+                </span>
+                <span>
+                  <a href="javascript:void(0);" (click)="editCoalsell(coalsell)" class="btn btn-hover-blue  btn-default  btn-xs">修改</a>
                 </span>
             </td>
         </tr>
