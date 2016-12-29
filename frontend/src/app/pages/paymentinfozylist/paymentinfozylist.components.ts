@@ -4,10 +4,10 @@ import {Router}  from  '@angular/router' ;
 import {ConfirmOptions, Position} from 'angular2-bootstrap-confirm';
 import {FormGroup,Validators,FormBuilder,FormControl} from  '@angular/forms';
 import {Positioning} from 'angular2-bootstrap-confirm/position';
-import {PaymentinfoService} from "../../service/paymentinfo/paymentinfo.service";
-import {Paymentinfo} from  "../../service/paymentinfo/paymentinfo"
+import {PaymentinfozyService} from "../../service/paymentinfozy/paymentinfozy.service";
+import {Paymentinfozy} from  "../../service/paymentinfozy/paymentinfozy"
 import { ModalModule,ModalDirective} from 'ng2-bootstrap/ng2-bootstrap';
-import {Paymentinfo} from "../../service/paymentinfo/paymentinfo";
+import {Paymentinfozy} from "../../service/paymentinfozy/paymentinfozy";
 declare var __moduleName: string;
 
 interface ValidationResult {
@@ -21,12 +21,12 @@ class CustomerValidator {
 
 @Component({
     moduleId    : __moduleName || module.id,
-    selector:'paymentinfolist',
-    templateUrl: 'paymentinfolist.html',
-    styleUrls:['paymentinfolist.css'],
-    providers:[PaymentinfoService,ConfirmOptions,{provide: Position, useClass: Positioning}]
+    selector:'paymentinfozylist',
+    templateUrl: 'paymentinfozylist.html',
+    styleUrls:['paymentinfozylist.css'],
+    providers:[PaymentinfozyService,ConfirmOptions,{provide: Position, useClass: Positioning}]
 })
-export class PaymentinfolistComponent implements OnInit {
+export class PaymentinfozylistComponent implements OnInit {
 
     @ViewChild('staticModal') public staticModal:ModalDirective;
 
@@ -61,35 +61,35 @@ export class PaymentinfolistComponent implements OnInit {
     reload(){
         this.load(this.lastparam);
     }
-    public openEditView(paymentinfo:Paymentinfo):void {
+    public openEditView(paymentinfozy:Paymentinfozy):void {
         this.isedit = true ;
-        this.addPaymentinfoForm.reset();
-        this.addPaymentinfoForm.setValue(paymentinfo);
-        this.hkrqi = this.parseDate(paymentinfo.hkrq) ;
-        this.fkrqi = this.parseDate(paymentinfo.fkrq) ;
+        this.addPaymentinfozyForm.reset();
+        this.addPaymentinfozyForm.setValue(paymentinfozy);
+        this.hkrqi = this.parseDate(paymentinfozy.hkrq) ;
+        this.fkrqi = this.parseDate(paymentinfozy.fkrq) ;
         this.staticModal.show();
 
     }
     public openAddView():void {
         this.isedit = false ;
-        this.addPaymentinfoForm.reset() ;
+        this.addPaymentinfozyForm.reset() ;
         this.hkrqi = "";
         this.fkrqi = "";
         this.staticModal.show();
     }
     saveOrUpdate():void {
         this.coalsellid.setValue(this.coalsell.id);
-        for( let key in this.addPaymentinfoForm.value){
-            this.addPaymentinfoForm.controls[key].markAsDirty();
-            if(!this.addPaymentinfoForm.controls[key].valid){
+        for( let key in this.addPaymentinfozyForm.value){
+            this.addPaymentinfozyForm.controls[key].markAsDirty();
+            if(!this.addPaymentinfozyForm.controls[key].valid){
                 console.log("["+key+"] is not valid");
             }
         }
 
-        if(!this.addPaymentinfoForm.valid) return  ;
-        console.log(this.addPaymentinfoForm.value);
-        this.paymentinfoService.addOrUpdatePaymentinfo(this.addPaymentinfoForm.value).then(()=>{
-            this.addPaymentinfoForm.reset();
+        if(!this.addPaymentinfozyForm.valid) return  ;
+        console.log(this.addPaymentinfozyForm.value);
+        this.paymentinfozyService.addOrUpdatePaymentinfozy(this.addPaymentinfozyForm.value).then(()=>{
+            this.addPaymentinfozyForm.reset();
             this.staticModal.hide() ;
             this.reload();
             console.log("succes");
@@ -101,17 +101,17 @@ export class PaymentinfolistComponent implements OnInit {
     hkrqi:Any ;
     fkrqi:Any ;
     onDateChangedhkrq(event){
-        this.addPaymentinfoForm.controls["hkrq"].setValue(event.formatted);
+        this.addPaymentinfozyForm.controls["hkrq"].setValue(event.formatted);
     }
     onDateChangedfkrq(event){
-        this.addPaymentinfoForm.controls["fkrq"].setValue(event.formatted);
+        this.addPaymentinfozyForm.controls["fkrq"].setValue(event.formatted);
     }
 
     load(param){
         this.lastparam = param ;
-        this.paymentinfoService.getPaymentinfoListByCoalSellId(param).then(data=>{
+        this.paymentinfozyService.getPaymentinfozyListByCoalSellId(param).then(data=>{
             console.log(data) ;
-            this.paymentinfos = data || [];
+            this.paymentinfozys = data || [];
         }) ;
     }
 
@@ -130,7 +130,7 @@ export class PaymentinfolistComponent implements OnInit {
         showDateFormatPlaceholder:true,
         selectionTxtFontSize: '12px'
     };
-    addPaymentinfoForm : FormGroup ;
+    addPaymentinfozyForm : FormGroup ;
     id             =  new FormControl("")          ;
     coalsellid     =  new FormControl("",Validators.required)          ;
     fkrq           =  new FormControl("",Validators.required)          ;
@@ -138,12 +138,6 @@ export class PaymentinfolistComponent implements OnInit {
     jxts           =  new FormControl("",Validators.compose([Validators.required,Validators.maxLength(30),CustomerValidator.ismoney]))          ;
     ll             =  new FormControl("",Validators.compose([Validators.required,Validators.maxLength(30),CustomerValidator.ismoney]))          ;
     rmtsy          =  new FormControl("",Validators.compose([Validators.required,Validators.maxLength(30),CustomerValidator.ismoney]))          ;
-    cfsy           =  new FormControl("",Validators.compose([Validators.required,Validators.maxLength(30),CustomerValidator.ismoney]))          ;
-    hkrq           =  new FormControl("",Validators.required)          ;
-    hkje           =  new FormControl("",Validators.compose([Validators.required,Validators.maxLength(30),CustomerValidator.ismoney]))          ;
-    hkjxts         =  new FormControl("",Validators.compose([Validators.required,Validators.maxLength(30),CustomerValidator.ismoney]))          ;
-    hkll           =  new FormControl("",Validators.compose([Validators.required,Validators.maxLength(30),CustomerValidator.ismoney]))          ;
-    hkrmtsy        =  new FormControl("",Validators.compose([Validators.required,Validators.maxLength(30),CustomerValidator.ismoney]))          ;
     createtime     =  new FormControl("")          ;
     lastupdatetime =  new FormControl("")          ;
     creator        =  new FormControl("")          ;
@@ -152,9 +146,9 @@ export class PaymentinfolistComponent implements OnInit {
     constructor(
         private builder:FormBuilder,
         private router : Router,
-        private paymentinfoService: PaymentinfoService
+        private paymentinfozyService: PaymentinfozyService
     ){
-        this.addPaymentinfoForm = builder.group({
+        this.addPaymentinfozyForm = builder.group({
             id            :this.id            ,
             coalsellid    :this.coalsellid    ,
             fkrq          :this.fkrq          ,
@@ -162,17 +156,11 @@ export class PaymentinfolistComponent implements OnInit {
             jxts          :this.jxts          ,
             ll            :this.ll            ,
             rmtsy         :this.rmtsy         ,
-            cfsy          :this.cfsy          ,
-            hkrq          :this.hkrq          ,
-            hkje          :this.hkje          ,
-            hkjxts        :this.hkjxts        ,
-            hkll          :this.hkll          ,
-            hkrmtsy       :this.hkrmtsy       ,
             createtime    :this.createtime    ,
             lastupdatetime:this.lastupdatetime,
             creator       :this.creator       ,
             bz            :this.bz
         });
     }
-    public paymentinfos:Paymentinfo[]  = [] ;
+    public paymentinfozys:Paymentinfozy[]  = [] ;
 }

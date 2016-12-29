@@ -9,6 +9,7 @@
     <result column="jxts" property="jxts" jdbcType="INTEGER" />
     <result column="ll" property="ll" jdbcType="DECIMAL" />
     <result column="rmtsy" property="rmtsy" jdbcType="DECIMAL" />
+    <result column="cfsy" property="cfsy" jdbcType="DECIMAL" />
     <result column="hkrq" property="hkrq" jdbcType="DATE" />
     <result column="hkje" property="hkje" jdbcType="DECIMAL" />
     <result column="hkjxts" property="hkjxts" jdbcType="INTEGER" />
@@ -21,7 +22,7 @@
   </resultMap>
   <sql id="Base_Column_List" >
     id, coalsellid, fkrq, fkje, jxts, ll, rmtsy, hkrq, hkje, hkjxts, hkll, hkrmtsy, createtime, 
-    lastupdatetime, creator, bz
+    lastupdatetime, creator, bz,cfsy
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -38,11 +39,11 @@
       fkje, jxts, ll, rmtsy, 
       hkrq, hkje, hkjxts, hkll, 
       hkrmtsy, createtime,
-      creator, bz)
+      creator, bz,cfsy)
     values (#{coalsellid,jdbcType=INTEGER}, #{fkrq,jdbcType=DATE},
       #{fkje,jdbcType=DECIMAL}, #{jxts,jdbcType=INTEGER}, #{ll,jdbcType=DECIMAL}, #{rmtsy,jdbcType=DECIMAL}, 
       #{hkrq,jdbcType=DATE}, #{hkje,jdbcType=DECIMAL}, #{hkjxts,jdbcType=INTEGER}, #{hkll,jdbcType=DECIMAL}, 
-      #{hkrmtsy,jdbcType=DECIMAL}, now(),#{creator,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR})
+      #{hkrmtsy,jdbcType=DECIMAL}, now(),#{creator,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR},#{cfsy,jdbcType=DECIMAL})
   </insert>
   <insert id="insertSelective" parameterType="com.yimei.cron.domain.Paymentinfo" >
     insert into paymentinfo
@@ -67,6 +68,9 @@
       </if>
       <if test="rmtsy != null" >
         rmtsy,
+      </if>
+      <if test="cfsy != null" >
+        cfsy,
       </if>
       <if test="hkrq != null" >
         hkrq,
@@ -118,6 +122,9 @@
       <if test="rmtsy != null" >
         #{rmtsy,jdbcType=DECIMAL},
       </if>
+      <if test="cfsy != null" >
+        #{cfsy,jdbcType=DECIMAL},
+      </if>
       <if test="hkrq != null" >
         #{hkrq,jdbcType=DATE},
       </if>
@@ -168,6 +175,9 @@
       <if test="rmtsy != null" >
         rmtsy = #{rmtsy,jdbcType=DECIMAL},
       </if>
+      <if test="cfsy != null" >
+        cfsy = #{cfsy,jdbcType=DECIMAL},
+      </if>
       <if test="hkrq != null" >
         hkrq = #{hkrq,jdbcType=DATE},
       </if>
@@ -206,6 +216,7 @@
       jxts = #{jxts,jdbcType=INTEGER},
       ll = #{ll,jdbcType=DECIMAL},
       rmtsy = #{rmtsy,jdbcType=DECIMAL},
+      cfsy = #{cfsy,jdbcType=DECIMAL},
       hkrq = #{hkrq,jdbcType=DATE},
       hkje = #{hkje,jdbcType=DECIMAL},
       hkjxts = #{hkjxts,jdbcType=INTEGER},

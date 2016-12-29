@@ -36,6 +36,7 @@ CREATE TABLE `paymentinfo` (
   `jxts` int(11) DEFAULT NULL,
   `ll` decimal(11,2) DEFAULT NULL,
   `rmtsy` decimal(11,2) DEFAULT NULL,
+  `cfsy` decimal(11,2) DEFAULT NULL,
   `hkrq` date DEFAULT NULL,
   `hkje` decimal(11,2) DEFAULT NULL,
   `hkjxts` int(11) DEFAULT NULL,

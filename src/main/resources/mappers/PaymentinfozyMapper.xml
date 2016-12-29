@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yimei.cron.mapper.PaymentinfozyMapper" >
+  <resultMap id="BaseResultMap" type="com.yimei.cron.domain.Paymentinfozy" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="coalsellid" property="coalsellid" jdbcType="INTEGER" />
+    <result column="fkrq" property="fkrq" jdbcType="DATE" />
+    <result column="fkje" property="fkje" jdbcType="DECIMAL" />
+    <result column="jxts" property="jxts" jdbcType="INTEGER" />
+    <result column="ll" property="ll" jdbcType="DECIMAL" />
+    <result column="rmtsy" property="rmtsy" jdbcType="DECIMAL" />
+    <result column="bz" property="bz" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="lastupdatetime" property="lastupdatetime" jdbcType="TIMESTAMP" />
+    <result column="creator" property="creator" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, coalsellid, fkrq, fkje, jxts, ll, rmtsy, bz, createtime, lastupdatetime, creator
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from paymentinfozy
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from paymentinfozy
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert"  keyProperty="id"  useGeneratedKeys="true"   parameterType="com.yimei.cron.domain.Paymentinfozy" >
+    insert into paymentinfozy (coalsellid, fkrq,
+      fkje, jxts, ll, rmtsy, 
+      bz, createtime,
+      creator)
+    values (#{coalsellid,jdbcType=INTEGER}, #{fkrq,jdbcType=DATE},
+      #{fkje,jdbcType=DECIMAL}, #{jxts,jdbcType=INTEGER}, #{ll,jdbcType=DECIMAL}, #{rmtsy,jdbcType=DECIMAL}, 
+      #{bz,jdbcType=VARCHAR}, now(),
+      #{creator,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective"  keyProperty="id"  useGeneratedKeys="true"  parameterType="com.yimei.cron.domain.Paymentinfozy" >
+    insert into paymentinfozy
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="coalsellid != null" >
+        coalsellid,
+      </if>
+      <if test="fkrq != null" >
+        fkrq,
+      </if>
+      <if test="fkje != null" >
+        fkje,
+      </if>
+      <if test="jxts != null" >
+        jxts,
+      </if>
+      <if test="ll != null" >
+        ll,
+      </if>
+      <if test="rmtsy != null" >
+        rmtsy,
+      </if>
+      <if test="bz != null" >
+        bz,
+      </if>
+      <if test="lastupdatetime != null" >
+        lastupdatetime,
+      </if>
+      <if test="creator != null" >
+        creator,
+      </if>
+      createtime,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="coalsellid != null" >
+        #{coalsellid,jdbcType=INTEGER},
+      </if>
+      <if test="fkrq != null" >
+        #{fkrq,jdbcType=DATE},
+      </if>
+      <if test="fkje != null" >
+        #{fkje,jdbcType=DECIMAL},
+      </if>
+      <if test="jxts != null" >
+        #{jxts,jdbcType=INTEGER},
+      </if>
+      <if test="ll != null" >
+        #{ll,jdbcType=DECIMAL},
+      </if>
+      <if test="rmtsy != null" >
+        #{rmtsy,jdbcType=DECIMAL},
+      </if>
+      <if test="bz != null" >
+        #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="lastupdatetime != null" >
+        #{lastupdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+        now(),
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yimei.cron.domain.Paymentinfozy" >
+    update paymentinfozy
+    <set>
+      <if test="coalsellid != null" >
+        coalsellid = #{coalsellid,jdbcType=INTEGER},
+      </if>
+      <if test="fkrq != null" >
+        fkrq = #{fkrq,jdbcType=DATE},
+      </if>
+      <if test="fkje != null" >
+        fkje = #{fkje,jdbcType=DECIMAL},
+      </if>
+      <if test="jxts != null" >
+        jxts = #{jxts,jdbcType=INTEGER},
+      </if>
+      <if test="ll != null" >
+        ll = #{ll,jdbcType=DECIMAL},
+      </if>
+      <if test="rmtsy != null" >
+        rmtsy = #{rmtsy,jdbcType=DECIMAL},
+      </if>
+      <if test="bz != null" >
+        bz = #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="lastupdatetime != null" >
+        lastupdatetime = #{lastupdatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yimei.cron.domain.Paymentinfozy" >
+    update paymentinfozy
+    set coalsellid = #{coalsellid,jdbcType=INTEGER},
+      fkrq = #{fkrq,jdbcType=DATE},
+      fkje = #{fkje,jdbcType=DECIMAL},
+      jxts = #{jxts,jdbcType=INTEGER},
+      ll = #{ll,jdbcType=DECIMAL},
+      rmtsy = #{rmtsy,jdbcType=DECIMAL},
+      bz = #{bz,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      lastupdatetime = #{lastupdatetime,jdbcType=TIMESTAMP},
+      creator = #{creator,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

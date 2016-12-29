@@ -1,4 +1,4 @@
-export  class Paymentinfo {
+export  class Paymentinfozy {
        id:                number          ;
 
        coalsellid:        number          ;
@@ -13,16 +13,6 @@ export  class Paymentinfo {
 
        rmtsy:             number          ;
 
-       hkrq:              string          ;
-
-       hkje:              number          ;
-
-       hkjxts:            number          ;
-
-       hkll:              number          ;
-
-       hkrmtsy:           number          ;
-
        createtime:        string          ;
 
        lastupdatetime:    string          ;
@@ -30,7 +20,5 @@ export  class Paymentinfo {
        creator:           string          ;
 
        bz:                string          ;
-
-       cfsy:              number          ;
 
 }

@@ -31,6 +31,14 @@ export class HkinfoService{
             .then(response=>response.json() as Hkinfo[])
             .catch(this.handleError) ;
     };
+
+    getHkinfoListByCoalSellId(coalsellid):Promise<Hkinfo[]>{
+        return this.http.post("hkinfo/listbycoalsellid/"+coalsellid)
+            .toPromise()
+            .then(response=>response.json() as Hkinfo[])
+            .catch(this.handleError) ;
+    };
+
     handleError(error:any):Promise<any>{
         console.error('An error occurred',error);
         return  Promise.reject(error.message||error);

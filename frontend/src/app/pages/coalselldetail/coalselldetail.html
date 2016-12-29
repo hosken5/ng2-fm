@@ -142,15 +142,18 @@
 
 <p-tabView>
     <p-tabPanel header="开票信息">
-        开票信息
+        <billinfolist [coalsell]="coalsell">
+        </billinfolist>
     </p-tabPanel>
     <p-tabPanel header="外部融资(借/还)款">
-        外部融资(借/还)款
+        <paymentinfolist [coalsell]="coalsell" >
+        </paymentinfolist>
     </p-tabPanel>
     <p-tabPanel header="自营付款">
-        自营付款
+        <paymentinfozylist [coalsell]="coalsell" >
+        </paymentinfozylist>
     </p-tabPanel>
     <p-tabPanel header="下游回款">
-        下游回款
+        <hkinfolist [coalsell]="coalsell" ></hkinfolist>
     </p-tabPanel>
 </p-tabView>

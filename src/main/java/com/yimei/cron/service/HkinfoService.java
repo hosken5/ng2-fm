@@ -48,6 +48,10 @@ public class HkinfoService {
         return hkinfoMapper.loadHkinfoList();
     }
 
+    public List<Hkinfo> loadHkinfoListByCoalsellId(Integer coalsellid) {
+       return hkinfoMapper.loadHkinfoListByCoalsellId(coalsellid);
+    }
+
 //    public Pager<Hkinfo> loadHkinfo(HkinfoParam param) {
 //        PageHelper.startPage(param.getPage(),param.getPageSize(),true);
 //        return    Pager.of(hkinfoMapper.loadHkinfo(param)) ;

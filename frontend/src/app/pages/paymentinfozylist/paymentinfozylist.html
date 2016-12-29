@@ -1,4 +1,4 @@
-<!--<h4 style="text-align: center">paymentinfo</h4>-->
+<!--<h4 style="text-align: center">paymentinfozy</h4>-->
 <button style="margin-bottom: 10px;" type="button" class="btn btn-primary btn-sm" (click)="openAddView()">新增付款信息</button>
 <div class="panel panel-default">
         <table class="table  table-striped table-hover table-condensed">
@@ -8,30 +8,18 @@
                 <td>计息天数</td>
                 <td>对应利率</td>
                 <td>ccs利息收益</td>
-                <td>财富利息收益</td>
-                <td>还款日期</td>
-                <td>还款金额</td>
-                <td>还款计息天数</td>
-                <td>还款对应利率</td>
-                <td>还款瑞茂通收益</td>
                 <td>备注</td>
                 <td>操作</td>
             </tr>
-            <tr *ngFor="let paymentinfo of paymentinfos">
-                <td>{{paymentinfo.fkrq}}</td>
-                <td>{{paymentinfo.fkje}}</td>
-                <td>{{paymentinfo.jxts}}</td>
-                <td>{{paymentinfo.ll}}</td>
-                <td>{{paymentinfo.rmtsy}}</td>
-                <td>{{paymentinfo.cfsy}}</td>
-                <td>{{paymentinfo.hkrq}}</td>
-                <td>{{paymentinfo.hkje}}</td>
-                <td>{{paymentinfo.hkjxts}}</td>
-                <td>{{paymentinfo.hkll}}</td>
-                <td>{{paymentinfo.hkrmtsy}}</td>
-                <td>{{paymentinfo.bz}}</td>
+            <tr *ngFor="let paymentinfozy of paymentinfozys">
+                <td>{{paymentinfozy.fkrq}}</td>
+                <td>{{paymentinfozy.fkje}}</td>
+                <td>{{paymentinfozy.jxts}}</td>
+                <td>{{paymentinfozy.ll}}</td>
+                <td>{{paymentinfozy.rmtsy}}</td>
+                <td>{{paymentinfozy.bz}}</td>
                 <td>
-                    <a href="javascript:void(0);" (click)="openEditView(paymentinfo)"   class="btn btn-default btn-xs">修改</a>
+                    <a href="javascript:void(0);" (click)="openEditView(paymentinfozy)"   class="btn btn-default btn-xs">修改</a>
                 </td>
             </tr>
         </table>
@@ -51,7 +39,7 @@
             <div class="modal-body">
                 <div class="form-wrap">
 
-                    <form  [formGroup]="addPaymentinfoForm"  action="" class="form-horizontal">
+                    <form  [formGroup]="addPaymentinfozyForm"  action="" class="form-horizontal">
                         <div class="form-group"   [class.has-error] = "fkrq.dirty && !fkrq.valid">
                             <label class="control-label col-sm-3">付款日期:</label>
                             <div class="col-sm-9">
@@ -93,61 +81,6 @@
                                 <input formControlName="rmtsy"  style="width:80%"/>
                                 <small *ngIf="rmtsy.dirty && rmtsy.hasError('ismoney')" class="text-danger" >请输入整数</small>
                                 <small *ngIf="rmtsy.dirty && rmtsy.hasError('required')" class="text-danger" >必输字段</small>
-                            </div>
-                        </div>
-
-                        <div class="form-group"   [class.has-error] = "cfsy.dirty && !cfsy.valid">
-                            <label class="control-label col-sm-3">财富收益:</label>
-                            <div class="col-sm-9">
-                                <input formControlName="cfsy"  style="width:80%"/>
-                                <small *ngIf="cfsy.dirty && cfsy.hasError('ismoney')" class="text-danger" >请输入整数</small>
-                                <small *ngIf="cfsy.dirty && cfsy.hasError('required')" class="text-danger" >必输字段</small>
-                            </div>
-                        </div>
-
-                        <div class="form-group"   [class.has-error] = "hkrq.dirty && !hkrq.valid">
-                            <label class="control-label col-sm-3">还款日期:</label>
-                            <div class="col-sm-9">
-                                <my-date-picker  [selDate]="hkrqi"  [options]="myDatePickerOptions" (dateChanged)="onDateChangedhkrq($event)" ></my-date-picker>
-                                <small *ngIf="hkrq.dirty && !hkrq.valid" class="text-danger" >必输项</small>
-                            </div>
-                        </div>
-
-                        <div class="form-group"   [class.has-error] = "hkje.dirty && !hkje.valid">
-                            <label class="control-label col-sm-3">还款金额:</label>
-                            <div class="col-sm-9">
-                                <input formControlName="hkje"  style="width:80%"/>
-                                <small *ngIf="hkje.dirty && hkje.hasError('ismoney')" class="text-danger" >请输入两位小数的数字</small>
-                                <small *ngIf="hkje.dirty && hkje.hasError('required')" class="text-danger" >必输字段</small>
-                            </div>
-                        </div>
-
-
-                        <div class="form-group"   [class.has-error] = "hkjxts.dirty && !hkjxts.valid">
-                            <label class="control-label col-sm-3">还款计息天数:</label>
-                            <div class="col-sm-9">
-                                <input formControlName="hkjxts"  style="width:80%"/>
-                                <small *ngIf="hkjxts.dirty && hkjxts.hasError('ismoney')" class="text-danger" >请输入两位小数的数字</small>
-                                <small *ngIf="hkjxts.dirty && hkjxts.hasError('required')" class="text-danger" >必输字段</small>
-                            </div>
-                        </div>
-
-
-                        <div class="form-group"   [class.has-error] = "hkll.dirty && !hkll.valid">
-                            <label class="control-label col-sm-3">还款利率:</label>
-                            <div class="col-sm-9">
-                                <input formControlName="hkll"  style="width:80%"/>
-                                <small *ngIf="hkll.dirty && hkll.hasError('ismoney')" class="text-danger" >请输入两位小数的数字</small>
-                                <small *ngIf="hkll.dirty && hkll.hasError('required')" class="text-danger" >必输字段</small>
-                            </div>
-                        </div>
-
-                        <div class="form-group"   [class.has-error] = "hkrmtsy.dirty && !hkrmtsy.valid">
-                            <label class="control-label col-sm-3">还款瑞茂通收益:</label>
-                            <div class="col-sm-9">
-                                <input formControlName="hkrmtsy"  style="width:80%"/>
-                                <small *ngIf="hkrmtsy.dirty && hkrmtsy.hasError('ismoney')" class="text-danger" >请输入整数</small>
-                                <small *ngIf="hkrmtsy.dirty && hkrmtsy.hasError('required')" class="text-danger" >必输字段</small>
                             </div>
                         </div>
 

@@ -48,6 +48,10 @@ public class BillinfoService {
         return billinfoMapper.loadBillinfoList();
     }
 
+    public List<Billinfo> loadBillinfoListByCoalSellId(Integer coalsellid) {
+        return billinfoMapper.loadBillinfoListByCoalSellId(coalsellid) ;
+    }
+
 //    public Pager<Billinfo> loadBillinfo(BillinfoParam param) {
 //        PageHelper.startPage(param.getPage(),param.getPageSize(),true);
 //        return    Pager.of(billinfoMapper.loadBillinfo(param)) ;

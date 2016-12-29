@@ -2,8 +2,9 @@ package com.yimei.cron.domain;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
-public class Paymentinfo {
+public class Paymentinfozy {
     private Integer id;
 
     private Integer coalsellid;
@@ -18,25 +19,13 @@ public class Paymentinfo {
 
     private BigDecimal rmtsy;
 
-    private LocalDate hkrq;
-
-    private BigDecimal hkje;
-
-    private Integer hkjxts;
-
-    private BigDecimal hkll;
-
-    private BigDecimal hkrmtsy;
-
-    private LocalDate createtime;
-
-    private LocalDate lastupdatetime;
-
-    private String creator;
-
     private String bz;
 
-    private BigDecimal cfsy ;
+    private LocalDateTime createtime;
+
+    private LocalDateTime lastupdatetime;
+
+    private String creator;
 
     public Integer getId() {
         return id;
@@ -94,59 +83,27 @@ public class Paymentinfo {
         this.rmtsy = rmtsy;
     }
 
-    public LocalDate getHkrq() {
-        return hkrq;
+    public String getBz() {
+        return bz;
     }
 
-    public void setHkrq(LocalDate hkrq) {
-        this.hkrq = hkrq;
+    public void setBz(String bz) {
+        this.bz = bz == null ? null : bz.trim();
     }
 
-    public BigDecimal getHkje() {
-        return hkje;
-    }
-
-    public void setHkje(BigDecimal hkje) {
-        this.hkje = hkje;
-    }
-
-    public Integer getHkjxts() {
-        return hkjxts;
-    }
-
-    public void setHkjxts(Integer hkjxts) {
-        this.hkjxts = hkjxts;
-    }
-
-    public BigDecimal getHkll() {
-        return hkll;
-    }
-
-    public void setHkll(BigDecimal hkll) {
-        this.hkll = hkll;
-    }
-
-    public BigDecimal getHkrmtsy() {
-        return hkrmtsy;
-    }
-
-    public void setHkrmtsy(BigDecimal hkrmtsy) {
-        this.hkrmtsy = hkrmtsy;
-    }
-
-    public LocalDate getCreatetime() {
+    public LocalDateTime getCreatetime() {
         return createtime;
     }
 
-    public void setCreatetime(LocalDate createtime) {
+    public void setCreatetime(LocalDateTime createtime) {
         this.createtime = createtime;
     }
 
-    public LocalDate getLastupdatetime() {
+    public LocalDateTime getLastupdatetime() {
         return lastupdatetime;
     }
 
-    public void setLastupdatetime(LocalDate lastupdatetime) {
+    public void setLastupdatetime(LocalDateTime lastupdatetime) {
         this.lastupdatetime = lastupdatetime;
     }
 
@@ -156,21 +113,5 @@ public class Paymentinfo {
 
     public void setCreator(String creator) {
         this.creator = creator == null ? null : creator.trim();
-    }
-
-    public String getBz() {
-        return bz;
-    }
-
-    public void setBz(String bz) {
-        this.bz = bz == null ? null : bz.trim();
-    }
-
-    public BigDecimal getCfsy() {
-        return cfsy;
-    }
-
-    public void setCfsy(BigDecimal cfsy) {
-        this.cfsy = cfsy;
     }
 }

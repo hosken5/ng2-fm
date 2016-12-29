@@ -1,11 +1,13 @@
 package com.yimei.cron.mapper;
 
 import com.yimei.cron.domain.Hkinfo;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
 public interface HkinfoMapper {
+
     int deleteByPrimaryKey(Integer id);
 
     int insert(Hkinfo record);
@@ -20,4 +22,8 @@ public interface HkinfoMapper {
 
     @Select("select * from hkinfo ")
     List<Hkinfo> loadHkinfoList();
+
+    @Select("select * from hkinfo where  coalsellid = #{coalsellid}  order by hkrq asc")
+    List<Hkinfo> loadHkinfoListByCoalsellId(@Param("coalsellid") Integer coalsellid);
+
 }

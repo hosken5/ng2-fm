@@ -29,7 +29,7 @@ public class HkinfoController {
      * @return
      */
 
-    @RequestMapping(value = "/hkinfo/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/hkinfo/addorupdate", method = RequestMethod.POST)
     @ResponseBody
     public Object add(
             @RequestBody Hkinfo hkinfo
@@ -38,6 +38,7 @@ public class HkinfoController {
             logger.info("create hkinfo",hkinfo);
             hkinfoService.insert(hkinfo);
         }else {
+            logger.info("update hkinfo",hkinfo);
             hkinfoService.updateByPrimaryKeySelective(hkinfo);
         }
         return Result.success();
@@ -50,6 +51,18 @@ public class HkinfoController {
         logger.info("selectByPrimaryKey:"+hkinfoid);
         return  hkinfoService.selectByPrimaryKey(hkinfoid);
     }
+
+    //listbycoalsellid
+
+    @RequestMapping(value = "/hkinfo/listbycoalsellid/{coalsellid}", method = RequestMethod.POST)
+    @ResponseBody
+    public Object listbycoalsellid(
+            @PathVariable("coalsellid") Integer coalsellid
+    ){
+        List<Hkinfo> hkinfos  =   hkinfoService.loadHkinfoListByCoalsellId(coalsellid) ;
+        return hkinfos;
+    }
+
 
     @RequestMapping(value = "/hkinfo/list", method = RequestMethod.POST)
     @ResponseBody

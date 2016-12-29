@@ -32,6 +32,7 @@ import {TabViewModule} from 'primeng/primeng';
 import {BillinfolistComponent} from "./pages/billinfolist/billinfolist.components";
 import {PaymentinfolistComponent} from "./pages/paymentinfolist/paymentinfolist.components";
 import {HkinfolistComponent} from "./pages/hkinfolist/hkinfolist.components";
+import {PaymentinfozylistComponent} from "./pages/paymentinfozylist/paymentinfozylist.components";
 
 @NgModule({
     imports: [
@@ -70,7 +71,8 @@ import {HkinfolistComponent} from "./pages/hkinfolist/hkinfolist.components";
         FinancecelllistComponent,
         BillinfolistComponent,
         PaymentinfolistComponent,
-        HkinfolistComponent
+        HkinfolistComponent,
+        PaymentinfozylistComponent
         ],
     providers: [
         appRoutingProviders

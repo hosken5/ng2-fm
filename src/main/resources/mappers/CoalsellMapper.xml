@@ -13,7 +13,7 @@
     <result column="zrll" property="zrll" jdbcType="DECIMAL" />
     <result column="yfkbl" property="yfkbl" jdbcType="DECIMAL" />
     <result column="jsl" property="jsl" jdbcType="INTEGER" />
-    <result column="upperjsrq" property="upperjsrq" jdbcType="DATE" />
+      <result column="upperjsrq" property="upperjsrq" jdbcType="DATE" />
     <result column="lowerjsrq" property="lowerjsrq" jdbcType="DATE" />
     <result column="ysfs" property="ysfs" jdbcType="VARCHAR" />
     <result column="fyrq" property="fyrq" jdbcType="DATE" />

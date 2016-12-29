@@ -75,17 +75,18 @@ const appRoutes: Routes = <Routes>[
         path:'coalselldetail/:id',
         component:CoalselldetailComponent
     },
-    {
-        path:'billinfolist',
-        component:BillinfolistComponent
-    },
-    {
-        path:'paymentinfolist',
-        component:PaymentinfolistComponent
-    },{
-        path:'hkinfolist',
-        component:HkinfolistComponent
-    },
+    //{
+    //    path:'billinfolist',
+    //    component:BillinfolistComponent
+    //},
+    //{
+    //    path:'paymentinfolist',
+    //    component:PaymentinfolistComponent
+    //}
+    //,{
+    //    path:'hkinfolist',
+    //    component:HkinfolistComponent
+    //},
 ];
 
 export const appRoutingProviders: any[] = [];

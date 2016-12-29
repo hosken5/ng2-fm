@@ -3,17 +3,17 @@ import  {Http,Headers}  from  '@angular/http' ;
 import {Page} from "../common/page";
 import 'rxjs/add/operator/toPromise';
 import {toPromise} from "rxjs/operator/toPromise";
-import {Billinfo}  from './billinfo';
+import {Paymentinfozy}  from './paymentinfozy';
 
 @Injectable()
-export class BillinfoService{
+export class PaymentinfozyService{
     private headers =  new Headers({'Content-type':'application/json'});
     constructor(private http:Http){}
-    getBillinfos(param):Promise<Billinfo[]>{
-        return this.http.post("billinfo/list",param
+    getPaymentinfozys(param):Promise<Paymentinfozy[]>{
+        return this.http.post("paymentinfozy/list",param
         ).toPromise()
             .then(response=> {
-                var res = response.json()  as Billinfo[] ;
+                var res = response.json()  as Paymentinfozy[] ;
                 var opts = []  ;
                 for (let i = 0; i < res.length; i++){
                     opts[i] = {
@@ -25,27 +25,27 @@ export class BillinfoService{
             })
             .catch(this.handleError) ;
     };
-    getBillinfoList(param):Promise<Billinfo[]>{
-        return this.http.post("billinfo/list",param)
+    getPaymentinfozyList(param):Promise<Paymentinfozy[]>{
+        return this.http.post("paymentinfozy/list",param)
             .toPromise()
-            .then(response=>response.json() as Billinfo[])
+            .then(response=>response.json() as Paymentinfozy[])
             .catch(this.handleError) ;
     };
-    getBillinfoListByCoalSellId(coalsellid):Promise<Billinfo[]>{
-        return this.http.post("billinfo/listbycoalsellid/"+coalsellid)
+    getPaymentinfozyListByCoalSellId(param):Promise<Paymentinfozy[]>{
+        return this.http.post("paymentinfozy/listbycoalsellid/"+param)
             .toPromise()
-            .then(response=>response.json() as Billinfo[])
+            .then(response=>response.json() as Paymentinfozy[])
             .catch(this.handleError) ;
     };
     handleError(error:any):Promise<any>{
         console.error('An error occurred',error);
         return  Promise.reject(error.message||error);
     };
-    addOrUpdateBillinfo(billinfo:Billinfo):Promise<Billinfo>{
-        const url = 'billinfo/addorupdate' ;
-        return this.http.post(url,JSON.stringify(billinfo),{headers:this.headers})
+    addOrUpdatePaymentinfozy(paymentinfozy:Paymentinfozy):Promise<Paymentinfozy>{
+        const url = 'paymentinfozy/addorupdate' ;
+        return this.http.post(url,JSON.stringify(paymentinfozy),{headers:this.headers})
             .toPromise()
-            .then(resp=>resp.json().data as Billinfo)
+            .then(resp=>resp.json().data as Paymentinfozy)
             .catch(this.handleError) ;
     }
 }

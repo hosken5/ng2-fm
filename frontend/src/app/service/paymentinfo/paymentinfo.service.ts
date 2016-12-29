@@ -31,6 +31,12 @@ export class PaymentinfoService{
             .then(response=>response.json() as Paymentinfo[])
             .catch(this.handleError) ;
     };
+    getPaymentinfoListByCoalSellId(param):Promise<Paymentinfo[]>{
+        return this.http.post("paymentinfo/listbycoalsellid/"+param)
+            .toPromise()
+            .then(response=>response.json() as Paymentinfo[])
+            .catch(this.handleError) ;
+    };
     handleError(error:any):Promise<any>{
         console.error('An error occurred',error);
         return  Promise.reject(error.message||error);

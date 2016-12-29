@@ -49,8 +49,8 @@ public class PaymentinfoService {
         return paymentinfoMapper.loadPaymentinfoList();
     }
 
-//    public Pager<Paymentinfo> loadPaymentinfo(PaymentinfoParam param) {
-//        PageHelper.startPage(param.getPage(),param.getPageSize(),true);
-//        return    Pager.of(paymentinfoMapper.loadPaymentinfo(param)) ;
-//    }
+    public List<Paymentinfo> loadPaymentinfoListByCoalSellId(Integer coalsellid) {
+        return paymentinfoMapper.loadPaymentinfoListByCoalSellId(coalsellid);
+        //
+    }
 }

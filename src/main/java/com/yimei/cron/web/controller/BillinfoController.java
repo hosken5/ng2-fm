@@ -35,7 +35,7 @@ public class BillinfoController {
     ){
         if(billinfo.getId()==null){
             logger.info("create billinfo",billinfo);
-            billinfoService.insert(billinfo);
+            billinfoService.insertSelective(billinfo);
         }else {
             billinfoService.updateByPrimaryKeySelective(billinfo);
         }
@@ -50,6 +50,15 @@ public class BillinfoController {
         return  billinfoService.selectByPrimaryKey(billinfoid);
     }
 
+
+    @RequestMapping(value = "/billinfo/listbycoalsellid/{coalsellid}", method = RequestMethod.POST)
+    @ResponseBody
+    public Object listbycoalsellid(
+            @PathVariable("coalsellid") Integer coalsellid
+    ){
+        List<Billinfo> billinfos  =   billinfoService.loadBillinfoListByCoalSellId(coalsellid) ;
+        return billinfos;
+    }
 
     @RequestMapping(value = "/billinfo/list", method = RequestMethod.POST)
     @ResponseBody

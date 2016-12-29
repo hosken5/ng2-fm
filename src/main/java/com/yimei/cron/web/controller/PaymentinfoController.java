@@ -29,7 +29,7 @@ public class PaymentinfoController {
      * @returnpaymentinfo
      */
 
-    @RequestMapping(value = "/paymentinfo/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/paymentinfo/addorupdate", method = RequestMethod.POST)
     @ResponseBody
     public Object add(
             @RequestBody Paymentinfo paymentinfo
@@ -38,6 +38,7 @@ public class PaymentinfoController {
             logger.info("create paymentinfo",paymentinfo);
             paymentinfoService.insert(paymentinfo);
         }else {
+            logger.info("update paymentinfo",paymentinfo);
             paymentinfoService.updateByPrimaryKeySelective(paymentinfo);
         }
         return Result.success();
@@ -52,23 +53,12 @@ public class PaymentinfoController {
     }
 
 
-    @RequestMapping(value = "/paymentinfo/list", method = RequestMethod.POST)
+    @RequestMapping(value = "/paymentinfo/listbycoalsellid/{coalsellid}", method = RequestMethod.POST)
     @ResponseBody
     public Object index(
-//            @RequestBody TaskListParam param
+            @PathVariable ("coalsellid")  Integer coalsellid
     ){
-        List<Paymentinfo> paymentinfos  =   paymentinfoService.loadPaymentinfoList() ;
+        List<Paymentinfo> paymentinfos  =   paymentinfoService.loadPaymentinfoListByCoalSellId(coalsellid) ;
         return paymentinfos;
     }
-
-//    @RequestMapping(value = "/paymentinfo/list", method = RequestMethod.POST)
-//    @ResponseBody
-//    public Object loadPaymentinfobyParam(
-//            @RequestBody PaymentinfoParam param
-//    ){
-//        logger.info("loadPaymentinfobyParam:"+param);
-//        Pager<Paymentinfo> paymentinfoPager = paymentinfoService.loadPaymentinfo(param) ;
-//        return paymentinfoPager;
-//    }
-
 }

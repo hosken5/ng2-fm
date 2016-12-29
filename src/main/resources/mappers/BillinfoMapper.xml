@@ -10,9 +10,10 @@
     <result column="lastupdatetime" property="lastupdatetime" jdbcType="TIMESTAMP" />
     <result column="creator" property="creator" jdbcType="VARCHAR" />
     <result column="bz" property="bz" jdbcType="VARCHAR" />
+    <result column="kpdate" property="kpdate" jdbcType="DATE" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, coalsellid, amount, quantity, createtime, lastupdatetime, creator, bz
+    id, coalsellid, amount, quantity, createtime, lastupdatetime, creator, bz, kpdate
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -24,20 +25,17 @@
     delete from billinfo
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" keyProperty="id"  useGeneratedKeys="true"  parameterType="com.yimei.cron.domain.Billinfo" >
-    insert into billinfo (coalsellid, amount,
-      quantity, createtime,
-      creator, bz)
-    values (#{coalsellid,jdbcType=INTEGER}, #{amount,jdbcType=INTEGER},
-      #{quantity,jdbcType=INTEGER}, now(),
-      #{creator,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.yimei.cron.domain.Billinfo" >
+    insert into billinfo (id, coalsellid, amount, 
+      quantity, createtime, lastupdatetime, 
+      creator, bz, kpdate)
+    values (#{id,jdbcType=INTEGER}, #{coalsellid,jdbcType=INTEGER}, #{amount,jdbcType=INTEGER}, 
+      #{quantity,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, #{lastupdatetime,jdbcType=TIMESTAMP}, 
+      #{creator,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR}, #{kpdate,jdbcType=DATE})
   </insert>
-  <insert id="insertSelective" parameterType="com.yimei.cron.domain.Billinfo" >
+  <insert id="insertSelective"   keyProperty="id"  useGeneratedKeys="true"  parameterType="com.yimei.cron.domain.Billinfo" >
     insert into billinfo
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
       <if test="coalsellid != null" >
         coalsellid,
       </if>
@@ -46,9 +44,6 @@
       </if>
       <if test="quantity != null" >
         quantity,
-      </if>
-      <if test="createtime != null" >
-        createtime,
       </if>
       <if test="lastupdatetime != null" >
         lastupdatetime,
@@ -59,11 +54,12 @@
       <if test="bz != null" >
         bz,
       </if>
+      <if test="kpdate != null" >
+        kpdate,
+      </if>
+      createtime,
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
       <if test="coalsellid != null" >
         #{coalsellid,jdbcType=INTEGER},
       </if>
@@ -72,9 +68,6 @@
       </if>
       <if test="quantity != null" >
         #{quantity,jdbcType=INTEGER},
-      </if>
-      <if test="createtime != null" >
-        #{createtime,jdbcType=TIMESTAMP},
       </if>
       <if test="lastupdatetime != null" >
         #{lastupdatetime,jdbcType=TIMESTAMP},
@@ -85,6 +78,10 @@
       <if test="bz != null" >
         #{bz,jdbcType=VARCHAR},
       </if>
+      <if test="kpdate != null" >
+        #{kpdate,jdbcType=DATE},
+      </if>
+      #{createtime,jdbcType=TIMESTAMP}
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.yimei.cron.domain.Billinfo" >
@@ -111,6 +108,9 @@
       <if test="bz != null" >
         bz = #{bz,jdbcType=VARCHAR},
       </if>
+      <if test="kpdate != null" >
+        kpdate = #{kpdate,jdbcType=DATE},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -122,7 +122,8 @@
       createtime = #{createtime,jdbcType=TIMESTAMP},
       lastupdatetime = #{lastupdatetime,jdbcType=TIMESTAMP},
       creator = #{creator,jdbcType=VARCHAR},
-      bz = #{bz,jdbcType=VARCHAR}
+      bz = #{bz,jdbcType=VARCHAR},
+      kpdate = #{kpdate,jdbcType=DATE}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

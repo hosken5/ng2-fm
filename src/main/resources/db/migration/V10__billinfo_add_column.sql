@@ -1,0 +1,1 @@
+ alter table billinfo add column  `kpdate` date DEFAULT NULL ;

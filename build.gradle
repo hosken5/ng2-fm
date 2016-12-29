@@ -108,7 +108,7 @@ task fatJar(type: Jar) {
     with jar
 }
 
-task mybatisGenerate << {
+task mg << {
     ext.destDir = new File(buildDir, 'mybatisGenerate')
     destDir.mkdirs()
     ant.properties['targetProject'] = destDir.path

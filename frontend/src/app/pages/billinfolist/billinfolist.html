@@ -1,15 +1,19 @@
-<h4 style="text-align: center">billinfo</h4>
-<button style="margin-bottom: 10px;" type="button" class="btn btn-primary btn-sm" (click)="staticModal.show()">新增</button>
+<!--<h4 style="text-align: center">发票信息</h4>-->
+<button style="margin-bottom: 10px;" type="button" class="btn btn-primary btn-sm" (click)="openAddView()">新增开票信息</button>
 <div class="panel panel-default">
         <table class="table  table-striped table-hover table-condensed">
             <tr>
-                <td>名称</td>
-                <td>描述</td>
+                <td>开票日期</td>
+                <td>开票金额</td>
+                <td>开票吨数</td>
+                <td>备注</td>
                 <td>操作</td>
             </tr>
             <tr *ngFor="let billinfo of billinfos">
-                <td>{{billinfo.name}}</td>
-                <td>{{billinfo.message}}</td>
+                <td>{{billinfo.kpdate}}</td>
+                <td>{{billinfo.amount}}</td>
+                <td>{{billinfo.quantity}}</td>
+                <td>{{billinfo.bz}}</td>
                 <td>
                     <a href="javascript:void(0);" (click)="openEditView(billinfo)"   class="btn btn-default btn-xs">修改</a>
                 </td>
@@ -25,22 +29,40 @@
                 <button type="button" class="close" aria-label="Close" (click)="staticModal.hide()">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title">新增团队</h4>
+                <h4 class="modal-title">新增开票信息</h4>
             </div>
             <div class="modal-body">
                 <div class="form-wrap">
                     <form  [formGroup]="addBillinfoForm"  action="" class="form-horizontal">
-                        <div class="form-group"   [class.has-error] = "addBillinfoName.dirty && !addBillinfoName.valid">
-                            <label class="control-label col-sm-2">团队名称:</label>
+                        <div class="form-group"   [class.has-error] = "kpdate.dirty && !kpdate.valid">
+                            <label class="control-label col-sm-2">开票日期:</label>
                             <div class="col-sm-10">
-                                <input formControlName="name"  style="width:80%"/>
-                                <small *ngIf="addBillinfoName.dirty && !addBillinfoName.valid" class="text-danger" >必输字段</small>
+                                <my-date-picker  [selDate]="kpdatei"  [options]="myDatePickerOptions" (dateChanged)="onDateChangedkpdate($event)" ></my-date-picker>
+                                <small *ngIf="kpdate.dirty && !kpdate.valid" class="text-danger" >必输项</small>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="control-label col-sm-2">描述:</label>
+                        <div class="form-group"   [class.has-error] = "quantity.dirty && !quantity.valid">
+                            <label class="control-label col-sm-2">开票吨数:</label>
                             <div class="col-sm-10">
-                                <input formControlName="message" style="width:80%"/>
+                                <input formControlName="quantity"  style="width:80%"/>
+                                <small *ngIf="quantity.dirty && quantity.hasError('ismoney')" class="text-danger" >请输入两位小数的数字</small>
+                                <small *ngIf="quantity.dirty && quantity.hasError('required')" class="text-danger" >必输字段</small>
+                            </div>
+                        </div>
+                        <div class="form-group"   [class.has-error] = "amount.dirty && !amount.valid">
+                            <label class="control-label col-sm-2">开票金额:</label>
+                            <div class="col-sm-10">
+                                <input formControlName="amount"  style="width:80%"/>
+                                <small *ngIf="amount.dirty && amount.hasError('ismoney')" class="text-danger" >请输入两位小数的数字</small>
+
+                                <small *ngIf="amount.dirty && amount.hasError('required')" class="text-danger" >必输字段</small>
+                            </div>
+                        </div>
+                        <div class="form-group"   [class.has-error] = "bz.dirty && !bz.valid">
+                            <label class="control-label col-sm-2">备注:</label>
+                            <div class="col-sm-10">
+                                <input formControlName="bz"  style="width:80%"/>
+                                <small *ngIf="bz.dirty && !bz.valid" class="text-danger" >必输字段</small>
                             </div>
                         </div>
                     </form>

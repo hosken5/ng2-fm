@@ -9,6 +9,7 @@ import {TeamService} from "../../service/team/team.service";
 import {InputTextModule} from 'primeng/primeng';
 import {FinancecellService} from "../../service/financecell/financecell.service";
 import {TabViewModule} from 'primeng/primeng';
+import {Coalsell} from "../../service/coalsell/coalsell";
 
 declare var __moduleName: string;
 
@@ -39,9 +40,8 @@ export class CoalselldetailComponent implements OnInit {
     lowerjsrqv:Object = {} ;
     fyrqv = {} ;
     upperjsrqv = {} ;
-
+    coalsell:Coalsell = {} ;
     isedit:boolean  = false ;
-
     ngOnInit() {
         this.teamService.getTeams().then(data=>{
             console.log(data)  ;
@@ -105,6 +105,7 @@ export class CoalselldetailComponent implements OnInit {
             if(this.coalsellid) {
                 console.log("loading coalsellinfo ....")
                 this.coalsellService.getCoalsellOne(this.coalsellid).then(data=>{
+                    this.coalsell = data ;
                     this.lowerjsrqv = this.parseDate(data.lowerjsrq) ;
                     this.fyrqv =  this.parseDate(data.fyrq) ;
                     this.upperjsrqv =  this.parseDate(data.upperjsrq) ;
@@ -115,6 +116,7 @@ export class CoalselldetailComponent implements OnInit {
     }
 
     parseDate(date){
+        if(!date) return  null ;
         var array = date.split("-") ;
         return  {year:parseInt(array[0]),month:parseInt(array[1]),day:parseInt(array[2])}
     }
@@ -200,7 +202,6 @@ export class CoalselldetailComponent implements OnInit {
     goBack():void {
         window.history.back();
     }
-    coalsell :Coalsell;
     description:string;
     save():void {
         for( let key in this.form.value){

@@ -1,10 +1,7 @@
 package com.yimei.cron;
 
-import com.yimei.cron.service.TaskService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
@@ -23,7 +20,7 @@ import java.net.UnknownHostException;
 @ComponentScan
 @EnableAutoConfiguration
 @EnableTransactionManagement(proxyTargetClass = true)
-public class Application  implements CommandLineRunner{
+public class Application {
     static Logger   log = LoggerFactory.getLogger(Application.class) ;
     public static void main(String [] args ) throws UnknownHostException {
         SpringApplication app = new SpringApplication(Application.class);
@@ -35,8 +32,8 @@ public class Application  implements CommandLineRunner{
                 env.getProperty("server.port"));
     }
 
-    @Autowired
-    TaskService taskService ;
+//    @Autowired
+//    TaskService taskService ;
 
 //
 //    @Bean
@@ -48,16 +45,16 @@ public class Application  implements CommandLineRunner{
 //    RestTemplate restTemplate;
 
 
-    @Override
-    public void run(String... strings) throws Exception {
-        taskService.runAllTask();
-//        try {
-//            // Grab the Scheduler instance from the Factory
-//            Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
-//            scheduler.start();
-//            scheduler.shutdown();
-//        } catch (SchedulerException se) {
-//            se.printStackTrace();
-//        }
-    }
+//    @Override
+//    public void run(String... strings) throws Exception {
+//        taskService.runAllTask();
+////        try {
+////            // Grab the Scheduler instance from the Factory
+////            Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
+////            scheduler.start();
+////            scheduler.shutdown();
+////        } catch (SchedulerException se) {
+////            se.printStackTrace();
+////        }
+//    }
 }

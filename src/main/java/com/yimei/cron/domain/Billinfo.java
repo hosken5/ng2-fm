@@ -1,6 +1,8 @@
 package com.yimei.cron.domain;
 
+
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Billinfo {
     private Integer id;
@@ -11,13 +13,15 @@ public class Billinfo {
 
     private Integer quantity;
 
-    private LocalDate createtime;
+    private LocalDateTime createtime;
 
-    private LocalDate lastupdatetime;
+    private LocalDateTime lastupdatetime;
 
     private String creator;
 
     private String bz;
+
+    private LocalDate kpdate;
 
     public Integer getId() {
         return id;
@@ -51,19 +55,19 @@ public class Billinfo {
         this.quantity = quantity;
     }
 
-    public LocalDate getCreatetime() {
+    public LocalDateTime getCreatetime() {
         return createtime;
     }
 
-    public void setCreatetime(LocalDate createtime) {
+    public void setCreatetime(LocalDateTime createtime) {
         this.createtime = createtime;
     }
 
-    public LocalDate getLastupdatetime() {
+    public LocalDateTime getLastupdatetime() {
         return lastupdatetime;
     }
 
-    public void setLastupdatetime(LocalDate lastupdatetime) {
+    public void setLastupdatetime(LocalDateTime lastupdatetime) {
         this.lastupdatetime = lastupdatetime;
     }
 
@@ -72,7 +76,7 @@ public class Billinfo {
     }
 
     public void setCreator(String creator) {
-        this.creator = creator == null ? null : creator.trim();
+        this.creator = creator;
     }
 
     public String getBz() {
@@ -80,6 +84,14 @@ public class Billinfo {
     }
 
     public void setBz(String bz) {
-        this.bz = bz == null ? null : bz.trim();
+        this.bz = bz;
+    }
+
+    public LocalDate getKpdate() {
+        return kpdate;
+    }
+
+    public void setKpdate(LocalDate kpdate) {
+        this.kpdate = kpdate;
     }
 }
