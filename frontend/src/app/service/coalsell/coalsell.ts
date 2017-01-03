@@ -3,7 +3,11 @@ export class Coalsell {
 
     teamid:number;
 
+    teamname:string ;
+
     financecellid:number;
+
+    financecellname:string ;
 
     uppercomp:string;
 

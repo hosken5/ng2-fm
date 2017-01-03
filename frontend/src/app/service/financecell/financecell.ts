@@ -1,4 +1,4 @@
-export  class Financecell {
+export  class User {
      id:string ;
      name:string ;
 }

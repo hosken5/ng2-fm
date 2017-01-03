@@ -109,7 +109,7 @@ export class CoalselldetailComponent implements OnInit {
                     this.lowerjsrqv = this.parseDate(data.lowerjsrq) ;
                     this.fyrqv =  this.parseDate(data.fyrq) ;
                     this.upperjsrqv =  this.parseDate(data.upperjsrq) ;
-                    this.form.setValue(data);
+                    this.form.patchValue(data);
                 });
             }
         })

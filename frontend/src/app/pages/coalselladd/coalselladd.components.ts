@@ -9,7 +9,7 @@ import {TeamService} from "../../service/team/team.service";
 import {InputTextModule} from 'primeng/primeng';
 import {FinancecellService} from "../../service/financecell/financecell.service";
 
-declare var __moduleName: string;
+declare var __moduleName: string ;
 
 interface ValidationResult {
     [key:string]:boolean;
@@ -107,7 +107,7 @@ export class CoalselladdComponent implements OnInit {
                     this.lowerjsrqv = this.parseDate(data.lowerjsrq) ;
                     this.fyrqv =  this.parseDate(data.fyrq) ;
                     this.upperjsrqv =  this.parseDate(data.upperjsrq) ;
-                    this.form.setValue(data);
+                    this.form.patchValue(data);
                     this.isedit = true;
                 });
             }else {

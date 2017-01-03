@@ -8,15 +8,19 @@ public class Coalsell {
 
     private Integer teamid;
 
+    private String  teamname;
+
     private Integer financecellid;
 
-    private String uppercomp;
+    private String  financecellname ;
 
-    private String lowercomp;
+    private String  uppercomp;
 
-    private String ywx;
+    private String  lowercomp;
 
-    private String rzfs;
+    private String  ywx;
+
+    private String  rzfs;
 
     private BigDecimal htzjll;
 
@@ -49,6 +53,8 @@ public class Coalsell {
     private LocalDate lastupdatetime;
 
     private String creator;
+
+
 
     public Integer getId() {
         return id;
@@ -232,5 +238,21 @@ public class Coalsell {
 
     public void setCreator(String creator) {
         this.creator = creator == null ? null : creator.trim();
+    }
+
+    public String getTeamname() {
+        return teamname;
+    }
+
+    public void setTeamname(String teamname) {
+        this.teamname = teamname;
+    }
+
+    public String getFinancecellname() {
+        return financecellname;
+    }
+
+    public void setFinancecellname(String financecellname) {
+        this.financecellname = financecellname;
     }
 }

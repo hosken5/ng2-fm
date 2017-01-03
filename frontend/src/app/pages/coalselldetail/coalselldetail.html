@@ -134,7 +134,7 @@
                 <button *ngIf="isedit"  type="button" (click)="save()" [disabled]='saving'    class="btn btn-primary">确认</button>
             </div>
             <div class="col-sm-6">
-                <button type="button" (click)="goBack()"   class="btn btn-default btn-sm">取消</button>
+                <button type="button" (click)="goBack()"   class="btn btn-default btn-sm">返回</button>
             </div>
         </div>
     </form>
@@ -145,7 +145,7 @@
         <billinfolist [coalsell]="coalsell">
         </billinfolist>
     </p-tabPanel>
-    <p-tabPanel header="外部融资(借/还)款">
+    <p-tabPanel *ngIf="coalsell.rzfs!=1"  header="外部融资(借/还)款">
         <paymentinfolist [coalsell]="coalsell" >
         </paymentinfolist>
     </p-tabPanel>

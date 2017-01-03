@@ -6,6 +6,8 @@
     <result column="teamid" property="teamid" jdbcType="INTEGER" />
     <result column="financecellid" property="financecellid" jdbcType="INTEGER" />
     <result column="uppercomp" property="uppercomp" jdbcType="VARCHAR" />
+    <result column="teamname" property="teamname" jdbcType="VARCHAR" />
+    <result column="financecellname" property="financecellname" jdbcType="VARCHAR" />
     <result column="lowercomp" property="lowercomp" jdbcType="VARCHAR" />
     <result column="ywx" property="ywx" jdbcType="VARCHAR" />
     <result column="rzfs" property="rzfs" jdbcType="VARCHAR" />
@@ -32,7 +34,7 @@
     createtime, lastupdatetime, creator
   </sql>
   <select id="loadCoalsell" resultMap="BaseResultMap"  parameterType="com.yimei.cron.web.dto.CoalsellParam"  >
-    select * from   coalsell  t  where  1=1
+    select a.`name` as teamname , f.`name` as financecellname,  t.* from   coalsell  t , teaminfo a , financecellinfo f   where  1=1  and a.id = t.teamid and f.id =t.financecellid
     <if test="teamid!=null">
       and t.teamid = #{teamid}
     </if>

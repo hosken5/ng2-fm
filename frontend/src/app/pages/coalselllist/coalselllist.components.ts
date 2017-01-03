@@ -87,10 +87,10 @@ export class CoalselllistComponent implements OnInit {
     load(param){
         Object.assign(this.lastparam,param) ;
         this.coalsellService.getCoalsellList(this.lastparam).then(page=>{
-            this.coalsells = page.data  ;
-            this.totalItems =page.total ;
+            this.coalsells = page.data   ;
+            this.totalItems =page.total  ;
             this.itemsPerPage = page.pageSize ;
-            this.currentPage = page.page;
+            this.currentPage = page.page ;
         });
     }
     gotoaddcoalsell(){
