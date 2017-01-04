@@ -1,5 +1,6 @@
 package com.yimei.cron.web.controller;
 
+import com.yimei.cron.basic.annotation.LoginRequired;
 import com.yimei.cron.basic.common.Result;
 import com.yimei.cron.domain.Billinfo;
 import com.yimei.cron.service.BillinfoService;
@@ -15,6 +16,7 @@ import java.util.List;
  * Created by hongpf on 16/12/21.
  */
 @Controller
+@LoginRequired
 public class BillinfoController {
 
     Logger logger = LoggerFactory.getLogger(BillinfoController.class);

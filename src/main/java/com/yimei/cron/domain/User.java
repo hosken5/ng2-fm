@@ -1,9 +1,12 @@
 package com.yimei.cron.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.time.LocalDateTime;
 
 public class User {
+
     private Long id;
 
     private String name;
@@ -12,19 +15,23 @@ public class User {
 
     private String loginname;
 
+    @JsonIgnore
     private String password;
 
+    @JsonIgnore
     private String passwordsalt;
 
     private String email;
 
-    private Boolean activated;
+    private Integer activated;
 
     private String creator;
 
     private LocalDateTime createtime;
 
     private String role;
+
+    private String plainpassword ;
 
     public Long getId() {
         return id;
@@ -82,11 +89,11 @@ public class User {
         this.email = email == null ? null : email.trim();
     }
 
-    public Boolean getActivated() {
+    public Integer getActivated() {
         return activated;
     }
 
-    public void setActivated(Boolean activated) {
+    public void setActivated(Integer activated) {
         this.activated = activated;
     }
 
@@ -112,5 +119,31 @@ public class User {
 
     public void setRole(String role) {
         this.role = role == null ? null : role.trim();
+    }
+
+    public String getPlainpassword() {
+        return plainpassword;
+    }
+
+    public void setPlainpassword(String plainpassword) {
+        this.plainpassword = plainpassword;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                ", loginname='" + loginname + '\'' +
+                ", password='" + password + '\'' +
+                ", passwordsalt='" + passwordsalt + '\'' +
+                ", email='" + email + '\'' +
+                ", activated=" + activated +
+                ", creator='" + creator + '\'' +
+                ", createtime=" + createtime +
+                ", role='" + role + '\'' +
+                ", plainpassword='" + plainpassword + '\'' +
+                '}';
     }
 }

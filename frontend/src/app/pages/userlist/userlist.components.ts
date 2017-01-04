@@ -26,13 +26,22 @@ export class UserlistComponent implements OnInit {
     reload(){
         this.load(this.lastparam);
     }
+
+    public openAddView(user:User):void {
+        this.isedit = false ;
+        this.addUserForm.reset();
+        this.staticModal.show();
+    }
     public openEditView(user:User):void {
-        this.addUserForm.setValue(user);
+        this.isedit = true  ;
+        this.addUserForm.reset();
+        this.addUserForm.patchValue(user);
         this.staticModal.show();
     }
     saveOrUpdate():void {
         for( let key in this.addUserForm.value){
             this.addUserForm.controls[key].markAsDirty();
+            console.log(key+"_"+ this.addUserForm.controls[key].valid) ;
         }
         if(!this.addUserForm.valid) return ;
         console.log(this.addUserForm.value);
@@ -53,16 +62,17 @@ export class UserlistComponent implements OnInit {
             this.users= data ||[]  ;
         }) ;
     }
+    isedit:boolean = false ;
     addUserForm:FormGroup ;
-    id             = new FormControl("",Validators.required)  ;
-    phone          = new FormControl("",Validators.required)  ;
+    id             = new FormControl("")  ;
+    phone          = new FormControl("")  ;
+    name           = new FormControl("")  ;
     loginname      = new FormControl("",Validators.required)  ;
-    password       = new FormControl("",Validators.required)  ;
-    passwordsalt   = new FormControl("",Validators.required)  ;
+    plainpassword  = new FormControl("") ;
     email          = new FormControl("",Validators.required)  ;
     activated      = new FormControl("",Validators.required)  ;
-    creator        = new FormControl("",Validators.required)  ;
-    createtime     = new FormControl("",Validators.required)  ;
+    creator        = new FormControl("")  ;
+    //createtime     = new FormControl("")  ;
     role           = new FormControl("",Validators.required)  ;
 
     constructor(
@@ -72,14 +82,14 @@ export class UserlistComponent implements OnInit {
     ){
         this.addUserForm = builder.group({
                  id           :this.id ,
+                 name         :this.name  ,
                  phone        :this.phone        ,
                  loginname    :this.loginname    ,
-                 password     :this.password     ,
-                 //passwordsalt :this.passwordsalt ,
+                 plainpassword     :this.plainpassword     ,
                  email        :this.email        ,
                  activated    :this.activated    ,
                  creator      :this.creator      ,
-                 createtime   :this.createtime   ,
+                 //createtime   :this.createtime   ,
                  role         :this.role
         }) ;
     }

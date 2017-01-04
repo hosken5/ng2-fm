@@ -1,10 +1,151 @@
 <!doctype html>
-<html lang="en">
+<html>
+<!--这里是头部的开始内容-->
 <head>
-    <meta charset="UTF-8" />
-    <title>login</title>
+    <title>瑞茂通核算管理系统</title>
+    <script src="/static/lib/jquery/dist/jquery.min.js"></script>
+    <style>
+        html, body { height: auto; }
+
+        #login-page .wrapper { width: 100%; min-width: 1200px; height: 698px; min-height: 698px; background: #022349 url("/images/admin/account/bg.jpg") center 0px; }
+
+        #login-page .wrapper .login-wrap { width: 1200px; margin: 0 auto; }
+
+        #login-page .wrapper .login-wrap .login-content { width: 364px; margin: 0 auto; padding-top: 150px; -webkit-animation: fadeIn ease 3s; animation: fadeIn ease 3s; }
+
+        #login-page .wrapper .login-wrap .login-content .login-inner { width: 364px; height: 412px; background: #fff; box-shadow: 0 5px 15px #363837; }
+
+        #login-page .wrapper .login-wrap .login-content .login-inner .login-tit { height: 54px; line-height: 54px; color: #333; padding-left: 20px; border-bottom: 1px solid #f3f3f3; font-size: 18px; }
+
+        #login-page .wrapper .login-wrap .login-content .login-inner .logo { padding-top: 30px; text-align: center; }
+
+        #login-page .wrapper .login-wrap .login-content .login-inner .logo p { padding-top: 18px; color: #333333; font-size: 18px; }
+
+        @-webkit-keyframes fadeIn { 0% { opacity: 0; }
+            100% { opacity: 1; } }
+
+        @keyframes fadeIn { 0% { opacity: 0; }
+            100% { opacity: 1; } }
+
+        #login-page .wrapper .login-wrap .login-content .login-con { padding: 0 42px; padding-top: 30px; }
+
+        #login-page .wrapper .login-wrap .login-content .login-con .input-wrap { position: relative; }
+
+        #login-page .wrapper .login-wrap .login-content .login-con .input-wrap input { height: 42px; line-height: 42px; border: 1px solid #ccc; width: 100%; font-size: 14px; outline: none; -webkit-transition: all ease-in .2s; transition: all ease-in .2s; }
+
+        #login-page .wrapper .login-wrap .login-content .login-con .input-wrap input:focus { border: 1px solid #0274d0; }
+
+        #login-page .wrapper .login-wrap .login-content .login-con .input-wrap input.err:focus { border: 1px solid #ff0000; }
+
+        #login-page .wrapper .login-wrap .login-content .login-con .input-wrap i { width: 20px; height: 22px; position: absolute; left: 10px; top: 10px; }
+
+        #login-page .wrapper .login-wrap .login-content .login-con .input-wrap .login-name { background: url("/images/icons/login-icon.png") no-repeat 0px 0px; }
+
+        #login-page .wrapper .login-wrap .login-content .login-con .input-wrap .login-pwd { background: url("/images/icons/login-icon.png") no-repeat -22px 0px; }
+
+        #login-page .wrapper .login-wrap .login-content .login-con .mb10 { margin-bottom: 10px; }
+
+        #login-page .wrapper .login-wrap .login-content .login-con .errorMsg { visibility: hidden; height: 25px; margin-bottom: 5px; background: #ffe7e4; color: #ff0000; line-height: 25px; font-size: 12px; padding-left: 10px; }
+
+        #login-page .wrapper .login-wrap .login-content .login-con .errorMsg .login-error { display: inline-block; width: 100%; height: 25px; background: url("/images/login/login-error.png") no-repeat 0px 6px; font-style: normal; padding-left: 15px; }
+
+        #login-page .wrapper .login-wrap .login-content .login-con .login-btn { width: 100%; display: inline-block; margin-top: 10px; height: 40px; line-height: 40px; text-align: center; font-size: 16px; color: #fff; border: 1px solid #077ccf; border-radius: 2px; background: #0274d0; }
+
+        #login-page .wrapper .login-wrap .login-content .login-con .login-btn:active { -webkit-filter: opacity(80); filter: opacity(80); opacity: 0.8 !important; }
+
+        #login-page .wrapper .login-wrap .login-content .login-con .login-btn:hover { -webkit-filter: opacity(80); filter: opacity(80); opacity: 0.8 !important; }
+    </style>
 </head>
-<body>
-        <h1>login page </h1>
+<!--这里是头部的结束内容-->
+<body id="login-page">
+<div class="wrapper">
+    <div class="login-wrap">
+        <div class="login-content">
+            <div class="login-inner">
+                <div class="logo">
+                    <!--<img src="/images/common/admin-logo.png"/>-->
+                    <p>欢迎登录瑞茂通核算管理系统</p>
+                </div>
+                <div class="login-con">
+                    <div class="input-wrap">
+                        <i class="login-name"></i>
+                        <input type="text" placeholder="用户名" id="user-name" maxlength="11" />
+                    </div>
+                    <p class="errorMsg" id="username-error" >cuowu</p>
+                    <div class="input-wrap">
+                        <i class="login-pwd"></i>
+                        <input type="password" id="user-pwd" placeholder="密码" maxlength="16"/>
+                    </div>
+                    <p class="errorMsg" id="password-error">错误</p>
+                    <a href="javascript:void(0)" class="login-btn" id="login-btn">登录</a>
+                    <!--<p class="forget-pwd">-->
+                        <!--<a href="/admin/regainPwd" target="_new">忘记密码</a>-->
+                    <!--</p>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    /*<![CDATA[*/
+        $(function(){
+
+            var  $user = $("#user-name");
+
+            var  $user_err = $("#username-error")  ;
+
+            var  $pwd = $("#user-pwd") ;
+            var  $pwd_err = $("#password-error");
+            function checkuser(){
+                if(!$user.val()){
+                    $user_err.css("visibility",'visible').html("请输入用户名");
+                    return false ;
+                }else {
+                    $user_err.css("visibility","hidden");
+                    return  true ;
+                }
+            }
+            function checkpwd(){
+                if(!$pwd.val()){
+                    $pwd_err.css("visibility",'visible').html("请输入密码");
+                    return false ;
+                }else {
+                    $pwd_err.css("visibility","hidden");
+                    return true ;
+                }
+            }
+
+            $user.bind('input propertychangse',checkuser);
+
+            $pwd.bind('input propertychange',checkpwd) ;
+
+            $("#login-btn").click(function(){
+                var user = $user.val();
+                var pwd = $pwd.val();
+                if( checkuser() && checkpwd()){
+                    $.ajax({
+                        type:"POST",
+                        data:{
+                            loginname:user,
+                            plainpassword:pwd
+                        },
+                        url:"login",
+                        success:function(data){
+                            if(data.success){
+                                location.href = "/" ;
+                            }else {
+                                $pwd_err.css("visibility",'visible').html(data.error);
+                            }
+                        },
+                        error:function(data){
+                            $pwd_err.css("visibility",'visible').html(data.responseJSON.error);
+                        }
+                    })
+                }
+            });
+        })
+    /*]]>*/
+</script>
 </body>
 </html>

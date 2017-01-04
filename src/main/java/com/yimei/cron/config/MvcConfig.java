@@ -2,6 +2,7 @@ package com.yimei.cron.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yimei.cron.config.jackson.Java8TimeModule;
+import com.yimei.cron.web.support.ACLInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
@@ -14,13 +15,15 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.filter.CharacterEncodingFilter;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.HandlerExceptionResolver;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import javax.annotation.PostConstruct;
 import javax.validation.Validator;
 import java.nio.charset.Charset;
+import java.util.List;
 
 /**
  * Created by hongpf on 16/5/19.
@@ -31,11 +34,11 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     @Autowired
     ObjectMapper objectMapper ;
 
-//    @Autowired
-//    protected ACLInterceptor aclInterceptor;
-//
-//    @Autowired
-//    private CustomerHandlerExceptionResolver customerHandlerExceptionResolver;
+    @Autowired
+    protected ACLInterceptor aclInterceptor;
+
+    @Autowired
+    private CustomerHandlerExceptionResolver customerHandlerExceptionResolver;
 //
 //    @Autowired
 //    private CurrentUserMethodArgumentHandler currentUserMethodArgumentHandler;
@@ -50,6 +53,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/zrjtFile/**").addResourceLocations("file:../zrjtFile/");
     }
 
+
     @Bean
     public FilterRegistrationBean filterRegistrationBean() {
         FilterRegistrationBean registrationBean = new FilterRegistrationBean();
@@ -60,6 +64,11 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         return registrationBean;
     }
 
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(aclInterceptor).addPathPatterns("/**").excludePathPatterns("/login").excludePathPatterns("/");
+//        registry.addInterceptor(verifyAuthentiyHandler).addPathPatterns("/**").excludePathPatterns("/login");
+    }
 
 //    @Override
 //    public void addInterceptors(InterceptorRegistry registry) {
@@ -72,12 +81,13 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         return converter;
     }
 
-//    @Override
-//    public void configureHandlerExceptionResolvers(List<HandlerExceptionResolver> exceptionResolvers) {
-//        exceptionResolvers.add(customerHandlerExceptionResolver);
-//    }
+    @Override
+    public void configureHandlerExceptionResolvers(List<HandlerExceptionResolver> exceptionResolvers) {
+        exceptionResolvers.add(customerHandlerExceptionResolver);
+    }
+
 //
-//    @Override
+//    @Overrides
 //    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
 //        argumentResolvers.add(currentUserMethodArgumentHandler);
 //    }
@@ -94,11 +104,11 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
             }
         };
     }
-
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/greeting-javaconfig").allowedOrigins("http://localhost:9000");
-    }
+//
+//    @Override
+//    public void addCorsMappings(CorsRegistry registry) {
+//        registry.addMapping("/greeting-javaconfig").allowedOrigins("http://localhost:9000");
+//    }
 
 
     //JSR-303

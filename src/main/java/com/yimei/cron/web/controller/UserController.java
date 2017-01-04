@@ -1,5 +1,6 @@
 package com.yimei.cron.web.controller;
 
+import com.yimei.cron.basic.annotation.LoginRequired;
 import com.yimei.cron.basic.common.Result;
 import com.yimei.cron.domain.User;
 import com.yimei.cron.service.Session;
@@ -16,10 +17,10 @@ import java.util.List;
  * Created by hongpf on 16/12/31.
  */
 @Controller
+@LoginRequired
 public class UserController {
-    Logger logger = LoggerFactory.getLogger(TeamController.class);
 
-
+    Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
     private Session session ;
@@ -52,10 +53,23 @@ public class UserController {
     }
 
 
-
     @RequestMapping(value = "/user/login",method = RequestMethod.GET)
     public String login(){
         return  "user/login" ;
+    }
+
+    @RequestMapping( value = "/")
+    Object   index1 (){
+        if (session.isLogined()) {
+            return  "index";
+        } else  {
+            return  "login";
+        }
+    }
+
+    @RequestMapping(value = "/login",method = RequestMethod.GET)
+    String login1(){
+        return  "login" ;
     }
 
 
@@ -65,7 +79,7 @@ public class UserController {
                         @RequestParam("plainpassword") String plainpassword) {
         User user = userService.validateLogin(loginName, plainpassword);
         if (user == null) {
-            return Result.error();
+            return Result.error("用户名不存在");
         }
         session.login(user);
         return  Result.success();

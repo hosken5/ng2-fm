@@ -1,9 +1,13 @@
 <div>
     <div class="header">
         <div class="">header</div>
+        <div style="float:right ;margin-right: 200px">
+            <a href="/logout">退出</a>
+        </div>
         <div class="toggleside">
             <button (click)="sideNavClosed=!sideNavClosed;">toggle</button>
         </div>
+
     </div>
     <div class="sidenav" [class.sideclose]="sideNavClosed">
         <ul>

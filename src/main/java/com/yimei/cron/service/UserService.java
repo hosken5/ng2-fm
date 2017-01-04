@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -35,7 +36,7 @@ public class UserService {
         //登陆密码
         byte[] passwordSalt = Digests.generateSalt(SALT_SIZE);
         user.setPasswordsalt(Encodes.encodeHex(passwordSalt));
-        byte[] hashPassword = Digests.sha1(PRESET_PASSWORD.getBytes(), passwordSalt, HASH_INTERATIONS);
+        byte[] hashPassword = Digests.sha1(user.getPlainpassword().getBytes(), passwordSalt, HASH_INTERATIONS);
         user.setPassword(Encodes.encodeHex(hashPassword));
     }
 
@@ -44,37 +45,31 @@ public class UserService {
 
     private static final int SALT_SIZE = 8;
 
-
-
-
-    public void saveUser(User user ){
-        User u = userMapper.loadByLoginName(user.getLoginname());
-        if(u!=null){
-            throw new BusinessException("已经存在的用户名") ;
-        }
-
-        entryptPassword(user);
-
-        user.setCreatetime(LocalDateTime.now());
-
-        userMapper.insertSelective(user);
-
-    }
-
-
     //insertSelective
 
     @Autowired
     private UserMapper userMapper ;
 
     public User validateLogin (String loginName , String plainPassword){
+
         User user = userMapper.loadByLoginName(loginName) ;
         if(user == null ){
-            return null ;
+           return  null ;
         }
+
+        if(user.getPassword().length()<30){
+            user.setPlainpassword(user.getPassword());
+            entryptPassword(user);
+            userMapper.updateByPrimaryKeySelective(user) ;
+        }
+
         String credentials = Encodes.encodeHex(Digests.sha1(plainPassword.getBytes(),
                 Encodes.decodeHex(user.getPasswordsalt()), HASH_INTERATIONS));
-        return user.getPassword().equals(credentials)? user :null;
+        if(user.getPassword().equals(credentials)){
+            return  user ;
+        }else  {
+            throw new  BusinessException("用户名或者密码错误");
+        }
     }
 
     @Transactional(readOnly = false)
@@ -84,11 +79,24 @@ public class UserService {
         userMapper.updatePassword(Encodes.encodeHex(hashPassword), Encodes.encodeHex(payPasswordSalt), userid);
     }
 
-    public void addUser(User userinfo) {
-        userMapper.insertSelective(userinfo);
+    public void addUser(User user) {
+        User u = userMapper.loadByLoginName(user.getLoginname());
+
+        if(u!=null){
+            throw new BusinessException("已经存在的用户名") ;
+        }
+
+        entryptPassword(user) ;
+
+        user.setCreatetime(LocalDateTime.now()) ;
+
+        userMapper.insertSelective(user) ;
     }
 
     public void updateUser(User userinfo) {
+        if(!StringUtils.isEmpty(userinfo.getPlainpassword())){
+            entryptPassword(userinfo) ;
+        }
         userMapper.updateByPrimaryKeySelective(userinfo);
     }
 

@@ -1,5 +1,6 @@
 package com.yimei.cron.web.controller;
 
+import com.yimei.cron.basic.annotation.LoginRequired;
 import com.yimei.cron.basic.common.Result;
 import com.yimei.cron.domain.Coalsell;
 import com.yimei.cron.service.CoalsellService;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
  * Created by hongpf on 16/12/21.
  */
 @Controller
+@LoginRequired
 public class CoalsellController {
 
     Logger logger = LoggerFactory.getLogger(CoalsellController.class);

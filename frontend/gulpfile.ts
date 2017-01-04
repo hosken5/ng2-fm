@@ -78,7 +78,8 @@ gulp.task("libs", () => {
             'font-awesome/css/**',
             'font-awesome/fonts/**',
             'mydatepicker/dist/**',
-            'angular2-localstorage/**'
+            'angular2-localstorage/**',
+            'jquery/dist/**'
         ], {cwd: "node_modules/**"}) /* Glob required here. */
         .pipe(gulp.dest("build/lib"));
 });
