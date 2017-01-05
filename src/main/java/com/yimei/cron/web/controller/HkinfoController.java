@@ -3,6 +3,7 @@ package com.yimei.cron.web.controller;
 import com.yimei.cron.basic.annotation.LoginRequired;
 import com.yimei.cron.basic.common.Result;
 import com.yimei.cron.domain.Hkinfo;
+import com.yimei.cron.domain.Income;
 import com.yimei.cron.service.HkinfoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -54,7 +55,7 @@ public class HkinfoController {
         return  hkinfoService.selectByPrimaryKey(hkinfoid);
     }
 
-    //listbycoalsellid
+
 
     @RequestMapping(value = "/hkinfo/listbycoalsellid/{coalsellid}", method = RequestMethod.POST)
     @ResponseBody
@@ -65,6 +66,16 @@ public class HkinfoController {
         return hkinfos;
     }
 
+
+
+    @RequestMapping(value = "/income/listbycoalsellid/{coalsellid}", method = RequestMethod.POST)
+    @ResponseBody
+    public Object listincomebycoalsellid(
+            @PathVariable("coalsellid") Integer coalsellid
+    ){
+        List<Income> incomes  =   hkinfoService.loadIncomeListByCoalsellId(coalsellid) ;
+        return incomes;
+    }
 
     @RequestMapping(value = "/hkinfo/list", method = RequestMethod.POST)
     @ResponseBody

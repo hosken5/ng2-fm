@@ -1,6 +1,7 @@
 package com.yimei.cron.service;
 
 import com.yimei.cron.domain.Hkinfo;
+import com.yimei.cron.domain.Income;
 import com.yimei.cron.mapper.HkinfoMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,6 +51,10 @@ public class HkinfoService {
 
     public List<Hkinfo> loadHkinfoListByCoalsellId(Integer coalsellid) {
        return hkinfoMapper.loadHkinfoListByCoalsellId(coalsellid);
+    }
+
+    public List<Income> loadIncomeListByCoalsellId(Integer coalsellid) {
+        return hkinfoMapper.loadIncomeListByCoalsellId(coalsellid);
     }
 
 //    public Pager<Hkinfo> loadHkinfo(HkinfoParam param) {

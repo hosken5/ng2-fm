@@ -13,6 +13,7 @@ public class CoalsellParam   extends PageParam implements Serializable {
     private LocalDate efydate;
     private String uppercomp;
     private String lowercomp;
+    private Long userid ;
 
     public Integer getTeamid() {
         return teamid;
@@ -62,6 +63,14 @@ public class CoalsellParam   extends PageParam implements Serializable {
         this.lowercomp = lowercomp;
     }
 
+    public Long getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Long userid) {
+        this.userid = userid;
+    }
+
     @Override
     public String toString() {
         return "CoalsellParam{" +
@@ -71,6 +80,7 @@ public class CoalsellParam   extends PageParam implements Serializable {
                 ", efydate=" + efydate +
                 ", uppercomp='" + uppercomp + '\'' +
                 ", lowercomp='" + lowercomp + '\'' +
+                ", userid=" + userid +
                 '}';
     }
 }

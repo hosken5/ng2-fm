@@ -1,6 +1,7 @@
 package com.yimei.cron.mapper;
 
 import com.yimei.cron.domain.Hkinfo;
+import com.yimei.cron.domain.Income;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
@@ -26,4 +27,6 @@ public interface HkinfoMapper {
     @Select("select * from hkinfo where  coalsellid = #{coalsellid}  order by hkrq asc")
     List<Hkinfo> loadHkinfoListByCoalsellId(@Param("coalsellid") Integer coalsellid);
 
+    @Select("select * from hkinfo where  coalsellid = #{coalsellid}  order by hkrq asc")
+    List<Income> loadIncomeListByCoalsellId(Integer coalsellid);
 }

@@ -3,18 +3,17 @@ import  {Http,Headers}  from  '@angular/http' ;
 import {Page} from "../common/page";
 import 'rxjs/add/operator/toPromise';
 import {toPromise} from "rxjs/operator/toPromise";
-import {User}  from './user';
-import {Menu} from "./menu";
+import {Income}  from './income';
 
 @Injectable()
-export class UserService{
+export class IncomeService{
     private headers =  new Headers({'Content-type':'application/json'});
     constructor(private http:Http){}
-    getUsers(param):Promise<User[]>{
-        return this.http.post("user/list",param
+    getIncomes(param):Promise<Income[]>{
+        return this.http.post("income/list",param
         ).toPromise()
             .then(response=> {
-                var res = response.json()  as User[] ;
+                var res = response.json()  as Income[] ;
                 var opts = []  ;
                 for (let i = 0; i < res.length; i++){
                     opts[i] = {
@@ -26,29 +25,29 @@ export class UserService{
             })
             .catch(this.handleError) ;
     };
-    getSessionUser(param):Promise<User>{
-        return  this.http.post("user/session").toPromise()
-            .then(response=>response.json() as User).catch(this.handleError);
-    };
-    getUserMenu(param):Promise<Menu[]>{
-        return  this.http.post("user/menu").toPromise()
-            .then(response=>response.json() as Menu[]).catch(this.handleError);
-    };
-    getUserList(param):Promise<User[]>{
-        return this.http.post("user/list",param)
+    getIncomeList(param):Promise<Income[]>{
+        return this.http.post("income/list",param)
             .toPromise()
-            .then(response=>response.json() as User[])
+            .then(response=>response.json() as Income[])
             .catch(this.handleError) ;
     };
+
+    getIncomeListByCoalSellId(coalsellid):Promise<Income[]>{
+        return this.http.post("income/listbycoalsellid/"+coalsellid)
+            .toPromise()
+            .then(response=>response.json() as Income[])
+            .catch(this.handleError) ;
+    };
+
     handleError(error:any):Promise<any>{
         console.error('An error occurred',error);
         return  Promise.reject(error.message||error);
     };
-    addOrUpdateUser(user:User):Promise<User>{
-        const url = 'user/addorupdate' ;
-        return this.http.post(url,JSON.stringify(user),{headers:this.headers})
+    addOrUpdateIncome(income:Income):Promise<Income>{
+        const url = 'income/addorupdate' ;
+        return this.http.post(url,JSON.stringify(income),{headers:this.headers})
             .toPromise()
-            .then(resp=>resp.json().data as User)
+            .then(resp=>resp.json().data as Income)
             .catch(this.handleError) ;
     }
 }

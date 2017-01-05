@@ -69,11 +69,11 @@ dependencies {
     compile('org.thymeleaf.extras:thymeleaf-extras-java8time:2.1.0.RELEASE')
 
     //发送消息依赖
-    compile ('com.yimei:cloudservice-queue-api:1.0.0-SNAPSHOT')
-    compile ('com.yimei:cloudservice-queue-aliyun:1.0.0-SNAPSHOT')
-    compile ('com.yimei:cloudservice-queue-file:1.0.0-SNAPSHOT')
-    compile ('com.yimei:cloudservice-queue-redis:1.0.0-SNAPSHOT')
-    compile ('com.yimei:cloudservice-mailer-api:1.0.0-SNAPSHOT')
+//    compile ('com.yimei:cloudservice-queue-api:1.0.0-SNAPSHOT')
+//    compile ('com.yimei:cloudservice-queue-aliyun:1.0.0-SNAPSHOT')
+//    compile ('com.yimei:cloudservice-queue-file:1.0.0-SNAPSHOT')
+//    compile ('com.yimei:cloudservice-queue-redis:1.0.0-SNAPSHOT')
+//    compile ('com.yimei:cloudservice-mailer-api:1.0.0-SNAPSHOT')
 
     compile("javax.mail:javax.mail-api:1.5.2")
 

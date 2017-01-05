@@ -34,7 +34,11 @@
     createtime, lastupdatetime, creator
   </sql>
   <select id="loadCoalsell" resultMap="BaseResultMap"  parameterType="com.yimei.cron.web.dto.CoalsellParam"  >
-    select a.`name` as teamname , f.`name` as financecellname,  t.* from   coalsell  t , teaminfo a , financecellinfo f   where  1=1  and a.id = t.teamid and f.id =t.financecellid
+    select a.`name` as teamname , f.`name` as financecellname,  t.*
+      from coalsell  t , teaminfo a , financecellinfo f,user u
+     where a.id = t.teamid and f.id =t.financecellid  and u.id = #{userid}
+       and (( u.role=2  and u.id = t.creator ) or u.role!=2)
+
     <if test="teamid!=null">
       and t.teamid = #{teamid}
     </if>

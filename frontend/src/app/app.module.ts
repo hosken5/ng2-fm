@@ -34,6 +34,7 @@ import {PaymentinfolistComponent} from "./pages/paymentinfolist/paymentinfolist.
 import {HkinfolistComponent} from "./pages/hkinfolist/hkinfolist.components";
 import {PaymentinfozylistComponent} from "./pages/paymentinfozylist/paymentinfozylist.components";
 import {UserlistComponent} from "./pages/userlist/userlist.components";
+import {IncomelistComponent} from "./pages/incomelist/incomelist.components";
 
 @NgModule({
     imports: [
@@ -74,7 +75,8 @@ import {UserlistComponent} from "./pages/userlist/userlist.components";
         PaymentinfolistComponent,
         HkinfolistComponent,
         PaymentinfozylistComponent,
-        UserlistComponent
+        UserlistComponent,
+        IncomelistComponent
         ],
     providers: [
         appRoutingProviders

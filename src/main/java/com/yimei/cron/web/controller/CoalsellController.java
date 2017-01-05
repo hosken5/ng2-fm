@@ -4,6 +4,7 @@ import com.yimei.cron.basic.annotation.LoginRequired;
 import com.yimei.cron.basic.common.Result;
 import com.yimei.cron.domain.Coalsell;
 import com.yimei.cron.service.CoalsellService;
+import com.yimei.cron.service.Session;
 import com.yimei.cron.util.Pager;
 import com.yimei.cron.web.dto.CoalsellParam;
 import org.slf4j.Logger;
@@ -24,6 +25,8 @@ public class CoalsellController {
     @Autowired
     CoalsellService coalsellService;
 
+    @Autowired
+    Session session  ;
 
     /**
      * add or update
@@ -37,6 +40,7 @@ public class CoalsellController {
             @RequestBody Coalsell coalsell
     ){
         if(coalsell.getId()==null){
+            coalsell.setCreator(session.getUser().getId().toString());
             logger.info("create coalsell",coalsell);
             coalsellService.insertSelective(coalsell);
         }else {
@@ -50,7 +54,11 @@ public class CoalsellController {
             @PathVariable("coalsellid") Integer coalsellid
     ){
         logger.info("selectByPrimaryKey:"+coalsellid);
-        return  coalsellService.selectByPrimaryKey(coalsellid);
+        Coalsell  coalsell = coalsellService.selectByPrimaryKey(coalsellid);
+        if( (!coalsell.getCreator().equals(session.getUser().getId().toString())) && session.getUser().getRole().equals("2")){
+            coalsell = null ;
+        }
+        return  coalsell ;
     }
 
     @RequestMapping(value = "/coalsell/list", method = RequestMethod.POST)
@@ -58,7 +66,9 @@ public class CoalsellController {
     public Object loadCoalsellbyParam(
             @RequestBody CoalsellParam param
     ){
+        param.setUserid(session.getUser().getId());
         logger.info("loadCoalsellbyParam:"+param);
+
         Pager<Coalsell> coalsellPager = coalsellService.loadCoalsell(param) ;
         return coalsellPager;
     }
