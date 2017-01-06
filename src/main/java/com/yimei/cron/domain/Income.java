@@ -3,47 +3,65 @@ package com.yimei.cron.domain;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+/**
+ * Created by hongpf on 17/1/6.
+ */
 public class Income {
-    private Integer id;
 
-    private Integer coalsellid;
-
-    private LocalDate hkrq;
-
-    private BigDecimal hkje;
-
-    private String hkfs;
-
-    private Integer ll;
-
-    private LocalDate dqr;
-
-    private Integer txts;
-
-    private BigDecimal txx;
-
-    private String bz;
-
-    private LocalDate createtime;
-
-    private LocalDate lastupdatetime;
-
-    private String creator;
-
-    public Integer getId() {
-        return id;
+    public Income(){}
+    public Income(Income i){
+        super();
+        fkrq = i.getFkrq()  ;
+        fkje=i.getFkje();
+        fktype=i.getFktype();
+        hkrq = i.getHkrq() ;
+        hkje = i.getHkje() ;
+        txts = i.getTxts() ;
+        txx=i.getTxx() ;
+        ll=i.getLl() ;
+        sybj = i.getSybj()  ;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    private LocalDate  fkrq ;
+
+    private BigDecimal fkje ;
+
+    private String   fktype ;
+
+    private LocalDate hkrq  ;
+
+    private BigDecimal hkje ;
+
+    private Integer   txts ;
+
+    private BigDecimal txx  ;
+
+    private BigDecimal ll  ;
+
+    private BigDecimal sybj ;
+
+    public LocalDate getFkrq() {
+        return fkrq;
     }
 
-    public Integer getCoalsellid() {
-        return coalsellid;
+    public void setFkrq(LocalDate fkrq) {
+        this.fkrq = fkrq;
     }
 
-    public void setCoalsellid(Integer coalsellid) {
-        this.coalsellid = coalsellid;
+    public BigDecimal getFkje() {
+        return fkje;
+    }
+
+    public void setFkje(BigDecimal fkje) {
+        this.fkje = fkje;
+    }
+
+    public String getFktype() {
+        return fktype;
+    }
+
+    public void setFktype(String fktype) {
+        this.fktype = fktype;
     }
 
     public LocalDate getHkrq() {
@@ -62,30 +80,6 @@ public class Income {
         this.hkje = hkje;
     }
 
-    public String getHkfs() {
-        return hkfs;
-    }
-
-    public void setHkfs(String hkfs) {
-        this.hkfs = hkfs == null ? null : hkfs.trim();
-    }
-
-    public Integer getLl() {
-        return ll;
-    }
-
-    public void setLl(Integer ll) {
-        this.ll = ll;
-    }
-
-    public LocalDate getDqr() {
-        return dqr;
-    }
-
-    public void setDqr(LocalDate dqr) {
-        this.dqr = dqr;
-    }
-
     public Integer getTxts() {
         return txts;
     }
@@ -102,35 +96,19 @@ public class Income {
         this.txx = txx;
     }
 
-    public String getBz() {
-        return bz;
+    public BigDecimal getLl() {
+        return ll;
     }
 
-    public void setBz(String bz) {
-        this.bz = bz == null ? null : bz.trim();
+    public void setLl(BigDecimal ll) {
+        this.ll = ll;
     }
 
-    public LocalDate getCreatetime() {
-        return createtime;
+    public BigDecimal getSybj() {
+        return sybj;
     }
 
-    public void setCreatetime(LocalDate createtime) {
-        this.createtime = createtime;
-    }
-
-    public LocalDate getLastupdatetime() {
-        return lastupdatetime;
-    }
-
-    public void setLastupdatetime(LocalDate lastupdatetime) {
-        this.lastupdatetime = lastupdatetime;
-    }
-
-    public String getCreator() {
-        return creator;
-    }
-
-    public void setCreator(String creator) {
-        this.creator = creator == null ? null : creator.trim();
+    public void setSybj(BigDecimal sybj) {
+        this.sybj = sybj;
     }
 }

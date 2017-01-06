@@ -1,28 +1,20 @@
 export  class Income {
 
-  id:               number;
+  fkrq :       string ;
 
-  coalsellid:       number;
+  fkje :       number ;
 
-  hkrq:             string;
+  fktype :     string ;
 
-  hkje:             number;
+  hkrq  :      string ;
 
-  hkfs:             string;
+  hkje :       number ;
 
-  ll:               number;
+  txts :       string ;
 
-  dqr:              string;
+  txx  :       string ;
 
-  txts:             number;
+  ll  :         number;
 
-  txx:              number;
-
-  bz:               string;
-
-  createtime:       string;
-
-  lastupdatetime:   string;
-
-  creator:          string;
+  sybj :        number ;
 }

@@ -40,6 +40,7 @@ export class IncomelistComponent implements OnInit {
 
     load(param){
         this.lastparam = param  ;
+        this.incomes = [] ;
         this.incomeService.getIncomeListByCoalSellId(param).then(data=>{
             console.log(data) ;
             this.incomes= data ||[] ;

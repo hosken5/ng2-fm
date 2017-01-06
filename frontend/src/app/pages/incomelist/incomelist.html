@@ -1,31 +1,36 @@
 <!--<h4 style="text-align: center">incomelist</h4>-->
-<!--<button style="margin-bottom: 10px;" type="button" class="btn btn-primary btn-sm" (click)="openAddView()">新增回款信息</button>-->
+<button style="margin-bottom: 10px;" type="button" class="btn btn-primary btn-sm" (click)="reload()">刷新</button>
 <div class="panel panel-default">
         <table class="table  table-striped table-hover table-condensed" >
             <tr>
+                <td>付款日期</td>
+                <td>付款金额</td>
+                <td>付款类型</td>
                 <td>回款日期</td>
                 <td>回款金额</td>
-                <td>回款方式</td>
-                <td>利率</td>
-                <td>到期日</td>
                 <td>贴现天数</td>
                 <td>贴现息</td>
-                <td>备注</td>
-                <!--<td>操作</td>-->
+                <td>利率</td>
+                <td>剩余本金</td>
             </tr>
-
             <tr *ngFor="let income of incomes">
+                <td>{{income.fkrq}}</td>
+                <td>{{income.fkje}}</td>
+                <td>
+                    <div *ngIf="income.fktype==1">
+                        外部融资(借/还)款
+                    </div>
+                    <div *ngIf="income.fktype==2">
+                        自营付款
+                    </div>
+                </td>
                 <td>{{income.hkrq}}</td>
                 <td>{{income.hkje}}</td>
-                <td>{{income.hkfs}}</td>
-                <td>{{income.ll}}</td>
-                <td>{{income.dqr}}</td>
                 <td>{{income.txts}}</td>
                 <td>{{income.txx}}</td>
-                <td>{{income.bz}}</td>
-                <!--<td>-->
-                    <!--<a href="javascript:void(0);" (click)="openEditView(income)"   class="btn btn-default btn-xs">修改</a>-->
-                <!--</td>-->
+                <td>{{income.ll}}</td>
+                <td>{{income.sybj}}</td>
+
             </tr>
         </table>
 </div>

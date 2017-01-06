@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by hongpf on 16/9/27.
@@ -13,9 +14,23 @@ public class Test {
     Logger logger = LoggerFactory.getLogger(Test.class);
 
     public static void main(String [] args ) throws Exception {
-        Test t =  new  Test () ;
-//        t.cronjob();
-        t.ttt();
+
+        List<Integer> a = new ArrayList<Integer>(){{
+            add(5);
+            add(6);
+            add(7);
+            add(8);
+            add(9);
+        }}  ;
+        for (int i = 0; i < a.size()  ; i++) {
+            if(a.get(i)==7){
+                a.remove(i) ;
+                a.add(i,2);
+                a.add(i+1,1);
+            }
+            System.out.println(a.get(i));
+        }
+//        System.out.println(a);
     }
 
 

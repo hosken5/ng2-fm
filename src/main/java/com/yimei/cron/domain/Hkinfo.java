@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class Hkinfo {
+
     private Integer id;
 
     private Integer coalsellid;

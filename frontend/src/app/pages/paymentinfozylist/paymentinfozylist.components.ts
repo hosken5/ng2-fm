@@ -15,7 +15,7 @@ interface ValidationResult {
 }
 class CustomerValidator {
     static ismoney(control: FormControl): ValidationResult {
-        return /^(([1-9]+)|([0-9]+\.[0-9]{1,2}))$/.test(control.value) ? null:{"ismoney":true}
+        return /(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/.test(control.value) ? null:{"ismoney":true}
     }
 }
 
