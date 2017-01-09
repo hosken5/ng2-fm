@@ -57,7 +57,8 @@
                         <div class="form-group"   [class.has-error] = "loginname.dirty && !loginname.valid">
                             <label class="control-label col-sm-2">登录名称:</label>
                             <div class="col-sm-10">
-                                <input readonly="readonly"  formControlName="loginname"  style="width:80%"/>
+                                <input *ngIf="isedit" readonly="readonly"  formControlName="loginname"  style="width:80%"/>
+                                <input *ngIf="!isedit"  formControlName="loginname"  style="width:80%"/>
                                 <small *ngIf="loginname.dirty && !loginname.valid" class="text-danger" >必输字段</small>
                             </div>
                         </div>

@@ -188,13 +188,16 @@ export class HkinfolistComponent implements OnInit {
 
 
         this.addHkinfoForm.valueChanges.subscribe(data=>{
-
-            //
-            //if(!!data.dqr){
-            //    console.log("aa"+new Date(data.dqr.replace(/-/g,   "/"))) ;
-            //}
-            console.log( "hello"+data.dqr +"||" + data.hkrq +"||");
-
+            console.log(data);
+            if(data.dqr && data.hkrq){
+              var  temp =   (new Date(data.dqr.replace(/-/g,"/")) -     new Date(data.hkrq.replace(/-/g,"/")) ) / (24*60*60*1000)  ;
+              console.log(""+temp);
+              if(temp != data.txts ){
+                  this.addHkinfoForm.controls["txts"].setValue(temp);
+              }
+            }else  if(data.txts){
+                this.addHkinfoForm.controls["txts"].reset();
+            }
         }) ;
 
     }
