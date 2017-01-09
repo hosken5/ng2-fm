@@ -127,7 +127,7 @@ export class HkinfolistComponent implements OnInit {
 
     txts = new FormControl("",Validators.required)  ;
 
-    txx = new FormControl("",Validators.compose([Validators.required,Validators.maxLength(30),CustomerValidator.ismoney]))  ;
+    txx = new FormControl("",Validators.compose([Validators.required,CustomerValidator.ismoney]))  ;
     bz = new FormControl("")  ;
 
     createtime = new FormControl("") ;
@@ -185,8 +185,6 @@ export class HkinfolistComponent implements OnInit {
             creator:this.creator
         }) ;
 
-
-
         this.addHkinfoForm.valueChanges.subscribe(data=>{
             console.log(data);
             if(data.dqr && data.hkrq){
@@ -200,6 +198,27 @@ export class HkinfolistComponent implements OnInit {
             }
         }) ;
 
+        this.addHkinfoForm.controls["txts"].valueChanges.subscribe(data=>{
+            this.cacltxx() ;
+        });
+        this.addHkinfoForm.controls["hkje"].valueChanges.subscribe(data=>{
+            this.cacltxx() ;
+        });
+        this.addHkinfoForm.controls["ll"].valueChanges.subscribe(data=>{
+            this.cacltxx() ;
+        });
+
     }
+    cacltxx(){
+        var hkje = this.addHkinfoForm.controls["hkje"].value ;
+        var ll  =this.addHkinfoForm.controls["ll"].value  ;
+        var txts =this.addHkinfoForm.controls["txts"].value  ;
+        var oritxx = this.addHkinfoForm.controls["txts"].value ;
+        var txx =  (hkje * ll * txts /360*1.17).toFixed(2) ;
+        if (oritxx!=txx ){
+            this.addHkinfoForm.controls["txx"].setValue(txx);
+        }
+    }
+
     public hkinfos:Hkinfo[]  = [] ;
 }

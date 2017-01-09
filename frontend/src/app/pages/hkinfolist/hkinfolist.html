@@ -105,7 +105,7 @@
                             <label class="control-label col-sm-2">贴现息:</label>
                             <div class="col-sm-10">
                                 <input formControlName="txx"  style="width:80%"/>
-                                <small *ngIf="txx.dirty && txx.hasError('ismoney')" class="text-danger" >请输入整数</small>
+                                <small *ngIf="txx.dirty && txx.hasError('ismoney')" class="text-danger" >请输入两位小数的数字</small>
                                 <small *ngIf="txx.dirty && txx.hasError('required')" class="text-danger" >必输字段</small>
                             </div>
                         </div>
