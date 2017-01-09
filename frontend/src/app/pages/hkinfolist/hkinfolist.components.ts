@@ -139,6 +139,7 @@ export class HkinfolistComponent implements OnInit {
 
     onDateChangedhkrq(event){
         this.addHkinfoForm.controls["hkrq"].setValue(event.formatted);
+
     }
     onDateChangeddqr(event){
         this.addHkinfoForm.controls["dqr"].setValue(event.formatted);
@@ -162,6 +163,7 @@ export class HkinfolistComponent implements OnInit {
     };
 
 
+
     constructor(
         private builder:FormBuilder,
         private  router : Router,
@@ -182,6 +184,19 @@ export class HkinfolistComponent implements OnInit {
             lastupdatetime:this.lastupdatetime,
             creator:this.creator
         }) ;
+
+
+
+        this.addHkinfoForm.valueChanges.subscribe(data=>{
+
+            //
+            //if(!!data.dqr){
+            //    console.log("aa"+new Date(data.dqr.replace(/-/g,   "/"))) ;
+            //}
+            console.log( "hello"+data.dqr +"||" + data.hkrq +"||");
+
+        }) ;
+
     }
     public hkinfos:Hkinfo[]  = [] ;
 }

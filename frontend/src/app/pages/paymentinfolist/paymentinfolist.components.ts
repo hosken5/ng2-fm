@@ -135,15 +135,15 @@ export class PaymentinfolistComponent implements OnInit {
     coalsellid     =  new FormControl("",Validators.required)          ;
     fkrq           =  new FormControl("",Validators.required)          ;
     fkje           =  new FormControl("",Validators.compose([Validators.required,Validators.maxLength(30),CustomerValidator.ismoney]))          ;
-    jxts           =  new FormControl("",Validators.compose([Validators.required,Validators.maxLength(30),CustomerValidator.ismoney]))          ;
-    ll             =  new FormControl("",Validators.compose([Validators.required,Validators.maxLength(30),CustomerValidator.ismoney]))          ;
-    rmtsy          =  new FormControl("",Validators.compose([Validators.required,Validators.maxLength(30),CustomerValidator.ismoney]))          ;
-    cfsy           =  new FormControl("",Validators.compose([Validators.required,Validators.maxLength(30),CustomerValidator.ismoney]))          ;
-    hkrq           =  new FormControl("",Validators.required)          ;
-    hkje           =  new FormControl("",Validators.compose([Validators.required,Validators.maxLength(30),CustomerValidator.ismoney]))          ;
-    hkjxts         =  new FormControl("",Validators.compose([Validators.required,Validators.maxLength(30),CustomerValidator.ismoney]))          ;
-    hkll           =  new FormControl("",Validators.compose([Validators.required,Validators.maxLength(30),CustomerValidator.ismoney]))          ;
-    hkrmtsy        =  new FormControl("",Validators.compose([Validators.required,Validators.maxLength(30),CustomerValidator.ismoney]))          ;
+    jxts           =  new FormControl("")          ;
+    ll             =  new FormControl("")          ;
+    rmtsy          =  new FormControl("")          ;
+    cfsy           =  new FormControl("")          ;
+    hkrq           =  new FormControl("")          ;
+    hkje           =  new FormControl("")          ;
+    hkjxts         =  new FormControl("")          ;
+    hkll           =  new FormControl("")          ;
+    hkrmtsy        =  new FormControl("")          ;
     createtime     =  new FormControl("")          ;
     lastupdatetime =  new FormControl("")          ;
     creator        =  new FormControl("")          ;
@@ -173,6 +173,11 @@ export class PaymentinfolistComponent implements OnInit {
             creator       :this.creator       ,
             bz            :this.bz
         });
+        //this.addPaymentinfoForm.valueChanges.subscribe(data => {
+        //    //console.log('Form changes', data)
+        //    //this.output = data
+        //    //this.addPaymentinfoForm
+        //})
     }
     public paymentinfos:Paymentinfo[]  = [] ;
 }

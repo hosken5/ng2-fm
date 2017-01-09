@@ -95,7 +95,8 @@
                         <div class="form-group"   [class.has-error] = "txts.dirty && !txts.valid">
                             <label class="control-label col-sm-2">贴现天数:</label>
                             <div class="col-sm-10">
-                                <input formControlName="txts"  style="width:80%"/>
+                                <div>{{txts.value}}</div>
+                                <!--<input formControlName="txts"  style="width:80%"/>-->
                                 <small *ngIf="txts.dirty && txts.hasError('ismoney')" class="text-danger" >请输入两位小数的数字</small>
                                 <small *ngIf="txts.dirty && txts.hasError('required')" class="text-danger" >必输字段</small>
                             </div>

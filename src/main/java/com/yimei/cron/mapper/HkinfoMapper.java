@@ -30,6 +30,7 @@ public interface HkinfoMapper {
 
     @Select("select * from  (\n" +
             "        select hkrq as fkrq ,hkje as fkje   , '1' as fktype   from  paymentinfo  where coalsellid = #{coalsellid} \n" +
+            "  and  hkrq is not null  and  hkje is not null " +
             "        union all\n" +
             "        select  fkrq , fkje , '2' as fktype from  paymentinfozy where  coalsellid = #{coalsellid} \n" +
             "      ) t\n" +
