@@ -28,12 +28,12 @@ public interface HkinfoMapper {
     List<Hkinfo> loadHkinfoListByCoalsellId(@Param("coalsellid") Integer coalsellid);
 
 
-    @Select("select * from  (\n" +
+    @Select("select t.* , b.htzjll  from  (\n" +
             "        select hkrq as fkrq ,hkje as fkje   , '1' as fktype   from  paymentinfo  where coalsellid = #{coalsellid} \n" +
             "  and  hkrq is not null  and  hkje is not null " +
             "        union all\n" +
             "        select  fkrq , fkje , '2' as fktype from  paymentinfozy where  coalsellid = #{coalsellid} \n" +
-            "      ) t\n" +
+            "      ) t ,coalsell b where  b.id = #{coalsellid} \n" +
             "      order by  t.fkrq, fktype")
     List<Income> loadFkinfoListByCoalsellId(Integer coalsellid);
 

@@ -119,15 +119,15 @@ export class HkinfolistComponent implements OnInit {
 
     hkfs   = new FormControl("",Validators.required)  ;
 
-    ll     = new FormControl("",Validators.compose([Validators.required,Validators.maxLength(30),CustomerValidator.ismoney])) ;
+    ll     = new FormControl("") ;
 
-    dqr = new FormControl("",Validators.required)   ;
+    dqr = new FormControl("")   ;
 
     dqri:Any ;
 
-    txts = new FormControl("",Validators.required)  ;
+    txts = new FormControl("")  ;
 
-    txx = new FormControl("",Validators.compose([Validators.required,CustomerValidator.ismoney]))  ;
+    txx = new FormControl("")  ;
     bz = new FormControl("")  ;
 
     createtime = new FormControl("") ;
@@ -210,6 +210,7 @@ export class HkinfolistComponent implements OnInit {
 
     }
     cacltxx(){
+
         var hkje = this.addHkinfoForm.controls["hkje"].value ;
         var ll  =this.addHkinfoForm.controls["ll"].value  ;
         var txts =this.addHkinfoForm.controls["txts"].value  ;

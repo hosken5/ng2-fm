@@ -86,8 +86,8 @@
 
             <label class="control-label col-sm-1">结算量:</label>
             <div class="col-sm-5">
-                <input type="text" formControlName="jsl">
-                <small *ngIf="jsl.dirty && jsl.hasError('ismoney')" class="text-danger" >请输入两位小数的数字</small>
+                <input type="text" formControlName="jsl" >
+                <!--<small *ngIf="jsl.dirty && jsl.hasError('pattern')" class="text-danger" >请输入正整数</small>-->
                 <small *ngIf="jsl.dirty && jsl.hasError('required')" class="text-danger" >必输项</small>
             </div>
         </div>

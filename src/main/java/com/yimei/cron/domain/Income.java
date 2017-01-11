@@ -11,7 +11,7 @@ public class Income {
     public Income(){}
     public Income(Income i){
         super();
-        fkrq = i.getFkrq()  ;
+        fkrq = i.getFkrq();
         fkje=i.getFkje();
         fktype=i.getFktype();
         hkrq = i.getHkrq() ;
@@ -20,6 +20,7 @@ public class Income {
         txx=i.getTxx() ;
         ll=i.getLl() ;
         sybj = i.getSybj()  ;
+        htzjll = i.getHtzjll();
     }
 
     private LocalDate  fkrq ;
@@ -39,6 +40,9 @@ public class Income {
     private BigDecimal ll  ;
 
     private BigDecimal sybj ;
+
+    private  BigDecimal fklx ;
+    private BigDecimal htzjll;
 
     public LocalDate getFkrq() {
         return fkrq;
@@ -110,5 +114,21 @@ public class Income {
 
     public void setSybj(BigDecimal sybj) {
         this.sybj = sybj;
+    }
+
+    public BigDecimal getFklx() {
+        return fklx;
+    }
+
+    public void setFklx(BigDecimal fklx) {
+        this.fklx = fklx;
+    }
+
+    public BigDecimal getHtzjll() {
+        return htzjll;
+    }
+
+    public void setHtzjll(BigDecimal htzjll) {
+        this.htzjll = htzjll;
     }
 }
