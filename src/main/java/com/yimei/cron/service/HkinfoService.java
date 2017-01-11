@@ -78,19 +78,20 @@ public class HkinfoService {
         for (int i = 0; i <fkinfos.size()&&i<hkinfos.size(); i++) {
             Income fkinfo = fkinfos.get(i) ;
             Hkinfo  hkinfo = hkinfos.get(i) ;
-            Double  khbj = getkhbj(fkinfo,hkinfo);
-            Double  margin =fkinfo.getFkje().doubleValue()-khbj;
+            BigDecimal  khbj = getkhbj(fkinfo,hkinfo);
+            BigDecimal  margin =fkinfo.getFkje().subtract(khbj);
 
-            if(margin>0){ //付款金额多,拆分付款金额
-                fkinfo.setFkje(BigDecimal.valueOf(khbj));
+            if(margin.doubleValue()>0){ //付款金额多,拆分付款金额
+                fkinfo.setFkje(khbj);
                 Income fkmargin =  new Income(fkinfo) ;
-                fkmargin.setFkje(BigDecimal.valueOf(margin));
+                fkmargin.setFkje(margin);
 
                 fkinfos.add(i+1,fkmargin);
-            }else if (margin<0) {//回款金额多,拆分回款金额
+
+            }else if (margin.doubleValue()<0) {//回款金额多,拆分回款金额
                 Double  yflx = getYflx(fkinfo,hkinfo) ;
-                BigDecimal  margin1 =  hkinfo.getHkje().subtract(fkinfo.getHkje().add(BigDecimal.valueOf(yflx)));
-                hkinfo.setHkje(fkinfo.getHkje().add(BigDecimal.valueOf(yflx)));
+                BigDecimal  margin1 =  hkinfo.getHkje().subtract(fkinfo.getFkje().add(BigDecimal.valueOf(yflx)));
+                hkinfo.setHkje(fkinfo.getFkje().add(BigDecimal.valueOf(yflx)));
                 Hkinfo info =  new Hkinfo();
                 info.setHkje(margin1);
                 info.setHkrq(hkinfo.getHkrq());
@@ -141,7 +142,7 @@ public class HkinfoService {
 
 
     //获取可还本金
-    private Double  getkhbj(Income fkinfo, Hkinfo hkinfo) {
+    private BigDecimal  getkhbj(Income fkinfo, Hkinfo hkinfo) {
         Integer dual  = Period.between(fkinfo.getFkrq(),hkinfo.getHkrq()).getDays()  ;
         BigDecimal htjzll =fkinfo.getHtzjll() ;
         BigDecimal hkje =   hkinfo.getHkje()  ;
@@ -173,6 +174,6 @@ public class HkinfoService {
                     )
             ),2,BigDecimal.ROUND_HALF_UP);
         }
-        return khbj.doubleValue();
+        return khbj;
     }
 }

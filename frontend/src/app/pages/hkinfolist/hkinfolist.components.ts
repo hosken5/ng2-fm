@@ -136,6 +136,8 @@ export class HkinfolistComponent implements OnInit {
 
     creator= new FormControl("") ;
 
+    pmje = new  FormControl("") ;
+
 
     onDateChangedhkrq(event){
         this.addHkinfoForm.controls["hkrq"].setValue(event.formatted);
@@ -182,7 +184,8 @@ export class HkinfolistComponent implements OnInit {
             bz:this.bz,
             createtime:this.createtime,
             lastupdatetime:this.lastupdatetime,
-            creator:this.creator
+            creator:this.creator,
+            pmje:this.pmje
         }) ;
 
         this.addHkinfoForm.valueChanges.subscribe(data=>{
@@ -201,7 +204,7 @@ export class HkinfolistComponent implements OnInit {
         this.addHkinfoForm.controls["txts"].valueChanges.subscribe(data=>{
             this.cacltxx() ;
         });
-        this.addHkinfoForm.controls["hkje"].valueChanges.subscribe(data=>{
+        this.addHkinfoForm.controls["pmje"].valueChanges.subscribe(data=>{
             this.cacltxx() ;
         });
         this.addHkinfoForm.controls["ll"].valueChanges.subscribe(data=>{
@@ -210,14 +213,20 @@ export class HkinfolistComponent implements OnInit {
 
     }
     cacltxx(){
-
-        var hkje = this.addHkinfoForm.controls["hkje"].value ;
-        var ll  =this.addHkinfoForm.controls["ll"].value  ;
-        var txts =this.addHkinfoForm.controls["txts"].value  ;
-        var oritxx = this.addHkinfoForm.controls["txts"].value ;
-        var txx =  (hkje * ll * txts /360*1.17).toFixed(2) ;
-        if (oritxx!=txx ){
-            this.addHkinfoForm.controls["txx"].setValue(txx);
+        if( this.hkfs.value=='2'){
+            var pmje = this.addHkinfoForm.controls["pmje"].value ;
+            var ll  =this.addHkinfoForm.controls["ll"].value  ;
+            var txts =this.addHkinfoForm.controls["txts"].value  ;
+            var oritxx = this.addHkinfoForm.controls["txts"].value ;
+            var txx =  (pmje * ll * txts /360*1.17).toFixed(2) ;
+            if (oritxx!=txx ){
+                this.addHkinfoForm.controls["txx"].setValue(txx);
+            }
+            if(pmje-txx){
+                this.addHkinfoForm.controls["hkje"].setValue(pmje-txx);
+            }else {
+                this.hkje.reset();
+            }
         }
     }
 

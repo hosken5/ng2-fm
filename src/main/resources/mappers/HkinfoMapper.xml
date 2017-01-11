@@ -6,6 +6,7 @@
     <result column="coalsellid" property="coalsellid" jdbcType="INTEGER" />
     <result column="hkrq" property="hkrq" jdbcType="DATE" />
     <result column="hkje" property="hkje" jdbcType="DECIMAL" />
+    <result column="pmje" property="pmje" jdbcType="DECIMAL" />
     <result column="hkfs" property="hkfs" jdbcType="VARCHAR" />
     <result column="ll" property="ll" jdbcType="INTEGER" />
     <result column="dqr" property="dqr" jdbcType="DATE" />
@@ -18,7 +19,7 @@
   </resultMap>
   <sql id="Base_Column_List" >
     id, coalsellid, hkrq, hkje, hkfs, ll, dqr, txts, txx, bz, createtime, lastupdatetime, 
-    creator
+    creator,pmje
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -127,8 +128,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.yimei.cron.domain.Hkinfo" >
     update hkinfo
     <set >
-      <if test="coalsellid != null" >
-        coalsellid = #{coalsellid,jdbcType=INTEGER},
+      <if test="pmje != null" >
+        pmje = #{pmje,jdbcType=DECIMAL},
       </if>
       <if test="hkrq != null" >
         hkrq = #{hkrq,jdbcType=DATE},
@@ -168,7 +169,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.yimei.cron.domain.Hkinfo" >
     update hkinfo
-    set coalsellid = #{coalsellid,jdbcType=INTEGER},
+    set
+      pmje = #{pmje,jdbcType=DECIMAL},
       hkrq = #{hkrq,jdbcType=DATE},
       hkje = #{hkje,jdbcType=DECIMAL},
       hkfs = #{hkfs,jdbcType=VARCHAR},
@@ -177,9 +179,7 @@
       txts = #{txts,jdbcType=INTEGER},
       txx = #{txx,jdbcType=DECIMAL},
       bz = #{bz,jdbcType=VARCHAR},
-      createtime = #{createtime,jdbcType=TIMESTAMP},
-      lastupdatetime = #{lastupdatetime,jdbcType=TIMESTAMP},
-      creator = #{creator,jdbcType=VARCHAR}
+      lastupdatetime = now()
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

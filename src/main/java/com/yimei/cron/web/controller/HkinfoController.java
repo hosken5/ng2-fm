@@ -23,7 +23,7 @@ public class HkinfoController {
     Logger logger = LoggerFactory.getLogger(HkinfoController.class);
 
     @Autowired
-    HkinfoService hkinfoService;
+    HkinfoService hkinfoService ;
 
 
     /**
@@ -42,7 +42,7 @@ public class HkinfoController {
             hkinfoService.insert(hkinfo);
         }else {
             logger.info("update hkinfo",hkinfo);
-            hkinfoService.updateByPrimaryKeySelective(hkinfo);
+            hkinfoService.updateByPrimaryKey(hkinfo);
         }
         return Result.success();
     }

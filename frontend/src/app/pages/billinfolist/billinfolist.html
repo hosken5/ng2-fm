@@ -45,7 +45,7 @@
                             <label class="control-label col-sm-2">开票吨数:</label>
                             <div class="col-sm-10">
                                 <input formControlName="quantity"  style="width:80%"/>
-                                <small *ngIf="quantity.dirty && quantity.hasError('ismoney')" class="text-danger" >请输入两位小数的数字</small>
+                                <small *ngIf="quantity.dirty && quantity.hasError('pattern')" class="text-danger" >请输入整数</small>
                                 <small *ngIf="quantity.dirty && quantity.hasError('required')" class="text-danger" >必输字段</small>
                             </div>
                         </div>

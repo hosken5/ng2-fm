@@ -31,6 +31,8 @@ public class Hkinfo {
 
     private String creator;
 
+    private BigDecimal pmje ;
+
     public Integer getId() {
         return id;
     }
@@ -133,5 +135,13 @@ public class Hkinfo {
 
     public void setCreator(String creator) {
         this.creator = creator == null ? null : creator.trim();
+    }
+
+    public BigDecimal getPmje() {
+        return pmje;
+    }
+
+    public void setPmje(BigDecimal pmje) {
+        this.pmje = pmje;
     }
 }

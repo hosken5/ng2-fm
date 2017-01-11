@@ -25,4 +25,6 @@ export  class Hkinfo {
   lastupdatetime:   string;
 
   creator:          string;
+
+  pmje :number ;
 }

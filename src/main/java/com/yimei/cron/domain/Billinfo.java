@@ -1,6 +1,7 @@
 package com.yimei.cron.domain;
 
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -9,7 +10,7 @@ public class Billinfo {
 
     private Integer coalsellid;
 
-    private Integer amount;
+    private BigDecimal amount;
 
     private Integer quantity;
 
@@ -39,11 +40,11 @@ public class Billinfo {
         this.coalsellid = coalsellid;
     }
 
-    public Integer getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(Integer amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 

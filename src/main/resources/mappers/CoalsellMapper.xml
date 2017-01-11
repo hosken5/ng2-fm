@@ -55,7 +55,7 @@
       and t.uppercomp like  CONCAT('%',#{uppercomp},'%')
     </if>
     <if test="lowercomp!=null">
-      and t.lowercomp = like  CONCAT('%',#{lowercomp},'%')
+      and t.lowercomp like  CONCAT('%',#{lowercomp},'%')
     </if>
 
   </select>

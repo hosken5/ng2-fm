@@ -6,6 +6,7 @@
                 <td>回款日期</td>
                 <td>回款金额</td>
                 <td>回款方式</td>
+                <td>票面金额</td>
                 <td>利率</td>
                 <td>到期日</td>
                 <td>贴现天数</td>
@@ -17,7 +18,15 @@
             <tr *ngFor="let hkinfo of hkinfos">
                 <td>{{hkinfo.hkrq}}</td>
                 <td>{{hkinfo.hkje}}</td>
-                <td>{{hkinfo.hkfs}}</td>
+                <td>
+                    <div *ngIf="hkinfo.hkfs==1">
+                        现汇
+                    </div>
+                    <div *ngIf="hkinfo.hkfs==2">
+                        承兑
+                    </div>
+                </td>
+                <td>{{hkinfo.pmje}}</td>
                 <td>{{hkinfo.ll}}</td>
                 <td>{{hkinfo.dqr}}</td>
                 <td>{{hkinfo.txts}}</td>
@@ -54,14 +63,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group"   [class.has-error] = "hkje.dirty && !hkje.valid">
-                            <label class="control-label col-sm-2">回款金额:</label>
-                            <div class="col-sm-10">
-                                <input formControlName="hkje"  style="width:80%"/>
-                                <small *ngIf="hkje.dirty && hkje.hasError('ismoney')" class="text-danger" >请输入两位小数的数字</small>
-                                <small *ngIf="hkje.dirty && hkje.hasError('required')" class="text-danger" >必输字段</small>
-                            </div>
-                        </div>
 
                         <div class="form-group"   [class.has-error] = "hkfs.dirty && !hkfs.valid">
                             <label class="control-label col-sm-2">回款方式:</label>
@@ -74,6 +75,15 @@
                             </div>
                         </div>
 
+
+                        <div *ngIf="hkfs.value==2"  class="form-group"   [class.has-error] = "pmje.dirty && !pmje.valid">
+                            <label class="control-label col-sm-2">票面金额:</label>
+                            <div class="col-sm-10">
+                                <input formControlName="pmje"  style="width:80%"/>
+                                <small *ngIf="pmje.dirty && hkje.hasError('ismoney')" class="text-danger" >请输入两位小数的数字</small>
+                                <small *ngIf="pmje.dirty && hkje.hasError('required')" class="text-danger" >必输字段</small>
+                            </div>
+                        </div>
 
                         <div *ngIf="hkfs.value==2"  class="form-group"   [class.has-error] = "ll.dirty && !ll.valid">
                             <label class="control-label col-sm-2">利率:</label>
@@ -109,6 +119,17 @@
                                 <small *ngIf="txx.dirty && txx.hasError('required')" class="text-danger" >必输字段</small>
                             </div>
                         </div>
+
+                        <div class="form-group"   [class.has-error] = "hkje.dirty && !hkje.valid">
+                            <label class="control-label col-sm-2">回款金额:</label>
+                            <div class="col-sm-10">
+                                <input formControlName="hkje"  style="width:80%"/>
+                                <small *ngIf="hkje.dirty && hkje.hasError('ismoney')" class="text-danger" >请输入两位小数的数字</small>
+                                <small *ngIf="hkje.dirty && hkje.hasError('required')" class="text-danger" >必输字段</small>
+                            </div>
+                        </div>
+
+
                         <div class="form-group"   [class.has-error] = "bz.dirty && !bz.valid">
                             <label class="control-label col-sm-2">备注:</label>
                             <div class="col-sm-10">
