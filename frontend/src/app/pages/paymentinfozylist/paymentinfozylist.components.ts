@@ -134,10 +134,10 @@ export class PaymentinfozylistComponent implements OnInit {
     id             =  new FormControl("")          ;
     coalsellid     =  new FormControl("",Validators.required)          ;
     fkrq           =  new FormControl("",Validators.required)          ;
-    fkje           =  new FormControl("",Validators.compose([Validators.required,Validators.maxLength(30),CustomerValidator.ismoney]))          ;
-    jxts           =  new FormControl("",Validators.compose([Validators.required,Validators.maxLength(30),CustomerValidator.ismoney]))          ;
-    ll             =  new FormControl("",Validators.compose([Validators.required,Validators.maxLength(30),CustomerValidator.ismoney]))          ;
-    rmtsy          =  new FormControl("",Validators.compose([Validators.required,Validators.maxLength(30),CustomerValidator.ismoney]))          ;
+    jxts           =  new FormControl("")          ;
+    fkje           =  new FormControl("",Validators.compose([Validators.required,Validators.maxLength(30),CustomerValidator.ismoney]));
+    ll             =  new FormControl("")          ;
+    rmtsy          =  new FormControl("")          ;
     createtime     =  new FormControl("")          ;
     lastupdatetime =  new FormControl("")          ;
     creator        =  new FormControl("")          ;

@@ -3,7 +3,8 @@
 <div class="panel panel-default">
         <table class="table  table-striped table-hover table-condensed" >
             <tr>
-                <td>付款日期</td>
+                <td>计息基准日</td>
+                <td>还款日</td>
                 <td>付款金额</td>
                 <td>付款类型</td>
                 <td>回款日期</td>
@@ -12,8 +13,10 @@
                 <td>贴现息</td>
                 <td>利率</td>
                 <td>剩余本金</td>
+                <td>剩余利息</td>
             </tr>
             <tr *ngFor="let income of incomes">
+                <td>{{income.jxqsr}}</td>
                 <td>{{income.fkrq}}</td>
                 <td>{{income.fkje}}</td>
                 <td>
@@ -30,7 +33,7 @@
                 <td>{{income.txx}}</td>
                 <td>{{income.ll}}</td>
                 <td>{{income.sybj}}</td>
-
+                <td>{{income.sylx}}</td>
             </tr>
         </table>
 </div>

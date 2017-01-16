@@ -43,21 +43,16 @@ export class CoalselldetailComponent implements OnInit {
     coalsell:Coalsell = {} ;
     isedit:boolean  = false ;
     ngOnInit() {
-        this.teamService.getTeams().then(data=>{
-            console.log(data)  ;
-            this.teaminfo = data || [] ;
-        });
-        this.financecellService.getFinancecells().then(data=>{
-            this.financecellinfo = data ||[] ;
-        });
+
 
         this.form = this.builder.group({
             id:this.id,
 
             teamid:this.teamid,
+            teamname:this.teamname,
 
             financecellid:this.financecellid,
-
+            financecellname:this.financecellname ,
             uppercomp:this.uppercomp,
 
             lowercomp:this.lowercomp,
@@ -97,6 +92,15 @@ export class CoalselldetailComponent implements OnInit {
             lastupdatetime:this.lastupdatetime,
 
             creator:this.creator
+        });
+
+        this.teamService.getTeams().then(data=>{
+            console.log("temps",data)  ;
+            this.teaminfo = data || [] ;
+            this.teamname.setValue(data[this.teamid.value]);
+        });
+        this.financecellService.getFinancecells().then(data=>{
+            this.financecellinfo = data ||[] ;
         });
 
         this.router.params.forEach((params:Params)=>{
@@ -153,9 +157,13 @@ export class CoalselldetailComponent implements OnInit {
 
     id = new FormControl("") ;
 
+    teamname = new FormControl("")  ;
+
     teamid = new FormControl(null,Validators.required) ;
 
     financecellid= new FormControl(null,Validators.required) ;
+
+    financecellname = new FormControl("") ;
 
     uppercomp= new FormControl("",Validators.compose([Validators.required,Validators.maxLength(30)]));
 

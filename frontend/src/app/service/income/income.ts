@@ -1,4 +1,5 @@
 export  class Income {
+  jxqsr :      string ;
 
   fkrq :       string ;
 
@@ -14,7 +15,7 @@ export  class Income {
 
   txx  :       string ;
 
-  ll  :         number;
+  ll  :        number;
 
-  sybj :        number ;
+  sybj :       number ;
 }

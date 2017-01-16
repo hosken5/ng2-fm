@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.Period;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,9 +60,7 @@ public class HkinfoService {
 
     public List<Income> loadIncomeListByCoalsellId(Integer coalsellid) {
 
-        BigDecimal sybj   ;
-
-        BigDecimal sum   = BigDecimal.valueOf(0) ;
+//        BigDecimal sum   = BigDecimal.valueOf(0) ;
 
         List<Income> fkinfos = hkinfoMapper.loadFkinfoListByCoalsellId(coalsellid);
 
@@ -68,12 +68,11 @@ public class HkinfoService {
 
         List<Income>  result = new ArrayList<>() ;
 
+//        for ( Income fkinfo:fkinfos ){
+//            sum = sum.add(fkinfo.getFkje());
+//        }
 
-        for ( Income fkinfo:fkinfos ){
-            sum = sum.add(fkinfo.getFkje());
-        }
-
-        sybj = sum  ;
+//        sybj = sum  ;
 
         for (int i = 0; i <fkinfos.size()&&i<hkinfos.size(); i++) {
             Income fkinfo = fkinfos.get(i) ;
@@ -85,11 +84,9 @@ public class HkinfoService {
                 fkinfo.setFkje(khbj);
                 Income fkmargin =  new Income(fkinfo) ;
                 fkmargin.setFkje(margin);
-
                 fkinfos.add(i+1,fkmargin);
-
             }else if (margin.doubleValue()<0) {//回款金额多,拆分回款金额
-                Double  yflx = getYflx(fkinfo,hkinfo) ;
+                Double  yflx = getYflx(fkinfo,hkinfo).doubleValue() ;
                 BigDecimal  margin1 =  hkinfo.getHkje().subtract(fkinfo.getFkje().add(BigDecimal.valueOf(yflx)));
                 hkinfo.setHkje(fkinfo.getFkje().add(BigDecimal.valueOf(yflx)));
                 Hkinfo info =  new Hkinfo();
@@ -101,79 +98,303 @@ public class HkinfoService {
             }
         }
 
-        for (int i = 0; i < fkinfos.size(); i++) {
+        BigDecimal sybjsum = BigDecimal.ZERO ;
+
+        BigDecimal sylxsum = BigDecimal.ZERO ;
+
+        for (int i = 0 ; i < fkinfos.size(); i++) {
             Income in = new Income();
             if(hkinfos.size()<=i){
+                in.setJxqsr(fkinfos.get(i).getJxqsr());
                 in.setFkje(fkinfos.get(i).getFkje());
                 in.setFkrq(fkinfos.get(i).getFkrq());
                 in.setFktype(fkinfos.get(i).getFktype());
+                in.setSybj (in.getFkje()) ;
+                in.setSylx(getYflx(in.getFkje(),fkinfos.get(i).getHtzjll(),in.getJxqsr(),in.getFkrq(),LocalDate.now()));
+                sybjsum = sybjsum.add(in.getFkje()) ;
+                sylxsum = sylxsum.add(in.getSylx()) ;
             }else {
+                in.setJxqsr(fkinfos.get(i).getJxqsr());
                 in.setFkje(fkinfos.get(i).getFkje());
                 in.setFkrq(fkinfos.get(i).getFkrq());
                 in.setFktype(fkinfos.get(i).getFktype());
                 in.setHkje(hkinfos.get(i).getHkje());
                 in.setHkrq(hkinfos.get(i).getHkrq());
-                sybj = sybj.subtract(in.getFkje()) ;
-                in.setSybj(sybj);
+//                sybj = sybj.subtract(in.getFkje())  ;
+//                in.setSybj(sybj);
+//                in.setSylx(getYflx(in.getSybj(),fkinfos.get(i).getHtzjll(),in.getJxqsr(),in.getFkrq(),LocalDate.now()));
             }
+
             result.add(in);
         }
+
+        Income sum = new Income();
+
+        sum.setSybj(sybjsum);
+        sum.setSylx(sylxsum);
+        result.add(sum) ; ///最后一行合计
         return  result  ;
+
     }
 
 
-    //获取应付利息
-    private Double  getYflx(Income fkinfo, Hkinfo hkinfo) {
-        Integer dual  = Period.between(hkinfo.getHkrq(),fkinfo.getFkrq()).getDays()  ;
-        BigDecimal htjzll =fkinfo.getHtzjll()  ;
-        Double  yflx  ;
-        if(dual <=60){
-            yflx =  htjzll.doubleValue()/360*fkinfo.getFkje().doubleValue()*dual ;
-        }else  if ( dual <=90 ){
-            yflx =   htjzll.doubleValue()/360*fkinfo.getFkje().doubleValue()* 60  +
-                    (htjzll.doubleValue()+0.05)/360*fkinfo.getFkje().doubleValue()*(dual-60);
-        } else  {
-            yflx =   htjzll.doubleValue()/360*fkinfo.getFkje().doubleValue()* 60  +
-                    (htjzll.doubleValue()+0.05)/360*fkinfo.getFkje().doubleValue()*30 +
-                    (htjzll.doubleValue()+0.1)/360*fkinfo.getFkje().doubleValue()*(dual-90);
+    private  BigDecimal getYflx( BigDecimal bj , BigDecimal ll , LocalDate stat , LocalDate end , Integer  rzts){
+
+
+        return null  ;
+//        Integer dual  = Period.between(stat,end).getDays();
+//        Double  yflx  ;
+//        if(dual <=60){
+//            yflx =  ll.doubleValue()/360*bj.doubleValue()*dual ;
+//        }else  if ( dual <=90 ){
+//            yflx =   ll.doubleValue()/360*bj.doubleValue()* 60  +
+//                    (ll.doubleValue()+0.05)/360*bj.doubleValue()*(dual-60);
+//        } else  {
+//            yflx =   ll.doubleValue()/360*bj.doubleValue()* 60  +
+//                    (ll.doubleValue()+0.05)/360*bj.doubleValue()*30 +
+//                    (ll.doubleValue()+0.1)/360*bj.doubleValue()*(dual-90);
+//        }
+//        return   BigDecimal.valueOf(yflx).setScale(2,BigDecimal.ROUND_HALF_UP);
+    }
+
+
+
+    private  BigDecimal getYflx( BigDecimal bj , BigDecimal ll , LocalDate jxqsr ,  LocalDate stat , LocalDate end ){
+        Double  lxjs = 0.0 ;
+        for (int i = Period.between(jxqsr,stat).getDays();
+             i <  Period.between(jxqsr,end).getDays();
+             i++){
+                if(i<60) {
+                    lxjs = lxjs + ll.doubleValue() / 360;
+                }else if (i < 90 ) {
+                    lxjs = lxjs+ ( ll.doubleValue()+0.05)/360 ;
+                }else {
+                    lxjs = lxjs+ ( ll.doubleValue()+0.1)/360 ;
+                }
         }
-        return   BigDecimal.valueOf(yflx).setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue() ;
+
+//        if(dual <=60){
+//            yflx =  ll.doubleValue()/360*bj.doubleValue()*dual ;
+//        }else  if ( dual <=90 ){
+//            yflx =   ll.doubleValue()/360*bj.doubleValue()* 60  +
+//                    (ll.doubleValue()+0.05)/360*bj.doubleValue()*(dual-60);
+//        } else  {
+//            yflx =   ll.doubleValue()/360*bj.doubleValue()* 60  +
+//                    (ll.doubleValue()+0.05)/360*bj.doubleValue()*30 +
+//                    (ll.doubleValue()+0.1)/360*bj.doubleValue()*(dual-90);
+//        }
+
+        return  BigDecimal.valueOf(lxjs).multiply(bj).setScale(2,BigDecimal.ROUND_HALF_UP) ;
+    }
+
+//
+//    private  BigDecimal getYflx( BigDecimal bj , BigDecimal ll , LocalDate stat , LocalDate end){
+//
+//        Integer dual  = Period.between(stat,end).getDays();
+//        Double  yflx  ;
+//        if(dual <=60){
+//            yflx =  ll.doubleValue()/360*bj.doubleValue()*dual ;
+//        }else  if ( dual <=90 ){
+//            yflx =   ll.doubleValue()/360*bj.doubleValue()* 60  +
+//                    (ll.doubleValue()+0.05)/360*bj.doubleValue()*(dual-60);
+//        } else  {
+//            yflx =   ll.doubleValue()/360*bj.doubleValue()* 60  +
+//                    (ll.doubleValue()+0.05)/360*bj.doubleValue()*30 +
+//                    (ll.doubleValue()+0.1)/360*bj.doubleValue()*(dual-90);
+//        }
+//        return   BigDecimal.valueOf(yflx).setScale(2,BigDecimal.ROUND_HALF_UP);
+//    }
+
+//
+//    private  BigDecimal getYflx( BigDecimal bj , BigDecimal ll ,Integer  dual ){
+//        Double  yflx  ;
+//        if(dual <=60){
+//            yflx =  ll.doubleValue()/360*bj.doubleValue()*dual ;
+//        }else  if ( dual <=90 ){
+//            yflx =   ll.doubleValue()/360*bj.doubleValue()* 60  +
+//                    (ll.doubleValue()+0.05)/360*bj.doubleValue()*(dual-60);
+//        } else  {
+//            yflx =   ll.doubleValue()/360*bj.doubleValue()* 60  +
+//                    (ll.doubleValue()+0.05)/360*bj.doubleValue()*30 +
+//                    (ll.doubleValue()+0.1)/360*bj.doubleValue()*(dual-90);
+//        }
+//        return   BigDecimal.valueOf(yflx).setScale(2,BigDecimal.ROUND_HALF_UP);
+//    }
+
+
+
+    //获取应付利息 1.1
+    private BigDecimal   getYflx(Income fkinfo, Hkinfo hkinfo) {
+
+        BigDecimal  lxjs = BigDecimal.ZERO ;
+        BigDecimal  ll ;
+        BigDecimal  bj   = fkinfo.getFkje();
+
+        if("2".equals(fkinfo.getFktype())){ //自营计息
+            for (int i = 0; i <  Period.between( fkinfo.getFkrq(), hkinfo.getHkrq()).getDays(); i++) {
+                if(i<60){
+                    ll =fkinfo.getHtzjll();
+                }else if (i<90) {
+                    ll = fkinfo.getHtzjll().add(BigDecimal.valueOf(0.05)) ;
+                }else {
+                    ll = fkinfo.getHtzjll().add(BigDecimal.valueOf(0.1)) ;
+                }
+                lxjs = lxjs.add(ll.multiply(bj))  ;
+            }
+        }else {//外部融资借还款
+            for (long  i = ChronoUnit.DAYS.between(fkinfo.getJxqsr(),fkinfo.getFkrq());
+                 i <  ChronoUnit.DAYS.between( fkinfo.getJxqsr(), hkinfo.getHkrq());
+                 i++) {
+                if(i<60){
+                    ll =fkinfo.getHtzjll();
+                }else if (i<90) {
+                    ll = fkinfo.getHtzjll().add(BigDecimal.valueOf(0.05)) ;
+                }else {
+                    ll = fkinfo.getHtzjll().add(BigDecimal.valueOf(0.1)) ;
+                }
+                lxjs = lxjs.add(ll.multiply(bj))  ;
+            }
+        }
+        return lxjs ;
+//        return  getYflx(fkinfo.getFkje(),fkinfo.getHtzjll(),fkinfo.getFkrq(),hkinfo.getHkrq()) ;
     }
 
 
-    //获取可还本金
+    //获取可还本金 1.1
     private BigDecimal  getkhbj(Income fkinfo, Hkinfo hkinfo) {
-        Integer dual  = Period.between(fkinfo.getFkrq(),hkinfo.getHkrq()).getDays()  ;
-        BigDecimal htjzll =fkinfo.getHtzjll() ;
-        BigDecimal hkje =   hkinfo.getHkje()  ;
-        BigDecimal   khbj  ;
-        if(dual <=60){
-            khbj =  hkje.multiply(BigDecimal.valueOf(360)).divide(
-                    htjzll.multiply(BigDecimal.valueOf(dual)).add(BigDecimal.valueOf(360))
-            ,2,BigDecimal.ROUND_HALF_UP) ;
-        }else  if ( dual <=90 ){
-            khbj = hkje.multiply(BigDecimal.valueOf(360)).divide(
-            htjzll.multiply(BigDecimal.valueOf(60))
-                    .add(
-                        htjzll.add(BigDecimal.valueOf(0.05)).multiply(
-                            BigDecimal.valueOf(dual).subtract(BigDecimal.valueOf(60))
-                    ).add(BigDecimal.valueOf(360))
-            ),2,BigDecimal.ROUND_HALF_UP) ;
-        } else {
-            khbj = hkje.multiply(BigDecimal.valueOf(360)).divide(
-            htjzll.multiply(BigDecimal.valueOf(60))
-                    .add (
-                    htjzll.add(BigDecimal.valueOf(0.05)).multiply(
-                            BigDecimal.valueOf(30)
-                    ).add(
-                        htjzll.add(BigDecimal.valueOf(0.1)).multiply(
-                                BigDecimal.valueOf(dual-90)
-                        )
-                    ).add (
-                            BigDecimal.valueOf(360)
-                    )
-            ),2,BigDecimal.ROUND_HALF_UP);
+        BigDecimal  lxjs = BigDecimal.ZERO ;
+        BigDecimal  ll ;
+        Double bj  = 360.0;
+
+        if("2".equals(fkinfo.getFktype())){ //自营计息
+            for (int i = 0; i <  Period.between( fkinfo.getFkrq(), hkinfo.getHkrq()).getDays(); i++) {
+                if(i<60){
+                    ll =fkinfo.getHtzjll();
+                }else if (i<90) {
+                    ll = fkinfo.getHtzjll().add(BigDecimal.valueOf(0.05)) ;
+                }else {
+                    ll = fkinfo.getHtzjll().add(BigDecimal.valueOf(0.1)) ;
+                }
+                lxjs = lxjs.add(ll);
+            }
+        }else {//外部融资借还款
+            for (long  i =ChronoUnit.DAYS.between(fkinfo.getJxqsr(),fkinfo.getFkrq());
+                 i <  ChronoUnit.DAYS.between(fkinfo.getJxqsr(),hkinfo.getHkrq());
+                 i++) {
+                if(i<60){
+                    ll =fkinfo.getHtzjll();
+                }else if (i<90) {
+                    ll = fkinfo.getHtzjll().add(BigDecimal.valueOf(0.05)) ;
+                }else {
+                    ll = fkinfo.getHtzjll().add(BigDecimal.valueOf(0.1)) ;
+                }
+                lxjs = lxjs.add(ll)  ;
+            }
         }
-        return khbj;
+        return hkinfo.getHkje().multiply(BigDecimal.valueOf(360)).divide(
+                BigDecimal.valueOf(360).add(lxjs),2,BigDecimal.ROUND_HALF_UP
+        );
     }
+
+
+
+
+
+//    //获取可还本金 1.1
+//    private BigDecimal  getkhbj(Income fkinfo, Hkinfo hkinfo) {
+//        BigDecimal  lxjs = BigDecimal.ZERO ;
+//        BigDecimal  ll ;
+//        Double bj  = 1.0;
+//        for (int i = 0; i <  Period.between( fkinfo.getFkrq(), hkinfo.getHkrq()).getDays(); i++) {
+//            if(i<60){
+//                ll =fkinfo.getLl();
+//            }else if (i<90) {
+//                ll = fkinfo.getLl().add(BigDecimal.valueOf(0.05)) ;
+//            }else {
+//                ll = fkinfo.getLl().add(BigDecimal.valueOf(0.1)) ;
+//            }
+//            if(i<fkinfo.getJxts().intValue()){
+//                bj = 360.0 ;
+//            }else {
+//               bj = 360+getYflx(BigDecimal.valueOf(360),fkinfo.getLl(),fkinfo.getJxts().intValue(),fkinfo.getJxts().intValue()).doubleValue() ;
+//            }
+//            lxjs = lxjs.add(ll.multiply(BigDecimal.valueOf(bj)))  ;
+//        }
+//        return hkinfo.getHkje().multiply(BigDecimal.valueOf(360)).divide(
+//               BigDecimal.valueOf(360).add(lxjs)
+//               ).setScale(2,BigDecimal.ROUND_HALF_UP) ;
+
+
+//        Integer dual  = Period.between(fkinfo.getFkrq(),hkinfo.getHkrq()).getDays()  ;
+//        BigDecimal htjzll =fkinfo.getHtzjll() ;
+//        BigDecimal hkje =   hkinfo.getHkje()  ;
+//        BigDecimal   khbj  ;
+//        if(dual <=60){
+//            khbj =  hkje.multiply(BigDecimal.valueOf(360)).divide(
+//                    htjzll.multiply(BigDecimal.valueOf(dual)).add(BigDecimal.valueOf(360))
+//                    ,2,BigDecimal.ROUND_HALF_UP) ;
+//        }else  if ( dual <=90 ){
+//            khbj = hkje.multiply(BigDecimal.valueOf(360)).divide(
+//                    htjzll.multiply(BigDecimal.valueOf(60))
+//                            .add(
+//                                    htjzll.add(BigDecimal.valueOf(0.05)).multiply(
+//                                            BigDecimal.valueOf(dual).subtract(BigDecimal.valueOf(60))
+//                                    ).add(BigDecimal.valueOf(360))
+//                            ),2,BigDecimal.ROUND_HALF_UP) ;
+//        } else {
+//            khbj = hkje.multiply(BigDecimal.valueOf(360)).divide(
+//                    htjzll.multiply(BigDecimal.valueOf(60))
+//                            .add (
+//                                    htjzll.add(BigDecimal.valueOf(0.05)).multiply(
+//                                            BigDecimal.valueOf(30)
+//                                    ).add(
+//                                            htjzll.add(BigDecimal.valueOf(0.1)).multiply(
+//                                                    BigDecimal.valueOf(dual-90)
+//                                            )
+//                                    ).add (
+//                                            BigDecimal.valueOf(360)
+//                                    )
+//                            ),2,BigDecimal.ROUND_HALF_UP);
+//        }
+//        return khbj;
+
+
+
+
+//
+//    //获取可还本金
+//    private BigDecimal  getkhbj(Income fkinfo, Hkinfo hkinfo) {
+//        Integer dual  = Period.between(fkinfo.getFkrq(),hkinfo.getHkrq()).getDays()  ;
+//        BigDecimal htjzll =fkinfo.getHtzjll() ;
+//        BigDecimal hkje =   hkinfo.getHkje()  ;
+//        BigDecimal   khbj  ;
+//        if(dual <=60){
+//            khbj =  hkje.multiply(BigDecimal.valueOf(360)).divide(
+//                    htjzll.multiply(BigDecimal.valueOf(dual)).add(BigDecimal.valueOf(360))
+//            ,2,BigDecimal.ROUND_HALF_UP) ;
+//        }else  if ( dual <=90 ){
+//            khbj = hkje.multiply(BigDecimal.valueOf(360)).divide(
+//            htjzll.multiply(BigDecimal.valueOf(60))
+//                    .add(
+//                        htjzll.add(BigDecimal.valueOf(0.05)).multiply(
+//                            BigDecimal.valueOf(dual).subtract(BigDecimal.valueOf(60))
+//                    ).add(BigDecimal.valueOf(360))
+//            ),2,BigDecimal.ROUND_HALF_UP) ;
+//        } else {
+//            khbj = hkje.multiply(BigDecimal.valueOf(360)).divide(
+//            htjzll.multiply(BigDecimal.valueOf(60))
+//                    .add (
+//                    htjzll.add(BigDecimal.valueOf(0.05)).multiply(
+//                            BigDecimal.valueOf(30)
+//                    ).add(
+//                        htjzll.add(BigDecimal.valueOf(0.1)).multiply(
+//                                BigDecimal.valueOf(dual-90)
+//                        )
+//                    ).add (
+//                            BigDecimal.valueOf(360)
+//                    )
+//            ),2,BigDecimal.ROUND_HALF_UP);
+//        }
+//        return khbj;
+//    }
 }

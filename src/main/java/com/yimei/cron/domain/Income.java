@@ -8,7 +8,7 @@ import java.time.LocalDate;
  */
 public class Income {
 
-    public Income(){}
+    public Income(){ }
     public Income(Income i){
         super();
         fkrq = i.getFkrq();
@@ -17,11 +17,16 @@ public class Income {
         hkrq = i.getHkrq() ;
         hkje = i.getHkje() ;
         txts = i.getTxts() ;
-        txx=i.getTxx() ;
+        txx=i.getTxx();
         ll=i.getLl() ;
-        sybj = i.getSybj()  ;
+        sybj = i.getSybj();
         htzjll = i.getHtzjll();
+        jxqsr = i.getJxqsr();
     }
+
+    private BigDecimal jxts ;
+
+    private LocalDate jxqsr ;
 
     private LocalDate  fkrq ;
 
@@ -33,16 +38,23 @@ public class Income {
 
     private BigDecimal hkje ;
 
-    private Integer   txts ;
+    private Integer   txts  ;
 
     private BigDecimal txx  ;
 
-    private BigDecimal ll  ;
+    private BigDecimal ll   ;
 
     private BigDecimal sybj ;
 
-    private  BigDecimal fklx ;
-    private BigDecimal htzjll;
+    private BigDecimal fklx ;
+
+    private BigDecimal htzjll ;
+
+    private BigDecimal sylx ; //剩余利息
+
+    private BigDecimal sywbrzlx ;//剩余供应商利息
+
+
 
     public LocalDate getFkrq() {
         return fkrq;
@@ -130,5 +142,37 @@ public class Income {
 
     public void setHtzjll(BigDecimal htzjll) {
         this.htzjll = htzjll;
+    }
+
+    public BigDecimal getSylx() {
+        return sylx;
+    }
+
+    public void setSylx(BigDecimal sylx) {
+        this.sylx = sylx;
+    }
+
+    public BigDecimal getSywbrzlx() {
+        return sywbrzlx;
+    }
+
+    public void setSywbrzlx(BigDecimal sywbrzlx) {
+        this.sywbrzlx = sywbrzlx;
+    }
+
+    public LocalDate getJxqsr() {
+        return jxqsr;
+    }
+
+    public void setJxqsr(LocalDate jxqsr) {
+        this.jxqsr = jxqsr;
+    }
+
+    public BigDecimal getJxts() {
+        return jxts;
+    }
+
+    public void setJxts(BigDecimal jxts) {
+        this.jxts = jxts;
     }
 }
