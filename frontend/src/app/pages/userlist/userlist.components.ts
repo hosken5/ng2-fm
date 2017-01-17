@@ -81,9 +81,9 @@ export class UserlistComponent implements OnInit {
     addUserForm:FormGroup ;
     id             = new FormControl("")  ;
     phone          = new FormControl("")  ;
-    name           = new FormControl("")  ;
+    name           = new FormControl("",Validators.required)  ;
     loginname      = new FormControl("",Validators.required)  ;
-    plainpassword  = new FormControl("",this.validPass) ;
+    plainpassword  = new FormControl("") ;
     email          = new FormControl("",Validators.required)  ;
     activated      = new FormControl("",Validators.required)  ;
     creator        = new FormControl("")  ;
