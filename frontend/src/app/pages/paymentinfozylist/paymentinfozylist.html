@@ -13,7 +13,7 @@
             </tr>
             <tr *ngFor="let paymentinfozy of paymentinfozys">
                 <td>{{paymentinfozy.fkrq}}</td>
-                <td>{{paymentinfozy.fkje}}</td>
+                <td style="text-align: right" >{{paymentinfozy.fkje | number:'.2-2' }}</td>
                 <td>{{paymentinfozy.jxts}}</td>
                 <td>{{paymentinfozy.ll}}</td>
                 <td>{{paymentinfozy.rmtsy}}</td>

@@ -13,6 +13,7 @@
     <result column="hkrq" property="hkrq" jdbcType="DATE" />
     <result column="hkje" property="hkje" jdbcType="DECIMAL" />
     <result column="hkjxts" property="hkjxts" jdbcType="INTEGER" />
+    <result column="jklx" property="jklx" jdbcType="INTEGER" />
     <result column="hkll" property="hkll" jdbcType="DECIMAL" />
     <result column="hkrmtsy" property="hkrmtsy" jdbcType="DECIMAL" />
     <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
@@ -21,7 +22,7 @@
     <result column="bz" property="bz" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, coalsellid, fkrq, fkje, jxts, ll, rmtsy, hkrq, hkje, hkjxts, hkll, hkrmtsy, createtime, 
+    id, coalsellid, fkrq, fkje, jxts, ll, rmtsy, hkrq, hkje, hkjxts, hkll, hkrmtsy, createtime, jklx
     lastupdatetime, creator, bz,cfsy
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -39,11 +40,13 @@
       fkje, jxts, ll, rmtsy, 
       hkrq, hkje, hkjxts, hkll, 
       hkrmtsy, createtime,
-      creator, bz,cfsy)
+      creator, bz,cfsy , jklx )
     values (#{coalsellid,jdbcType=INTEGER}, #{fkrq,jdbcType=DATE},
       #{fkje,jdbcType=DECIMAL}, #{jxts,jdbcType=INTEGER}, #{ll,jdbcType=DECIMAL}, #{rmtsy,jdbcType=DECIMAL}, 
       #{hkrq,jdbcType=DATE}, #{hkje,jdbcType=DECIMAL}, #{hkjxts,jdbcType=INTEGER}, #{hkll,jdbcType=DECIMAL}, 
-      #{hkrmtsy,jdbcType=DECIMAL}, now(),#{creator,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR},#{cfsy,jdbcType=DECIMAL})
+      #{hkrmtsy,jdbcType=DECIMAL}, now(),#{creator,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR},#{cfsy,jdbcType=DECIMAL},
+      #{jklx,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.yimei.cron.domain.Paymentinfo" >
     insert into paymentinfo
@@ -99,6 +102,9 @@
       <if test="bz != null" >
         bz,
       </if>
+      <if test="jklx != null" >
+        jklx,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -151,6 +157,9 @@
       </if>
       <if test="bz != null" >
         #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="jklx != null" >
+        #{jklx,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -205,6 +214,9 @@
       <if test="bz != null" >
         bz = #{bz,jdbcType=VARCHAR},
       </if>
+      <if test="jklx != null" >
+        jklx = #{jklx,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -225,7 +237,8 @@
       createtime = #{createtime,jdbcType=TIMESTAMP},
       lastupdatetime = #{lastupdatetime,jdbcType=TIMESTAMP},
       creator = #{creator,jdbcType=VARCHAR},
-      bz = #{bz,jdbcType=VARCHAR}
+      bz = #{bz,jdbcType=VARCHAR},
+      jklx = #{jklx,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

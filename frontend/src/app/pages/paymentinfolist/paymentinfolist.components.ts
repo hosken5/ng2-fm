@@ -130,7 +130,7 @@ export class PaymentinfolistComponent implements OnInit {
         showDateFormatPlaceholder:true,
         selectionTxtFontSize: '12px'
     };
-    addPaymentinfoForm : FormGroup ;
+    addPaymentinfoForm :  FormGroup ;
     id             =  new FormControl("")          ;
     coalsellid     =  new FormControl("",Validators.required)          ;
     fkrq           =  new FormControl("",Validators.required)          ;
@@ -148,6 +148,7 @@ export class PaymentinfolistComponent implements OnInit {
     lastupdatetime =  new FormControl("")          ;
     creator        =  new FormControl("")          ;
     bz             =  new FormControl("")          ;
+    jklx           =  new FormControl("",Validators.required)          ;
 
     constructor(
         private builder:FormBuilder,
@@ -171,7 +172,8 @@ export class PaymentinfolistComponent implements OnInit {
             createtime    :this.createtime    ,
             lastupdatetime:this.lastupdatetime,
             creator       :this.creator       ,
-            bz            :this.bz
+            bz            :this.bz            ,
+            jklx          :this.jklx
         });
         //this.addPaymentinfoForm.valueChanges.subscribe(data => {
         //    //console.log('Form changes', data)

@@ -19,6 +19,13 @@ export class UserlistComponent implements OnInit {
 
     @ViewChild('staticModal') public staticModal:ModalDirective;
 
+    //that  =  this  ;
+    //validPass(c:FormControl){
+    //    return  (!c.value && !that.isedit) ?  {
+    //        validPass:false
+    //    } : null ;
+    //};
+
     ngOnInit() {
         this.load({});
     }
@@ -29,21 +36,29 @@ export class UserlistComponent implements OnInit {
 
     public openAddView(user:User):void {
         this.isedit = false ;
+        this.plainpassword.clearValidators();
         this.addUserForm.reset();
         this.staticModal.show();
     }
     public openEditView(user:User):void {
         this.isedit = true  ;
+        //this.plainpassword.valid
         this.addUserForm.reset();
         this.addUserForm.patchValue(user);
         this.staticModal.show();
     }
     saveOrUpdate():void {
+
         for( let key in this.addUserForm.value){
             this.addUserForm.controls[key].markAsDirty();
             console.log(key+"_"+ this.addUserForm.controls[key].valid) ;
         }
         if(!this.addUserForm.valid) return ;
+
+        //if(!this.isedit  && !this.plsainpassword.value){
+        //    this.plainpassword.invalid(false); return ;
+        //}
+
         console.log(this.addUserForm.value);
         this.userService.addOrUpdateUser(this.addUserForm.value).then(()=>{
             this.addUserForm.reset() ;
@@ -68,7 +83,7 @@ export class UserlistComponent implements OnInit {
     phone          = new FormControl("")  ;
     name           = new FormControl("")  ;
     loginname      = new FormControl("",Validators.required)  ;
-    plainpassword  = new FormControl("") ;
+    plainpassword  = new FormControl("",this.validPass) ;
     email          = new FormControl("",Validators.required)  ;
     activated      = new FormControl("",Validators.required)  ;
     creator        = new FormControl("")  ;
@@ -91,6 +106,16 @@ export class UserlistComponent implements OnInit {
                  creator      :this.creator      ,
                  //createtime   :this.createtime   ,
                  role         :this.role
+        },{
+            validator:(control:Control)=>{
+                var id =  control.controls.id ;
+                var plainpassword = control.controls.plainpassword;
+                if(!id.value && !plainpassword.value){
+                    return {
+                        password:true
+                    }
+                }
+            }
         }) ;
     }
     public users:User[]  = [] ;

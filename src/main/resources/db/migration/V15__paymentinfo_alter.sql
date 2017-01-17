@@ -1,0 +1,1 @@
+alter table paymentinfo  add column   `jklx`  int(11) DEFAULT NULL ;

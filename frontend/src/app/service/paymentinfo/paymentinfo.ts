@@ -33,4 +33,6 @@ export  class Paymentinfo {
 
        cfsy:              number          ;
 
+       jklx:              number          ;
+
 }

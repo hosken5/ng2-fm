@@ -1,6 +1,6 @@
 
 <h4>上游采购信息详情</h4>
-<div class="form-wrap" onclick="click()" >
+<div class="form-wrap" >
     <form  [formGroup]="form"  action="" class="form-horizontal">
         <div class="form-group">
             <label  class="control-label col-sm-1">团队:</label>
@@ -64,12 +64,12 @@
         </div>
 
         <div class="form-group">
-            <label class="control-label col-sm-1">合同基准利率:</label>
+            <label class="control-label col-sm-1">合同基准利率(%):</label>
             <div class="col-sm-5">
                 <input disabled type="text" formControlName="htzjll">
                 <small *ngIf="htzjll.dirty && htzjll.hasError('ismoney')" class="text-danger" >请输入两位小数的数字</small>
             </div>
-            <label class="control-label col-sm-1">融资利率:</label>
+            <label class="control-label col-sm-1">融资利率(%):</label>
             <div class="col-sm-5">
                 <input disabled type="text" formControlName="zrll">
                 <small *ngIf="zrll.dirty && zrll.hasError('ismoney')" class="text-danger" >请输入两位小数的数字</small>
@@ -78,14 +78,14 @@
         </div>
 
         <div class="form-group">
-            <label class="control-label col-sm-1">预付款比例:</label>
+            <label class="control-label col-sm-1">预付款比例(%):</label>
             <div class="col-sm-5">
                 <input disabled type="text" formControlName="yfkbl">
                 <small *ngIf="yfkbl.dirty && yfkbl.hasError('ismoney')" class="text-danger" >请输入两位小数的数字</small>
                 <small *ngIf="yfkbl.dirty && yfkbl.hasError('required')" class="text-danger" >必输项</small>
             </div>
 
-            <label class="control-label col-sm-1">结算量:</label>
+            <label class="control-label col-sm-1">结算量(吨):</label>
             <div class="col-sm-5">
                 <input disabled type="text" formControlName="jsl">
                 <small *ngIf="jsl.dirty && jsl.hasError('ismoney')" class="text-danger" >请输入两位小数的数字</small>

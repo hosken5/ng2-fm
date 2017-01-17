@@ -18,7 +18,7 @@
             <tr *ngFor="let income of incomes">
                 <td>{{income.jxqsr}}</td>
                 <td>{{income.fkrq}}</td>
-                <td>{{income.fkje}}</td>
+                <td style="text-align: right" >{{income.fkje | number:'.2-2' }}</td>
                 <td>
                     <div *ngIf="income.fktype==1">
                         外部融资(借/还)款
@@ -28,12 +28,12 @@
                     </div>
                 </td>
                 <td>{{income.hkrq}}</td>
-                <td>{{income.hkje}}</td>
+                <td style="text-align: right">{{income.hkje| number:'.2-2'}}</td>
                 <td>{{income.txts}}</td>
                 <td>{{income.txx}}</td>
-                <td>{{income.ll}}</td>
-                <td>{{income.sybj}}</td>
-                <td>{{income.sylx}}</td>
+                <td style="text-align: right" >{{income.ll| number:'.2-2'}}</td>
+                <td style="text-align: right" >{{income.sybj| number:'.2-2'}}</td>
+                <td style="text-align: right" >{{income.sylx| number:'.2-2'}}</td>
             </tr>
         </table>
 </div>

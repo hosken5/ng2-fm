@@ -37,6 +37,7 @@ public class Paymentinfo {
     private String bz;
 
     private BigDecimal cfsy ;
+    private  Integer jklx ;
 
     public Integer getId() {
         return id;
@@ -172,5 +173,13 @@ public class Paymentinfo {
 
     public void setCfsy(BigDecimal cfsy) {
         this.cfsy = cfsy;
+    }
+
+    public Integer getJklx() {
+        return jklx;
+    }
+
+    public void setJklx(Integer jklx) {
+        this.jklx = jklx;
     }
 }

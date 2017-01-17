@@ -17,7 +17,7 @@
 
             <tr *ngFor="let hkinfo of hkinfos">
                 <td>{{hkinfo.hkrq}}</td>
-                <td>{{hkinfo.hkje}}</td>
+                <td style="text-align: right; padding-right: 5px;">{{hkinfo.hkje | number:'.2-2'}}</td>
                 <td>
                     <div *ngIf="hkinfo.hkfs==1">
                         现汇
@@ -26,11 +26,46 @@
                         承兑
                     </div>
                 </td>
-                <td>{{hkinfo.pmje}}</td>
-                <td>{{hkinfo.ll}}</td>
-                <td>{{hkinfo.dqr}}</td>
-                <td>{{hkinfo.txts}}</td>
-                <td>{{hkinfo.txx}}</td>
+                <td>
+                    <div *ngIf="!!hkinfo.pmje">
+                        {{hkinfo.pmje | number:'.2-2'}}
+                    </div>
+                    <div *ngIf="!hkinfo.pmje">
+                        --
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="hkinfo.hkfs==1">
+                        --
+                    </div>
+                    <div *ngIf="hkinfo.hkfs==2">
+                        {{hkinfo.ll}}
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="hkinfo.hkfs==1">
+                        --
+                    </div>
+                    <div *ngIf="hkinfo.hkfs==2">
+                        {{hkinfo.dqr}}
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="hkinfo.hkfs==1">
+                        --
+                    </div>
+                    <div *ngIf="hkinfo.hkfs==2">
+                        {{hkinfo.txts}}
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="hkinfo.hkfs==1">
+                        --
+                    </div>
+                    <div *ngIf="hkinfo.hkfs==2">
+                        {{hkinfo.txx}}
+                    </div>
+                </td>
                 <td>{{hkinfo.bz}}</td>
                 <td>
                     <a href="javascript:void(0);" (click)="openEditView(hkinfo)"   class="btn btn-default btn-xs">修改</a>
