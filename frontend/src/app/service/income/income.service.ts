@@ -40,8 +40,9 @@ export class IncomeService{
     };
 
     handleError(error:any):Promise<any>{
-        console.error('An error occurred',error);
-        return  Promise.reject(error.message||error);
+        console.error('An error occurred',error) ;
+        //location.reload(true) ;
+        return  Promise.reject(error.message||error) ;
     };
     addOrUpdateIncome(income:Income):Promise<Income>{
         const url = 'income/addorupdate' ;

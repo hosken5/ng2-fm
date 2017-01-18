@@ -8,7 +8,7 @@
     <result column="hkje" property="hkje" jdbcType="DECIMAL" />
     <result column="pmje" property="pmje" jdbcType="DECIMAL" />
     <result column="hkfs" property="hkfs" jdbcType="VARCHAR" />
-    <result column="ll" property="ll" jdbcType="INTEGER" />
+    <result column="ll" property="ll" jdbcType="DECIMAL" />
     <result column="dqr" property="dqr" jdbcType="DATE" />
     <result column="txts" property="txts" jdbcType="INTEGER" />
     <result column="txx" property="txx" jdbcType="DECIMAL" />
@@ -36,7 +36,7 @@
       hkje, hkfs, ll, dqr, 
       txts, txx, bz, createtime, creator)
     values (#{coalsellid,jdbcType=INTEGER}, #{hkrq,jdbcType=DATE},
-      #{hkje,jdbcType=DECIMAL}, #{hkfs,jdbcType=VARCHAR}, #{ll,jdbcType=INTEGER}, #{dqr,jdbcType=DATE}, 
+      #{hkje,jdbcType=DECIMAL}, #{hkfs,jdbcType=VARCHAR}, #{ll,jdbcType=DECIMAL}, #{dqr,jdbcType=DATE},
       #{txts,jdbcType=INTEGER}, #{txx,jdbcType=DECIMAL}, #{bz,jdbcType=VARCHAR}, now() ,
       #{creator,jdbcType=VARCHAR})
   </insert>
@@ -100,7 +100,7 @@
         #{hkfs,jdbcType=VARCHAR},
       </if>
       <if test="ll != null" >
-        #{ll,jdbcType=INTEGER},
+        #{ll,jdbcType=DECIMAL},
       </if>
       <if test="dqr != null" >
         #{dqr,jdbcType=DATE},
@@ -141,7 +141,7 @@
         hkfs = #{hkfs,jdbcType=VARCHAR},
       </if>
       <if test="ll != null" >
-        ll = #{ll,jdbcType=INTEGER},
+        ll = #{ll,jdbcType=DECIMAL},
       </if>
       <if test="dqr != null" >
         dqr = #{dqr,jdbcType=DATE},
@@ -174,7 +174,7 @@
       hkrq = #{hkrq,jdbcType=DATE},
       hkje = #{hkje,jdbcType=DECIMAL},
       hkfs = #{hkfs,jdbcType=VARCHAR},
-      ll = #{ll,jdbcType=INTEGER},
+      ll = #{ll,jdbcType=DECIMAL},
       dqr = #{dqr,jdbcType=DATE},
       txts = #{txts,jdbcType=INTEGER},
       txx = #{txx,jdbcType=DECIMAL},

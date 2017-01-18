@@ -218,7 +218,7 @@ export class HkinfolistComponent implements OnInit {
             var ll  =this.addHkinfoForm.controls["ll"].value  ;
             var txts =this.addHkinfoForm.controls["txts"].value  ;
             var oritxx = this.addHkinfoForm.controls["txts"].value ;
-            var txx =  (pmje * ll * txts /360*1.17).toFixed(2) ;
+            var txx =  (pmje * ll * txts /36000*1.17).toFixed(2) ;
             if (oritxx!=txx ){
                 this.addHkinfoForm.controls["txx"].setValue(txx);
             }

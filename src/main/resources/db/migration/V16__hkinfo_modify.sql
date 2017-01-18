@@ -1,0 +1,1 @@
+alter table hkinfo  modify column ll  decimal(11,2) DEFAULT NULL ;

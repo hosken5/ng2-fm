@@ -7,7 +7,7 @@
                 <td>回款金额</td>
                 <td>回款方式</td>
                 <td>票面金额</td>
-                <td>利率</td>
+                <td>利率(%)</td>
                 <td>到期日</td>
                 <td>贴现天数</td>
                 <td>贴现息</td>
@@ -121,7 +121,7 @@
                         </div>
 
                         <div *ngIf="hkfs.value==2"  class="form-group"   [class.has-error] = "ll.dirty && !ll.valid">
-                            <label class="control-label col-sm-2">利率:</label>
+                            <label class="control-label col-sm-2">利率(%):</label>
                             <div class="col-sm-10">
                                 <input formControlName="ll"  style="width:80%"/>
                                 <small *ngIf="ll.dirty && ll.hasError('ismoney')" class="text-danger" >请输入两位小数的数字</small>

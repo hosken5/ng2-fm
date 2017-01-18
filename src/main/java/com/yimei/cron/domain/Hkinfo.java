@@ -15,7 +15,7 @@ public class Hkinfo {
 
     private String hkfs;
 
-    private Integer ll;
+    private BigDecimal ll;
 
     private LocalDate dqr;
 
@@ -73,11 +73,11 @@ public class Hkinfo {
         this.hkfs = hkfs == null ? null : hkfs.trim();
     }
 
-    public Integer getLl() {
+    public BigDecimal getLl() {
         return ll;
     }
 
-    public void setLl(Integer ll) {
+    public void setLl(BigDecimal ll) {
         this.ll = ll;
     }
 

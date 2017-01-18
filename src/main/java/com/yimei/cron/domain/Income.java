@@ -8,7 +8,7 @@ import java.time.LocalDate;
  */
 public class Income {
 
-    public Income(){ }
+    public Income(){}
     public Income(Income i){
         super();
         fkrq = i.getFkrq();
@@ -23,6 +23,8 @@ public class Income {
         htzjll = i.getHtzjll();
         jxqsr = i.getJxqsr();
         sywbrzlx = i.getSywbrzlx() ;
+//        fklx =  i.getFklx() ;
+        jklx = i.getJklx() ;
     }
 
 
@@ -50,7 +52,7 @@ public class Income {
 
     private BigDecimal sybj ;
 
-    private BigDecimal fklx ;
+//    private BigDecimal fklx ;
 
     private BigDecimal htzjll ;
 
@@ -132,13 +134,13 @@ public class Income {
         this.sybj = sybj;
     }
 
-    public BigDecimal getFklx() {
-        return fklx;
-    }
-
-    public void setFklx(BigDecimal fklx) {
-        this.fklx = fklx;
-    }
+//    public BigDecimal getFklx() {
+//        return fklx;
+//    }
+//
+//    public void setFklx(BigDecimal fklx) {
+//        this.fklx = fklx;
+//    }
 
     public BigDecimal getHtzjll() {
         return htzjll;
