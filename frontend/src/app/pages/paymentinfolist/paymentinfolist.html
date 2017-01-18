@@ -1,5 +1,5 @@
 <!--<h4 style="text-align: center">paymentinfo</h4>-->
-<button style="margin-bottom: 10px;" type="button" class="btn btn-primary btn-sm" (click)="openAddView()">新增付款信息</button>
+<button style="margin-bottom: 10px;" type="button" class="btn btn-primary btn-sm" (click)="openAddView()">新增外部融资借款</button>
 <div class="panel panel-default">
         <table class="table  table-striped table-hover table-condensed">
             <tr>
@@ -7,7 +7,7 @@
                 <td style="text-align: right;" >借款金额</td>
                 <td>借款类型</td>
                 <td>借款期限</td>
-                <td>对应利率</td>
+                <td>利率(%)</td>
                 <!--<td>ccs利息收益</td>-->
                 <!--<td>财富利息收益</td>-->
                 <td style="width: 100px" >还款日期</td>
@@ -93,8 +93,7 @@
                                     <option value="1">固定期限</option>
                                     <option value="2">浮动期限</option>
                                 </select>
-                                <small *ngIf="jklx.dirty && fkje.hasError('ismoney')" class="text-danger" >请输入两位小数的数字</small>
-                                <small *ngIf="jklx.dirty && fkje.hasError('required')" class="text-danger" >必输字段</small>
+                                <small *ngIf="jklx.dirty && jklx.hasError('required')" class="text-danger" >必输字段</small>
                             </div>
                         </div>
 
@@ -108,7 +107,7 @@
                         </div>
 
                         <div class="form-group"   [class.has-error] = "ll.dirty && !ll.valid">
-                            <label class="control-label col-sm-3">利率:</label>
+                            <label class="control-label col-sm-3">利率(%):</label>
                             <div class="col-sm-9">
                                 <input formControlName="ll"  style="width:80%"/>
                                 <small *ngIf="ll.dirty && ll.hasError('ismoney')" class="text-danger" >请输入两位小数的数字</small>

@@ -22,7 +22,11 @@ public class Income {
         sybj = i.getSybj();
         htzjll = i.getHtzjll();
         jxqsr = i.getJxqsr();
+        sywbrzlx = i.getSywbrzlx() ;
     }
+
+
+    private  Integer  jklx  ;
 
     private BigDecimal jxts ;
 
@@ -174,5 +178,13 @@ public class Income {
 
     public void setJxts(BigDecimal jxts) {
         this.jxts = jxts;
+    }
+
+    public Integer getJklx() {
+        return jklx;
+    }
+
+    public void setJklx(Integer jklx) {
+        this.jklx = jklx;
     }
 }

@@ -14,6 +14,7 @@
                 <td>利率</td>
                 <td>剩余本金</td>
                 <td>剩余利息</td>
+                <td>剩余供应商利息</td>
             </tr>
             <tr *ngFor="let income of incomes">
                 <td>{{income.jxqsr}}</td>
@@ -34,6 +35,7 @@
                 <td style="text-align: right" >{{income.ll| number:'.2-2'}}</td>
                 <td style="text-align: right" >{{income.sybj| number:'.2-2'}}</td>
                 <td style="text-align: right" >{{income.sylx| number:'.2-2'}}</td>
+                <td style="text-align: right" >{{income.sywbrzlx| number:'.2-2'}}</td>
             </tr>
         </table>
 </div>

@@ -129,7 +129,6 @@ public class HkinfoService {
         }
 
         Income sum = new Income();
-
         sum.setSybj(sybjsum);
         sum.setSylx(sylxsum);
         result.add(sum) ; ///最后一行合计
@@ -265,7 +264,6 @@ public class HkinfoService {
         BigDecimal  lxjs = BigDecimal.ZERO ;
         BigDecimal  ll ;
         Double bj  = 360.0;
-
         if("2".equals(fkinfo.getFktype())){ //自营计息
             for (int i = 0; i <  Period.between( fkinfo.getFkrq(), hkinfo.getHkrq()).getDays(); i++) {
                 if(i<60){
@@ -286,9 +284,21 @@ public class HkinfoService {
                 }else if (i<90) {
                     ll = fkinfo.getHtzjll().add(BigDecimal.valueOf(0.05)) ;
                 }else {
-                    ll = fkinfo.getHtzjll().add(BigDecimal.valueOf(0.1)) ;
+                    ll = fkinfo.getHtzjll().add(BigDecimal.valueOf(0.1));
                 }
                 lxjs = lxjs.add(ll)  ;
+            }
+//            Long  dual =  ChronoUnit.DAYS.between(fkinfo.getJxqsr(),hkinfo.getHkrq()) ;
+//
+//            if(fkinfo.getJklx() ==1 && dual < fkinfo.getTxts() ){ //固定期限
+//                dual
+//            }
+
+            BigDecimal  sywbrzlx  = BigDecimal.ZERO ;
+
+            Long dual = fkinfo.getTxts() - ChronoUnit.DAYS.between(fkinfo.getJxqsr(),hkinfo.getHkrq()) ;
+            if (dual > 0) {
+                sywbrzlx = BigDecimal.valueOf(0);
             }
         }
         return hkinfo.getHkje().multiply(BigDecimal.valueOf(360)).divide(

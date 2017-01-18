@@ -15,7 +15,9 @@ export  class Income {
 
   txx  :       string ;
 
-  ll  :        number;
+  ll  :        number ;
 
   sybj :       number ;
+
+  sywbrzlx:    number ;
 }
