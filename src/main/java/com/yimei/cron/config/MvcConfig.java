@@ -45,8 +45,8 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/static/**").addResourceLocations("file:./frontend/build/");
-        registry.addResourceHandler("/bower_components/**").addResourceLocations("file:./static/bower_components/");
+        registry.addResourceHandler("/static/**").addResourceLocations("file:./frontend2/dist/");
+//        registry.addResourceHandler("/bower_components/**").addResourceLocations("file:./static/bower_components/");
         registry.addResourceHandler("/styles/**").addResourceLocations("file:./static/.tmp/sstyles/");
         registry.addResourceHandler("/images/**").addResourceLocations("file:./static/app/images/");
         registry.addResourceHandler("/scripts/**").addResourceLocations("file:./static/app/scripts/");
