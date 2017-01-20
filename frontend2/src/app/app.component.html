@@ -1,3 +1,49 @@
 <h1>
   {{title}}
+  <alert type="success">hello</alert>
 </h1>
+
+
+<tabset>
+  <tab heading='Tab 1'>Tab 1 content</tab>
+  <tab>
+    <template tabHeading>Tab 2</template>
+    Tab 2 content
+  </tab>
+</tabset>
+
+<button type="button" class="btn btn-primary" (click)="staticModal.show()">Static modal</button>
+
+<div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Static modal</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="staticModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        This is static modal, backdrop click will not close it.
+        Click <b>&times;</b> to close modal.
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<pagination [totalItems]="totalItems" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)"></pagination>
+
+<pagination [boundaryLinks]="true" [totalItems]="totalItems" [(ngModel)]="currentPage" class="pagination-sm"
+            previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+
+<pagination [directionLinks]="false" [boundaryLinks]="true" [totalItems]="totalItems"
+            [(ngModel)]="currentPage"></pagination>
+
+<pagination [directionLinks]="false" [totalItems]="totalItems" [(ngModel)]="currentPage"
+            (numPages)="smallnumPages = $event"></pagination>
+
+<pre class="card card-block card-header">The selected page no: {{currentPage}}/{{smallnumPages}}</pre>
+
+<button type="button" class="btn btn-info" (click)="setPage(3)">Set current page to: 3</button>
