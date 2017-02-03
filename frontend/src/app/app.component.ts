@@ -12,8 +12,6 @@ declare var __moduleName: string;
     providers:[UserService]
 })
 export class AppComponent implements OnInit {
-
-    private viewContainerRef: ViewContainerRef;
     constructor(
         private   userService:UserService,
         private   viewContainerRef:ViewContainerRef

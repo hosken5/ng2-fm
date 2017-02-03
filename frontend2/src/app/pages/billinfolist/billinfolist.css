@@ -1,0 +1,12 @@
+
+.btn-hover-warning:hover{
+    color: #fff;
+    background-color: #f0ad4e;
+    border-color: #eea236;
+}
+
+.btn-hover-danger:hover{
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+}

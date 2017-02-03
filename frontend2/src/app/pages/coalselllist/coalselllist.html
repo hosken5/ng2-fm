@@ -1,0 +1,87 @@
+<h3 style="text-align: center">煤炭销售信息</h3>
+<button class="btn btn-primary btn-sm" (click)="gotoaddcoalsell()" style="margin-bottom: 10px;margin-top: 5px">新增业务线</button>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <form [formGroup]="queryCoalsellForm" class="form-inline">
+            <div class="form-group">
+                <label>发运日期</label>
+                <div style="display: inline-block;vertical-align:middle;">
+                    <my-date-picker [options]="myDatePickerOptions" (dateChanged)="onDateChangedS($event)" ></my-date-picker>
+                </div>
+                <label>--</label>
+                <div style="display: inline-block;vertical-align:middle;">
+                    <my-date-picker [options]="myDatePickerOptions" (dateChanged)="onDateChangedE($event)" ></my-date-picker>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>所属团队:</label>
+                <span style="width: 180px;display: inline-block">
+                     <ng-select
+                             [allowClear]="true"
+                             [options]="teaminfo"
+                             [multiple]="false"
+                             formControlName="teamid"
+                     >
+                     </ng-select>
+                </span>
+            </div>
+            <div class="form-group">
+                <label>财务公司:</label>
+                <span style="width: 180px;display: inline-block">
+                     <ng-select
+                             [allowClear]="true"
+                             [options]="financecells"
+                             [multiple]="false"
+                             formControlName="financecellid"
+                     >
+                     </ng-select>
+                </span>
+            </div>
+            <div class="form-group">
+                <label>上游公司:</label>
+                <input formControlName="uppercomp"  style="height: 30px;width: 200px" type="text">
+            </div>
+            <div class="form-group">
+                <label>下游公司:</label>
+                <input formControlName="lowercomp"  style="height: 30px;width: 200px" type="text">
+            </div>
+            <div class="form-group">
+                <button type="submit" (click)="query()"  class="btn  btn-primary btn-sm">查询</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <table class="table  table-striped table-hover table-condensed">
+        <tr>
+            <td>创建时间</td>
+            <td>所属团队</td>
+            <td>财务公司</td>
+            <td>上游公司</td>
+            <td>业务线</td>
+            <td>下游公司</td>
+            <td>操作</td>
+        </tr>
+        <tr *ngFor="let coalsell of coalsells">
+            <td>{{coalsell.createtime}}</td>
+            <td>{{coalsell.teamname}}</td>
+            <td>{{coalsell.financecellname}}</td>
+            <td>{{coalsell.uppercomp}}</td>
+            <td>{{coalsell.ywx}}</td>
+            <td>{{coalsell.lowercomp}}</td>
+            <td>
+                <span>
+                  <a href="javascript:void(0);" (click)="detailCoalsell(coalsell)" class="btn btn-hover-blue btn-default btn-xs">查看详情</a>
+                </span>
+                <span>
+                  <a href="javascript:void(0);" (click)="editCoalsell(coalsell)" class="btn btn-hover-blue  btn-default  btn-xs">修改</a>
+                </span>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<pagination [itemsPerPage]="itemsPerPage"  [totalItems]="totalItems" [(ngModel)]="currentPage" [maxSize]="maxSize"
+            [boundaryLinks]="true" [rotate]="true" (numPages)="numPages = $event" (pageChanged)="pageChanged($event)" ></pagination>
