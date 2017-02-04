@@ -1,5 +1,6 @@
 package com.yimei.cron.web.controller;
 
+import com.yimei.cron.basic.annotation.LoginRequired;
 import com.yimei.cron.basic.common.Result;
 import com.yimei.cron.domain.Menu;
 import com.yimei.cron.domain.User;
@@ -19,7 +20,7 @@ import java.util.List;
  * Created by hongpf on 16/12/31.
  */
 @Controller
-//@LoginRequired
+@LoginRequired
 public class UserController {
 
     Logger logger = LoggerFactory.getLogger(UserController.class);

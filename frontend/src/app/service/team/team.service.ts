@@ -4,7 +4,6 @@ import {Page} from "../common/page";
 import 'rxjs/add/operator/toPromise';
 import {toPromise} from "rxjs/operator/toPromise";
 import {Team}  from './team';
-import {Team} from "./team";
 
 @Injectable()
 export class TeamService{

@@ -1,13 +1,11 @@
 import {Component,Input,ViewChild} from "@angular/core";
 import {OnInit} from "@angular/core";
 import {Router}  from  '@angular/router' ;
-import {ConfirmOptions, Position} from 'angular2-bootstrap-confirm';
 import {FormGroup,Validators,FormBuilder,FormControl} from  '@angular/forms';
-import {Positioning} from 'angular2-bootstrap-confirm/position';
 import {HkinfoService} from "../../service/hkinfo/hkinfo.service";
 import {Hkinfo} from  "../../service/hkinfo/hkinfo"
-import { ModalModule,ModalDirective } from 'ng2-bootstrap/ng2-bootstrap';
-import {Hkinfo} from "../../service/hkinfo/hkinfo";
+import { ModalModule,ModalDirective } from 'ng2-bootstrap';
+import {Coalsell} from "../../service/coalsell/coalsell";
 declare var __moduleName: string;
 
 
@@ -25,9 +23,9 @@ class CustomerValidator {
     selector:'hkinfolist',
     templateUrl: 'hkinfolist.html',
     styleUrls:['hkinfolist.css'],
-    providers:[HkinfoService,ConfirmOptions,{provide: Position, useClass: Positioning}]
+    providers:[HkinfoService]
 })
-export class HkinfolistComponent implements OnInit {
+export class HkinfolistComponent {
 
     @ViewChild('staticModal') public staticModal:ModalDirective;
 
@@ -35,7 +33,7 @@ export class HkinfolistComponent implements OnInit {
 
     @Input()  coalsell: Coalsell ;
 
-    ngOnChanges(changes: SimpleChanges) {
+    ngOnChanges(changes) {
         for (let propName in changes) {
             if(propName=="coalsell"){
                 let chng = changes[propName] ;
@@ -113,7 +111,7 @@ export class HkinfolistComponent implements OnInit {
 
     hkrq   = new FormControl("",Validators.required)  ;
 
-    hkrqi  : Any;
+    hkrqi  : any;
 
     hkje   = new FormControl("",Validators.compose([Validators.required,Validators.maxLength(30),CustomerValidator.ismoney])) ;
 
@@ -123,7 +121,7 @@ export class HkinfolistComponent implements OnInit {
 
     dqr = new FormControl("")   ;
 
-    dqri:Any ;
+    dqri:any ;
 
     txts = new FormControl("")  ;
 
@@ -190,8 +188,10 @@ export class HkinfolistComponent implements OnInit {
 
         this.addHkinfoForm.valueChanges.subscribe(data=>{
             console.log(data);
-            if(data.dqr && data.hkrq){
-              var  temp =   (new Date(data.dqr.replace(/-/g,"/")) -     new Date(data.hkrq.replace(/-/g,"/")) ) / (24*60*60*1000)  ;
+            if(data.dqr!=null && data.hkrq!=null){
+                var start = new Date(data.dqr.replace(/-/g,"/")).getTime() ;
+                var end = new Date(data.hkrq.replace(/-/g,"/")).getTime() ;
+              var  temp =   (start -end  ) / (24*60*60*1000)  ;
               console.log(""+temp);
               if(temp != data.txts ){
                   this.addHkinfoForm.controls["txts"].setValue(temp);
@@ -214,11 +214,11 @@ export class HkinfolistComponent implements OnInit {
     }
     cacltxx(){
         if( this.hkfs.value=='2'){
-            var pmje = this.addHkinfoForm.controls["pmje"].value ;
+            var pmje:number = + this.addHkinfoForm.controls["pmje"].value ;
             var ll  =this.addHkinfoForm.controls["ll"].value  ;
             var txts =this.addHkinfoForm.controls["txts"].value  ;
             var oritxx = this.addHkinfoForm.controls["txts"].value ;
-            var txx =  (pmje * ll * txts /36000*1.17).toFixed(2) ;
+            var txx:number  =  + (pmje * ll * txts /36000*1.17).toFixed(2) ;
             if (oritxx!=txx ){
                 this.addHkinfoForm.controls["txx"].setValue(txx);
             }

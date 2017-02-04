@@ -1,6 +1,6 @@
-export  class Financecell {
+export  class User {
 
-    id:             Long     ;
+    id:             number     ;
 
     name:           string   ;
 

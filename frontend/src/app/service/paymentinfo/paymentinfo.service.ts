@@ -9,22 +9,22 @@ import {Paymentinfo}  from './paymentinfo';
 export class PaymentinfoService{
     private headers =  new Headers({'Content-type':'application/json'});
     constructor(private http:Http){}
-    getPaymentinfos(param):Promise<Paymentinfo[]>{
-        return this.http.post("paymentinfo/list",param
-        ).toPromise()
-            .then(response=> {
-                var res = response.json()  as Paymentinfo[] ;
-                var opts = []  ;
-                for (let i = 0; i < res.length; i++){
-                    opts[i] = {
-                        value: res[i].id,
-                        label: res[i].name
-                    };
-                }
-                return  opts ;
-            })
-            .catch(this.handleError) ;
-    };
+    //getPaymentinfos(param):Promise<Paymentinfo[]>{
+    //    return this.http.post("paymentinfo/list",param
+    //    ).toPromise()
+    //        .then(response=> {
+    //            var res = response.json()  as Paymentinfo[] ;
+    //            var opts = []  ;
+    //            for (let i = 0; i < res.length; i++){
+    //                opts[i] = {
+    //                    value: res[i].id,
+    //                    label: res[i].name
+    //                };
+    //            }
+    //            return  opts ;
+    //        })
+    //        .catch(this.handleError) ;
+    //};
     getPaymentinfoList(param):Promise<Paymentinfo[]>{
         return this.http.post("paymentinfo/list",param)
             .toPromise()
@@ -32,7 +32,7 @@ export class PaymentinfoService{
             .catch(this.handleError) ;
     };
     getPaymentinfoListByCoalSellId(param):Promise<Paymentinfo[]>{
-        return this.http.post("paymentinfo/listbycoalsellid/"+param)
+        return this.http.post("paymentinfo/listbycoalsellid/"+param,"")
             .toPromise()
             .then(response=>response.json() as Paymentinfo[])
             .catch(this.handleError) ;

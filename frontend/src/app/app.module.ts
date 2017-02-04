@@ -8,23 +8,18 @@ import {routing, appRoutingProviders} from './app.routing';
 import {FormsModule} from "@angular/forms";
 import {ReactiveFormsModule} from "@angular/forms";
 import {WelcomeComponent} from "./pages/welcome/welcome.components";
-import {TasklogComponent} from "./pages/tasklog/tasklog.components";
-import {TasklistComponent} from "./pages/tasklist/tasklist.components";
-import {TaskaddComponent} from "./pages/taskadd/taskadd.components";
 import {ResourcelistComponent} from "./pages/resourcelist/resourcelist.components";
-import {PaginationModule} from 'ng2-bootstrap/ng2-bootstrap';
-import {ConfirmModule} from 'angular2-bootstrap-confirm';
-import {TooltipModule} from 'ng2-bootstrap/ng2-bootstrap';
-import {BuylistComponent} from "./pages/buylist/buylist.components";
+import {PaginationModule } from 'ng2-bootstrap/pagination';
+import {TooltipModule} from 'ng2-bootstrap/tooltip';
 import {TeamlistComponent} from "./pages/teamlist/teamlist.components";
 import {SelectModule} from 'angular2-select';
 import {DropdownModule} from 'primeng/primeng';
 import {ButtonModule} from 'primeng/primeng';
-import { Ng2BootstrapModule } from 'ng2-bootstrap/ng2-bootstrap';
+import {Ng2BootstrapModule } from 'ng2-bootstrap';
 import {CalendarModule,MenuModule,PanelMenuModule,MenubarModule} from 'primeng/primeng';
 import {CoalselllistComponent} from  './pages/coalselllist/coalselllist.components';
 import {CoalsellComponent} from "./pages/coalsell/coalsell.components";
-import {MyDatePickerModule } from 'mydatepicker/dist/my-date-picker.module';
+import {MyDatePickerModule } from 'mydatepicker';
 import {FinancecelllistComponent} from './pages/financecelllist/financecelllist.components' ;
 import {CoalselladdComponent} from "./pages/coalselladd/coalselladd.components";
 import {CoalselldetailComponent} from "./pages/coalselldetail/coalselldetail.components";
@@ -41,11 +36,10 @@ import {IncomelistComponent} from "./pages/incomelist/incomelist.components";
         BrowserModule,
         FormsModule,
         routing,
-        PaginationModule,
-        TooltipModule,
+        PaginationModule.forRoot(),
+        TooltipModule.forRoot(),
         HttpModule,
         ReactiveFormsModule,
-        ConfirmModule,
         SelectModule,
         DropdownModule,
         ButtonModule,
@@ -53,18 +47,14 @@ import {IncomelistComponent} from "./pages/incomelist/incomelist.components";
         MenuModule,
         PanelMenuModule,
         MenubarModule,
-        Ng2BootstrapModule,
+        Ng2BootstrapModule.forRoot(),
         MyDatePickerModule,
         TabViewModule
     ],
     declarations: [
         AppComponent,
         WelcomeComponent,
-        TasklogComponent,
-        TasklistComponent,
-        TaskaddComponent,
         ResourcelistComponent,
-        BuylistComponent,
         TeamlistComponent,
         CoalselladdComponent,
         CoalselllistComponent,

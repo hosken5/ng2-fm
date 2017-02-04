@@ -1,10 +1,8 @@
 import {Component} from "@angular/core";
 import {OnInit} from "@angular/core";
-import {Task} from  "../../service/coalsell/coalsell"
 import {FormGroup,Validators,FormBuilder,FormControl} from  '@angular/forms';
 import {Router,Params,ActivatedRoute}  from  '@angular/router' ;
 import {CoalsellService} from "../../service/coalsell/coalsell.service";
-import {Coalsell} from "../../service/coalsell/coalsell";
 import {TeamService} from "../../service/team/team.service";
 import {InputTextModule} from 'primeng/primeng';
 import {FinancecellService} from "../../service/financecell/financecell.service";
@@ -40,7 +38,7 @@ export class CoalselldetailComponent implements OnInit {
     lowerjsrqv:Object = {} ;
     fyrqv = {} ;
     upperjsrqv = {} ;
-    coalsell:Coalsell = {} ;
+    coalsell:Coalsell ;
     isedit:boolean  = false ;
     ngOnInit() {
 
@@ -94,12 +92,12 @@ export class CoalselldetailComponent implements OnInit {
             creator:this.creator
         });
 
-        this.teamService.getTeams().then(data=>{
+        this.teamService.getTeams("").then(data=>{
             console.log("temps",data)  ;
             this.teaminfo = data || [] ;
             this.teamname.setValue(data[this.teamid.value]);
         });
-        this.financecellService.getFinancecells().then(data=>{
+        this.financecellService.getFinancecells("").then(data=>{
             this.financecellinfo = data ||[] ;
         });
 
@@ -151,7 +149,7 @@ export class CoalselldetailComponent implements OnInit {
     }
 
 
-    coalsellid:Any ;
+    coalsellid:any;
 
     form:FormGroup ;
 

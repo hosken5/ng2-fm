@@ -7,7 +7,7 @@ declare var __moduleName: string ;
     templateUrl: 'welcome.html',
 })
 export class WelcomeComponent implements OnInit {
-    date:Any ;
+    date = "" ;
     myDatePickerOptions= {
         dayLabels:{su: '日', mo: '一', tu: '二', we: '三', th: '四', fr: '五', sa: '六'},
         todayBtnTxt: '今天',

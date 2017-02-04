@@ -12,7 +12,7 @@ declare var __moduleName: string ;
 })
 export class CoalsellComponent implements OnInit {
     coalsellid:number ;
-    coalsell:Coalsell= {} ;
+    coalsell:Coalsell ;
     ngOnInit() {
         this.route.params.forEach((params:Params)=>{
             this.coalsellid = +params['id'];

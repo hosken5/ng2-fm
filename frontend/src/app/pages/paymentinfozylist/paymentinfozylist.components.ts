@@ -1,13 +1,11 @@
 import {Component,Input,ViewChild} from "@angular/core";
 import {OnInit}  from  "@angular/core";
 import {Router}  from  '@angular/router' ;
-import {ConfirmOptions, Position} from 'angular2-bootstrap-confirm';
 import {FormGroup,Validators,FormBuilder,FormControl} from  '@angular/forms';
-import {Positioning} from 'angular2-bootstrap-confirm/position';
 import {PaymentinfozyService} from "../../service/paymentinfozy/paymentinfozy.service";
-import {Paymentinfozy} from  "../../service/paymentinfozy/paymentinfozy"
-import { ModalModule,ModalDirective} from 'ng2-bootstrap/ng2-bootstrap';
+import { ModalModule,ModalDirective} from 'ng2-bootstrap';
 import {Paymentinfozy} from "../../service/paymentinfozy/paymentinfozy";
+import {Coalsell} from "../../service/coalsell/coalsell";
 declare var __moduleName: string;
 
 interface ValidationResult {
@@ -24,7 +22,7 @@ class CustomerValidator {
     selector:'paymentinfozylist',
     templateUrl: 'paymentinfozylist.html',
     styleUrls:['paymentinfozylist.css'],
-    providers:[PaymentinfozyService,ConfirmOptions,{provide: Position, useClass: Positioning}]
+    providers:[PaymentinfozyService]
 })
 export class PaymentinfozylistComponent implements OnInit {
 
@@ -35,8 +33,7 @@ export class PaymentinfozylistComponent implements OnInit {
     ngOnInit() {
         //this.load({});
     }
-
-    ngOnChanges(changes: SimpleChanges) {
+    ngOnChanges(changes) {
         for (let propName in changes) {
             if(propName=="coalsell"){
                 let chng = changes[propName];
@@ -65,10 +62,9 @@ export class PaymentinfozylistComponent implements OnInit {
         this.isedit = true ;
         this.addPaymentinfozyForm.reset();
         this.addPaymentinfozyForm.setValue(paymentinfozy);
-        this.hkrqi = this.parseDate(paymentinfozy.hkrq) ;
+        //this.hkrqi = this.parseDate(paymentinfozy.hkrq) ;
         this.fkrqi = this.parseDate(paymentinfozy.fkrq) ;
         this.staticModal.show();
-
     }
     public openAddView():void {
         this.isedit = false ;
@@ -98,8 +94,8 @@ export class PaymentinfozylistComponent implements OnInit {
         });
     }
 
-    hkrqi:Any ;
-    fkrqi:Any ;
+    hkrqi:any ;
+    fkrqi:any ;
     onDateChangedhkrq(event){
         this.addPaymentinfozyForm.controls["hkrq"].setValue(event.formatted);
     }

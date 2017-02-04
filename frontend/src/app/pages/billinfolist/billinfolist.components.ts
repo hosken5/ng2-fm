@@ -1,12 +1,10 @@
 import {Component,Input,ViewChild,SimpleChanges} from "@angular/core";
 import {OnInit,OnChanges} from "@angular/core";
 import {Router}  from  '@angular/router' ;
-import {ConfirmOptions, Position} from 'angular2-bootstrap-confirm';
 import {FormGroup,Validators,FormBuilder,FormControl} from  '@angular/forms';
-import {Positioning} from 'angular2-bootstrap-confirm/position';
 import {BillinfoService} from "../../service/billinfo/billinfo.service";
 import {Billinfo} from  "../../service/billinfo/billinfo"
-import { ModalModule,ModalDirective } from 'ng2-bootstrap/ng2-bootstrap';
+import { ModalModule,ModalDirective } from 'ng2-bootstrap';
 import {Coalsell} from "../../service/coalsell/coalsell";
 declare var __moduleName: string;
 
@@ -25,7 +23,7 @@ class CustomerValidator {
     selector:'billinfolist',
     templateUrl: 'billinfolist.html',
     styleUrls:['billinfolist.css'],
-    providers:[BillinfoService,ConfirmOptions,{provide: Position, useClass: Positioning}]
+    providers:[BillinfoService]
 })
 export class BillinfolistComponent implements OnInit ,OnChanges {
 
@@ -44,6 +42,9 @@ export class BillinfolistComponent implements OnInit ,OnChanges {
             }
         }
     }
+    ngOnInit(){
+
+    }
     lastparam:any;
     reload(){
         this.load(this.lastparam);
@@ -55,7 +56,7 @@ export class BillinfolistComponent implements OnInit ,OnChanges {
     }
     openAddView(){
         this.addBillinfoForm.reset();
-        this.kpdatei="" ;
+        this.kpdatei= null ;
         this.staticModal.show();
     }
 
@@ -107,7 +108,7 @@ export class BillinfolistComponent implements OnInit ,OnChanges {
     lastupdatetime= new FormControl("") ;
 
     creator= new FormControl("") ;
-    kpdatei="" ;
+    kpdatei:{ year: number; month: number; day: number; };
     kpdate = new FormControl("",Validators.compose([Validators.required,Validators.maxLength(30)]));
 
     bz  = new FormControl("") ;

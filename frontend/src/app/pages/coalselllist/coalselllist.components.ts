@@ -51,12 +51,12 @@ export class CoalselllistComponent implements OnInit {
         this.load(this.queryCoalsellForm.value);
     }
     ngOnInit() {
-        this.teamService.getTeams().then(data=>{
+        this.teamService.getTeams({}).then(data=>{
             console.log(data)  ;
             this.teaminfo = data || [] ;
         });
 
-        this.financecellService.getFinancecells().then(data=>{
+        this.financecellService.getFinancecells("").then(data=>{
             console.log(data)  ;
             this.financecells  = data || [] ;
         });

@@ -1,6 +1,5 @@
 import {Component} from "@angular/core";
 import {OnInit} from "@angular/core";
-import {Task} from  "../../service/coalsell/coalsell"
 import {FormGroup,Validators,FormBuilder,FormControl} from  '@angular/forms';
 import {Router,Params,ActivatedRoute}  from  '@angular/router' ;
 import {CoalsellService} from "../../service/coalsell/coalsell.service";
@@ -42,11 +41,11 @@ export class CoalselladdComponent implements OnInit {
     isedit:boolean  = false ;
 
     ngOnInit() {
-        this.teamService.getTeams().then(data=>{
+        this.teamService.getTeams("").then(data=>{
             console.log(data)  ;
             this.teaminfo = data || [] ;
         });
-        this.financecellService.getFinancecells().then(data=>{
+        this.financecellService.getFinancecells("").then(data=>{
             this.financecellinfo = data ||[] ;
         });
 
@@ -150,7 +149,7 @@ export class CoalselladdComponent implements OnInit {
     }
 
 
-    coalsellid:Any ;
+    coalsellid:any ;
 
     form:FormGroup ;
 
