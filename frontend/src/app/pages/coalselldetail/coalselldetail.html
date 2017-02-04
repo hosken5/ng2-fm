@@ -5,14 +5,10 @@
         <div class="form-group">
             <label  class="control-label col-sm-1">团队:</label>
             <div class="col-sm-5">
-                <ng-select disabled
-                        [disabled]="true"
-                        [allowClear]="true"
-                        [options]="teaminfo"
-                        [multiple]="false"
-                        formControlName="teamid"
-                >
-                </ng-select>
+                <select disabled  formControlName="teamid"  >
+                    <option value=""></option>
+                    <option *ngFor="let team of teaminfo" [value]='team.value'>{{team.label}}</option>
+                </select>
                 <!--<input type="text" disabled   formControlName="teamname"  maxlength="30" >-->
                 <small *ngIf="(teamid.dirty || teamid.touched) && !teamid.valid" class="text-danger" >必输项</small>
             </div>
@@ -20,14 +16,10 @@
             <label class="control-label col-sm-1">财务公司:</label>
             <div class="col-sm-5">
                 <!--<input type="text" disabled   formControlName="financecellname" maxlength="30" >-->
-                <ng-select
-                        [disabled]="true"
-                        [allowClear]="true"
-                        [options]="financecellinfo"
-                        [multiple]="false"
-                        formControlName="financecellid"
-                >
-                </ng-select>
+                <select disabled formControlName="financecellid"  >
+                    <option value=""></option>
+                    <option *ngFor="let item of financecellinfo" [value]='item.value'>{{item.label}}</option>
+                </select>
                 <small *ngIf="financecellid.dirty && !financecellid.valid" class="text-danger" >必输项</small>
             </div>
         </div>
@@ -150,24 +142,26 @@
         </div>
     </form>
 </div>
+<div>
+    <tabset>
+        <tab heading="开票信息">
+            <billinfolist [coalsell]="coalsell">
+            </billinfolist>
+        </tab>
+        <tab *ngIf="coalsell.rzfs!=1"  heading="外部融资(借/还)款">
+            <paymentinfolist [coalsell]="coalsell" >
+            </paymentinfolist>
+        </tab>
+        <tab heading="自营付款">
+            <paymentinfozylist [coalsell]="coalsell" >
+            </paymentinfozylist>
+        </tab>
+        <tab heading="下游回款">
+            <hkinfolist [coalsell]="coalsell" ></hkinfolist>
+        </tab>
+        <tab heading="收益情况表">
+            <incomelist [coalsell]="coalsell" ></incomelist>
+        </tab>
+    </tabset>
+</div>
 
-<p-tabView>
-    <p-tabPanel header="开票信息">
-        <billinfolist [coalsell]="coalsell">
-        </billinfolist>
-    </p-tabPanel>
-    <p-tabPanel *ngIf="coalsell.rzfs!=1"  header="外部融资(借/还)款">
-        <paymentinfolist [coalsell]="coalsell" >
-        </paymentinfolist>
-    </p-tabPanel>
-    <p-tabPanel header="自营付款">
-        <paymentinfozylist [coalsell]="coalsell" >
-        </paymentinfozylist>
-    </p-tabPanel>
-    <p-tabPanel header="下游回款">
-        <hkinfolist [coalsell]="coalsell" ></hkinfolist>
-    </p-tabPanel>
-    <p-tabPanel header="收益情况表">
-        <incomelist [coalsell]="coalsell" ></incomelist>
-    </p-tabPanel>
-</p-tabView>

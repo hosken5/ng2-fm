@@ -9,7 +9,7 @@ import {Team}  from './team';
 export class TeamService{
     private headers =  new Headers({'Content-type':'application/json'});
     constructor(private http:Http){}
-    getTeams(param):Promise<Team[]>{
+    getTeams(param):Promise<any[]>{
         return this.http.post("team/list",param
         ).toPromise()
             .then(response=> {

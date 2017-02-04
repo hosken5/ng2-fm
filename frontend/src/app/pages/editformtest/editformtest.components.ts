@@ -3,13 +3,12 @@ import {OnInit} from "@angular/core";
 import {FormGroup,Validators,FormBuilder,FormControl} from  '@angular/forms';
 import {Router,Params,ActivatedRoute}  from  '@angular/router' ;
 import {CoalsellService} from "../../service/coalsell/coalsell.service";
+import {Coalsell} from "../../service/coalsell/coalsell";
 import {TeamService} from "../../service/team/team.service";
 import {InputTextModule} from 'primeng/primeng';
 import {FinancecellService} from "../../service/financecell/financecell.service";
-import {TabViewModule} from 'primeng/primeng';
-import {Coalsell} from "../../service/coalsell/coalsell";
 
-declare var __moduleName: string;
+declare var __moduleName: string ;
 
 interface ValidationResult {
     [key:string]:boolean;
@@ -22,11 +21,11 @@ class CustomerValidator {
 
 @Component({
     moduleId    : __moduleName || module.id,
-    templateUrl: 'coalselldetail.html',
-    styleUrls:['coalselldetail.css'],
+    templateUrl: 'coalselladd.html',
+    styleUrls:['coalselladd.css'],
     providers:[CoalsellService,TeamService,FinancecellService]
 })
-export class CoalselldetailComponent implements OnInit {
+export class EditFormTestComponent implements OnInit {
     constructor(
         private router : ActivatedRoute,
         private route :Router,
@@ -38,19 +37,26 @@ export class CoalselldetailComponent implements OnInit {
     lowerjsrqv:Object = {} ;
     fyrqv = {} ;
     upperjsrqv = {} ;
-    coalsell:Coalsell = new Coalsell() ;
-    isedit:boolean  = false ;
-    ngOnInit() {
 
+    isedit:boolean  = false ;
+
+    ngOnInit() {
+        this.teamService.getTeams("").then(data=>{
+            console.log(data)  ;
+            this.teaminfo = data || [] ;
+        });
+        this.financecellService.getFinancecells("").then(data=>{
+            console.log("financecellService.getFinancecells:",data);
+            this.financecellinfo = data ||[] ;
+        });
 
         this.form = this.builder.group({
             id:this.id,
 
             teamid:this.teamid,
-            teamname:this.teamname,
 
             financecellid:this.financecellid,
-            financecellname:this.financecellname ,
+
             uppercomp:this.uppercomp,
 
             lowercomp:this.lowercomp,
@@ -92,33 +98,105 @@ export class CoalselldetailComponent implements OnInit {
             creator:this.creator
         });
 
-        this.teamService.getTeams("").then(data=>{
-            console.log("temps",data)  ;
-            this.teaminfo = data || [] ;
-            this.teamname.setValue(data[this.teamid.value]);
-        });
-        this.financecellService.getFinancecells("").then(data=>{
-            this.financecellinfo = data ||[] ;
-        });
-
         this.router.params.forEach((params:Params)=>{
             this.coalsellid = +params['id'];
             console.log("coalsellid:"+this.coalsellid);
             if(this.coalsellid) {
                 console.log("loading coalsellinfo ....")
                 this.coalsellService.getCoalsellOne(this.coalsellid).then(data=>{
-                    this.coalsell = data ;
+                    console.log("coalsellService.getCoalsellOne:",data);
                     this.lowerjsrqv = this.parseDate(data.lowerjsrq) ;
                     this.fyrqv =  this.parseDate(data.fyrq) ;
                     this.upperjsrqv =  this.parseDate(data.upperjsrq) ;
                     this.form.patchValue(data);
+                    //this.form.patchValue(
+                    //    {createtime
+                    //:
+                    //"2016-12-29",
+                    //creator
+                    //    :
+                    //    "3",
+                    //financecellid
+                    //    :
+                    //    "1",
+                    //financecellname
+                    //    :
+                    //    null,
+                    //fyrq
+                    //    :
+                    //    "2016-12-09",
+                    //htzjll
+                    //    :
+                    //    1,
+                    //id
+                    //    :
+                    //    1,
+                    //jsl
+                    //    :
+                    //    1,
+                    //lastupdatetime
+                    //    :
+                    //    null,
+                    //lowercomp
+                    //    :
+                    //    "1",
+                    //lowerjsrq
+                    //    :
+                    //    "2016-12-08",
+                    //lowerzjzy
+                    //    :
+                    //    null,
+                    //rmtzsy
+                    //    :
+                    //    null,
+                    //rzfs
+                    //    :
+                    //    "1",
+                    //teamid
+                    //    :
+                    //    "1",
+                    //teamname
+                    //    :
+                    //    null,
+                    //uppercomp
+                    //    :
+                    //    "1",
+                    //upperjsrq
+                    //    :
+                    //    "2016-12-04",
+                    //upperzjzy
+                    //    :
+                    //    null,
+                    //xshsze
+                    //    :
+                    //    1,
+                    //yfkbl
+                    //    :
+                    //    1,
+                    //ysfs
+                    //    :
+                    //    "3",
+                    //ywx
+                    //    :
+                    //    "11" ,
+                    //zrll
+                    //    :
+                    //    1
+                    //}
+                    //);
+                    //this.teamid.setValue("3");
+                    this.isedit = true;
                 });
+            }else {
+                this.isedit = false;
             }
         })
     }
 
     parseDate(date){
-        if(!date) return  null ;
+        if(!date){
+            return null ;
+        }
         var array = date.split("-") ;
         return  {year:parseInt(array[0]),month:parseInt(array[1]),day:parseInt(array[2])}
     }
@@ -149,19 +227,15 @@ export class CoalselldetailComponent implements OnInit {
     }
 
 
-    coalsellid:any;
+    coalsellid:any ;
 
     form:FormGroup ;
 
     id = new FormControl("") ;
 
-    teamname = new FormControl("")  ;
-
     teamid = new FormControl(null,Validators.required) ;
 
     financecellid= new FormControl(null,Validators.required) ;
-
-    financecellname = new FormControl("") ;
 
     uppercomp= new FormControl("",Validators.compose([Validators.required,Validators.maxLength(30)]));
 
@@ -177,7 +251,7 @@ export class CoalselldetailComponent implements OnInit {
 
     yfkbl= new FormControl("",Validators.compose([Validators.required,CustomerValidator.ismoney])) ;
 
-    jsl= new FormControl("",Validators.compose([Validators.required,CustomerValidator.ismoney])) ;
+    jsl= new FormControl("",Validators.compose([Validators.required]));
 
     upperjsrq= new FormControl("",Validators.required) ;
 
@@ -203,11 +277,20 @@ export class CoalselldetailComponent implements OnInit {
 
     creator= new FormControl("");
 
-    teaminfo = [];
-    financecellinfo= [] ;
+    teaminfo = [{value: '0', label: 'Aech'},
+        {value: '1', label: 'Art3mis'},
+        {value: '2', label: 'Daito'},
+        {value: '3', label: 'Parzival'},
+        {value: '4', label: 'Shoto'}];
+    financecellinfo= [{value: '0', label: 'Aech'},
+        {value: '1', label: 'Art3mis'},
+        {value: '2', label: 'Daito'},
+        {value: '3', label: 'Parzival'},
+        {value: '4', label: 'Shoto'}] ;
     goBack():void {
         window.history.back();
     }
+    coalsell :Coalsell;
     description:string;
     save():void {
         for( let key in this.form.value){

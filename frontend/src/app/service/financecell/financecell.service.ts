@@ -9,7 +9,7 @@ import {Financecell}  from './financecell';
 export class FinancecellService{
     private headers =  new Headers({'Content-type':'application/json'});
     constructor(private http:Http){}
-    getFinancecells(param):Promise<Financecell[]>{
+    getFinancecells(param):Promise<any[]>{
         return this.http.post("financecell/list",param
         ).toPromise()
             .then(response=> {

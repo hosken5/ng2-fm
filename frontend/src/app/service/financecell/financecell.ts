@@ -1,4 +1,4 @@
 export  class Financecell {
-     id:string ;
+     id:number ;
      name:string ;
 }

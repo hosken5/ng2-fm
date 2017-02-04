@@ -46,6 +46,7 @@ export class CoalselladdComponent implements OnInit {
             this.teaminfo = data || [] ;
         });
         this.financecellService.getFinancecells("").then(data=>{
+            console.log("financecellService.getFinancecells:",data);
             this.financecellinfo = data ||[] ;
         });
 
@@ -103,6 +104,7 @@ export class CoalselladdComponent implements OnInit {
             if(this.coalsellid) {
                 console.log("loading coalsellinfo ....")
                 this.coalsellService.getCoalsellOne(this.coalsellid).then(data=>{
+                    console.log("coalsellService.getCoalsellOne:",data);
                     this.lowerjsrqv = this.parseDate(data.lowerjsrq) ;
                     this.fyrqv =  this.parseDate(data.fyrq) ;
                     this.upperjsrqv =  this.parseDate(data.upperjsrq) ;

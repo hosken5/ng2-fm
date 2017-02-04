@@ -30,6 +30,7 @@ import {HkinfolistComponent} from "./pages/hkinfolist/hkinfolist.components";
 import {PaymentinfozylistComponent} from "./pages/paymentinfozylist/paymentinfozylist.components";
 import {UserlistComponent} from "./pages/userlist/userlist.components";
 import {IncomelistComponent} from "./pages/incomelist/incomelist.components";
+import { TabsModule } from 'ng2-bootstrap/tabs';
 
 @NgModule({
     imports: [
@@ -38,6 +39,7 @@ import {IncomelistComponent} from "./pages/incomelist/incomelist.components";
         routing,
         PaginationModule.forRoot(),
         TooltipModule.forRoot(),
+        TabsModule.forRoot(),
         HttpModule,
         ReactiveFormsModule,
         SelectModule,
