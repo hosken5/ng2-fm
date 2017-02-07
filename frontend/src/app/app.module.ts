@@ -32,6 +32,7 @@ import {UserlistComponent} from "./pages/userlist/userlist.components";
 import {IncomelistComponent} from "./pages/incomelist/incomelist.components";
 import { TabsModule } from 'ng2-bootstrap/tabs';
 
+
 @NgModule({
     imports: [
         BrowserModule,

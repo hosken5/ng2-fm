@@ -142,26 +142,27 @@
         </div>
     </form>
 </div>
+
 <div>
-    <tabset>
-        <tab heading="开票信息">
+    <p-tabView>
+        <p-tabPanel header="开票信息">
             <billinfolist [coalsell]="coalsell">
             </billinfolist>
-        </tab>
-        <tab *ngIf="coalsell.rzfs!=1"  heading="外部融资(借/还)款">
+        </p-tabPanel>
+        <p-tabPanel *ngIf="coalsell.rzfs!=1"  header="外部融资(借/还)款">
             <paymentinfolist [coalsell]="coalsell" >
             </paymentinfolist>
-        </tab>
-        <tab heading="自营付款">
+        </p-tabPanel>
+        <p-tabPanel header="自营付款">
             <paymentinfozylist [coalsell]="coalsell" >
             </paymentinfozylist>
-        </tab>
-        <tab heading="下游回款">
+        </p-tabPanel>
+        <p-tabPanel header="下游回款">
             <hkinfolist [coalsell]="coalsell" ></hkinfolist>
-        </tab>
-        <tab heading="收益情况表">
+        </p-tabPanel>
+        <p-tabPanel header="收益情况表">
             <incomelist [coalsell]="coalsell" ></incomelist>
-        </tab>
-    </tabset>
+        </p-tabPanel>
+    </p-tabView>
 </div>
 

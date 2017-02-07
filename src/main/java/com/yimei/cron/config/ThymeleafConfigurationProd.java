@@ -33,7 +33,7 @@ public class ThymeleafConfigurationProd {
         templateResolver.setCacheable(false);
         templateResolver.setCharacterEncoding("UTF-8");
         templateResolver.setOrder(1);
-        engine.setTemplateResolver(templateResolver);
+//        engine.setTemplateResolver(templateResolver);
         engine.addDialect(new Java8TimeDialect());
     }
 
