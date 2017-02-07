@@ -45,7 +45,8 @@ const appRoutes: Routes = <Routes>[
     },{
         path:'coalselldetail/:id',
         component:CoalselldetailComponent
-    },{
+    }
+    ,{
         path:'userlist',
         component:UserlistComponent
     }

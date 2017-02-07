@@ -1,11 +1,9 @@
 import {Component,Input,ViewChild} from "@angular/core";
 import {OnInit} from "@angular/core";
 import {Router}  from  '@angular/router' ;
-import {ConfirmOptions, Position} from 'angular2-bootstrap-confirm';
 import {FormGroup,Validators,FormBuilder,FormControl} from  '@angular/forms';
-import {Positioning} from 'angular2-bootstrap-confirm/position';
 import {FinancecellService} from "../../service/financecell/financecell.service";
-import { ModalModule,ModalDirective } from 'ng2-bootstrap/ng2-bootstrap';
+import { ModalModule,ModalDirective } from 'ng2-bootstrap';
 import {Financecell} from "../../service/financecell/financecell";
 declare var __moduleName: string;
 
@@ -13,7 +11,7 @@ declare var __moduleName: string;
     moduleId    : __moduleName || module.id,
     templateUrl: 'financecelllist.html',
     styleUrls:['financecelllist.css'],
-    providers:[FinancecellService,ConfirmOptions,{provide: Position, useClass: Positioning}]
+    providers:[FinancecellService]
 })
 export class FinancecelllistComponent implements OnInit {
 

@@ -4,13 +4,12 @@ import {Page} from "../common/page";
 import 'rxjs/add/operator/toPromise';
 import {toPromise} from "rxjs/operator/toPromise";
 import {Team}  from './team';
-import {Team} from "./team";
 
 @Injectable()
 export class TeamService{
     private headers =  new Headers({'Content-type':'application/json'});
     constructor(private http:Http){}
-    getTeams(param):Promise<Team[]>{
+    getTeams(param):Promise<any[]>{
         return this.http.post("team/list",param
         ).toPromise()
             .then(response=> {

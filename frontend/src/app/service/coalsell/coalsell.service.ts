@@ -24,7 +24,7 @@ export class CoalsellService{
     }
 
     getCoalsellOne(id:number):Promise<Coalsell> {
-       return  this.http.post("/coalsell/query/"+id).toPromise()
+       return  this.http.post("/coalsell/query/"+id,"").toPromise()
         .then(response=>response.json() as Coalsell)
         .catch(this.handleError)
     }

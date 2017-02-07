@@ -33,5 +33,4 @@ typings
 *.tgz
 *.gz
 *.tar
-
-.idea
+out

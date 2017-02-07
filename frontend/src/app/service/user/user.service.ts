@@ -26,13 +26,12 @@ export class UserService{
             })
             .catch(this.handleError) ;
     };
-    getSessionUser(param):Promise<User>{
-        return  this.http.post("user/session").toPromise()
+    getSessionUser():Promise<User>{
+        return  this.http.post("user/session","").toPromise()
             .then(response=>response.json() as User).catch(this.handleError);
     };
-    getUserMenu(param):Promise<Menu[]>{
-        return  this.http.post("user/menu").toPromise()
-            .then(response=>response.json() as Menu[]).catch(this.handleError);
+    getUserMenu():Promise<Menu[]>{
+        return  this.http.post("user/menu","").toPromise().then(response=>response.json() as Menu[]).catch(this.handleError);
     };
     getUserList(param):Promise<User[]>{
         return this.http.post("user/list",param)

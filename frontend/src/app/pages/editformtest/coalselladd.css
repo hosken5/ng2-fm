@@ -1,6 +1,3 @@
-.form-wrap{
-    width:80%;
-}
 .my-form-control{
     border:1px solid #ccc ;
     height: 34px ;
@@ -26,4 +23,13 @@
 }
 .h34{
     line-height:34px;
+}
+.col-sm-1{
+    padding-right: 0px;
+    padding-left:0px;
+}
+.form-wrap input {
+    height: 30px;
+    line-height: 30px;
+    width:100%;
 }

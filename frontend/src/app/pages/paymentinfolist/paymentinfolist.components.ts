@@ -1,13 +1,11 @@
 import {Component,Input,ViewChild} from "@angular/core";
 import {OnInit}  from  "@angular/core";
 import {Router}  from  '@angular/router' ;
-import {ConfirmOptions, Position} from 'angular2-bootstrap-confirm';
 import {FormGroup,Validators,FormBuilder,FormControl} from  '@angular/forms';
-import {Positioning} from 'angular2-bootstrap-confirm/position';
 import {PaymentinfoService} from "../../service/paymentinfo/paymentinfo.service";
 import {Paymentinfo} from  "../../service/paymentinfo/paymentinfo"
-import { ModalModule,ModalDirective} from 'ng2-bootstrap/ng2-bootstrap';
-import {Paymentinfo} from "../../service/paymentinfo/paymentinfo";
+import { ModalModule,ModalDirective} from 'ng2-bootstrap';
+import {Coalsell} from "../../service/coalsell/coalsell";
 declare var __moduleName: string;
 
 interface ValidationResult {
@@ -24,7 +22,7 @@ class CustomerValidator {
     selector:'paymentinfolist',
     templateUrl: 'paymentinfolist.html',
     styleUrls:['paymentinfolist.css'],
-    providers:[PaymentinfoService,ConfirmOptions,{provide: Position, useClass: Positioning}]
+    providers:[PaymentinfoService]
 })
 export class PaymentinfolistComponent implements OnInit {
 
@@ -36,7 +34,7 @@ export class PaymentinfolistComponent implements OnInit {
         //this.load({});
     }
 
-    ngOnChanges(changes: SimpleChanges) {
+    ngOnChanges(changes) {
         for (let propName in changes) {
             if(propName=="coalsell"){
                 let chng = changes[propName];
@@ -98,8 +96,8 @@ export class PaymentinfolistComponent implements OnInit {
         });
     }
 
-    hkrqi:Any ;
-    fkrqi:Any ;
+    hkrqi:any ;
+    fkrqi:any ;
     onDateChangedhkrq(event){
         this.addPaymentinfoForm.controls["hkrq"].setValue(event.formatted);
     }

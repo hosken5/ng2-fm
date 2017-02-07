@@ -6,25 +6,33 @@
         <div class="form-group">
             <label  class="control-label col-sm-1">团队:</label>
             <div class="col-sm-5">
-                <ng-select
-                        [allowClear]="true"
-                        [options]="teaminfo"
-                        [multiple]="false"
-                        formControlName="teamid"
-                >
-                </ng-select>
+                <select  formControlName="teamid"  >
+                    <option value=""></option>
+                    <option *ngFor="let team of teaminfo" [value]='team.value'>{{team.label}}</option>
+                </select>
+                <!--<ng-select-->
+                        <!--[allowClear]="true"-->
+                        <!--[options]="teaminfo"-->
+                        <!--[multiple]="false"-->
+                        <!--formControlName="teamid"-->
+                <!--&gt;-->
+                <!--</ng-select>-->
                 <small *ngIf="(teamid.dirty || teamid.touched) && !teamid.valid" class="text-danger" >必输项</small>
             </div>
 
             <label class="control-label col-sm-1">财务公司:</label>
             <div class="col-sm-5">
-                <ng-select
-                        [allowClear]="true"
-                        [options]="financecellinfo"
-                        [multiple]="false"
-                        formControlName="financecellid"
-                >
-                </ng-select>
+                <select  formControlName="financecellid"  >
+                    <option value=""></option>
+                    <option *ngFor="let item of financecellinfo" [value]='item.value'>{{item.label}}</option>
+                </select>
+                <!--<ng-select-->
+                        <!--[allowClear]="true"-->
+                        <!--[options]="financecellinfo"-->
+                        <!--[multiple]="false"-->
+                        <!--formControlName="financecellid"-->
+                <!--&gt;-->
+                <!--</ng-select>-->
                 <small *ngIf="financecellid.dirty && !financecellid.valid" class="text-danger" >必输项</small>
             </div>
         </div>

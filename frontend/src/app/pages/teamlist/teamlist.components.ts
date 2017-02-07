@@ -1,20 +1,17 @@
 import {Component,Input,ViewChild} from "@angular/core";
 import {OnInit} from "@angular/core";
 import {Router}  from  '@angular/router' ;
-import {ConfirmOptions, Position} from 'angular2-bootstrap-confirm';
 import {FormGroup,Validators,FormBuilder,FormControl} from  '@angular/forms';
-import {Positioning} from 'angular2-bootstrap-confirm/position';
 import {TeamService} from "../../service/team/team.service";
 import {Team} from  "../../service/team/team"
-import { ModalModule,ModalDirective } from 'ng2-bootstrap/ng2-bootstrap';
-import {Team} from "../../service/team/team";
+import { ModalModule,ModalDirective } from 'ng2-bootstrap';
 declare var __moduleName: string;
 
 @Component({
     moduleId    : __moduleName || module.id,
     templateUrl: 'teamlist.html',
     styleUrls:['teamlist.css'],
-    providers:[TeamService,ConfirmOptions,{provide: Position, useClass: Positioning}]
+    providers:[TeamService]
 })
 export class TeamlistComponent implements OnInit {
 

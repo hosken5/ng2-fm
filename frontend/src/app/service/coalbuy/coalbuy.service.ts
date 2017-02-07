@@ -24,7 +24,7 @@ export class CoalbuyService{
     }
 
     getCoalbuy(id:number):Promise<Coalbuy> {
-        return  this.getCoalbuyes().then(coalbuys=>coalbuys.find(hero=>hero.id===id)) ;
+        return  this.getCoalbuys({}).then(coalbuys=>coalbuys.data.find(hero=>hero.id===id)) ;
     }
     private headers =  new Headers({'Content-type':'application/json'});
 

@@ -1,11 +1,9 @@
 import {Component,Input,ViewChild} from "@angular/core";
 import {OnInit} from "@angular/core";
 import {Router}  from  '@angular/router' ;
-import {ConfirmOptions, Position} from 'angular2-bootstrap-confirm';
 import {FormGroup,Validators,FormBuilder,FormControl} from  '@angular/forms';
-import {Positioning} from 'angular2-bootstrap-confirm/position';
 import {UserService} from "../../service/user/user.service";
-import { ModalModule,ModalDirective } from 'ng2-bootstrap/ng2-bootstrap';
+import { ModalModule,ModalDirective } from 'ng2-bootstrap';
 import {User} from "../../service/user/user";
 declare var __moduleName: string;
 
@@ -13,7 +11,7 @@ declare var __moduleName: string;
     moduleId    : __moduleName || module.id,
     templateUrl: 'userlist.html',
     styleUrls:['userlist.css'],
-    providers:[UserService,ConfirmOptions,{provide: Position, useClass: Positioning}]
+    providers:[UserService]
 })
 export class UserlistComponent implements OnInit {
 
@@ -107,7 +105,7 @@ export class UserlistComponent implements OnInit {
                  //createtime   :this.createtime   ,
                  role         :this.role
         },{
-            validator:(control:Control)=>{
+            validator:(control)=>{
                 var id =  control.controls.id ;
                 var plainpassword = control.controls.plainpassword;
                 if(!id.value && !plainpassword.value){

@@ -55,6 +55,7 @@ public class UserController {
     @ResponseBody
     public Object index(
     ){
+        logger.info("user/list called...");
         List<User> userinfos  =   userService.loadUserList() ;
         return userinfos;
     }

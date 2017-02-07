@@ -6,8 +6,10 @@ import com.yimei.cron.web.support.ACLInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
-import org.springframework.boot.context.embedded.ErrorPage;
-import org.springframework.boot.context.embedded.FilterRegistrationBean;
+//import org.springframework.boot.context.embedded.ErrorPage;
+//import org.springframework.boot.context.embedded.FilterRegistrationBean;
+import org.springframework.boot.web.servlet.ErrorPage;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
@@ -45,12 +47,12 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/static/**").addResourceLocations("file:./frontend/build/");
-        registry.addResourceHandler("/bower_components/**").addResourceLocations("file:./static/bower_components/");
-        registry.addResourceHandler("/styles/**").addResourceLocations("file:./static/.tmp/sstyles/");
-        registry.addResourceHandler("/images/**").addResourceLocations("file:./static/app/images/");
-        registry.addResourceHandler("/scripts/**").addResourceLocations("file:./static/app/scripts/");
-        registry.addResourceHandler("/zrjtFile/**").addResourceLocations("file:../zrjtFile/");
+        registry.addResourceHandler("/static/**").addResourceLocations("file:./frontend/dist/");
+//        registry.addResourceHandler("/bower_components/**").addResourceLocations("file:./static/bower_components/");
+//        registry.addResourceHandler("/styles/**").addResourceLocations("file:./static/.tmp/styles/");
+//        registry.addResourceHandler("/images/**").addResourceLocations("file:./static/app/images/");
+//        registry.addResourceHandler("/scripts/**").addResourceLocations("file:./static/app/scripts/");
+//        registry.addResourceHandler("/zrjtFile/**").addResourceLocations("file:../zrjtFile/");
     }
 
 

@@ -1,12 +1,11 @@
 import {Component,Input,ViewChild} from "@angular/core";
 import {OnInit} from "@angular/core";
 import {Router}  from  '@angular/router' ;
-import {ConfirmOptions, Position} from 'angular2-bootstrap-confirm';
 import {FormGroup,Validators,FormBuilder,FormControl} from  '@angular/forms';
 import {IncomeService} from "../../service/income/income.service";
 import {Income} from  "../../service/income/income"
-import {ModalModule,ModalDirective } from 'ng2-bootstrap/ng2-bootstrap';
-import {Income} from "../../service/income/income";
+import {ModalModule,ModalDirective } from 'ng2-bootstrap';
+import {Coalsell} from "../../service/coalsell/coalsell";
 declare var __moduleName: string;
 
 
@@ -17,12 +16,12 @@ declare var __moduleName: string;
     styleUrls:['incomelist.css'],
     providers:[IncomeService]
 })
-export class IncomelistComponent implements OnInit {
+export class IncomelistComponent {
 
 
     @Input()  coalsell: Coalsell ;
 
-    ngOnChanges(changes: SimpleChanges) {
+    ngOnChanges(changes ) {
         for (let propName in changes) {
             if(propName=="coalsell"){
                 let chng = changes[propName] ;
