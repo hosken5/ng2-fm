@@ -57,7 +57,7 @@
     <if test="lowercomp!=null">
       and t.lowercomp like  CONCAT('%',#{lowercomp},'%')
     </if>
-
+    order by t.createtime desc
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 

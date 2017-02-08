@@ -198,7 +198,7 @@ public class HkinfoService {
                 lxjs = lxjs.add(ll.multiply(bj))  ;
             }
             if( fkinfo.getJklx() ==1){ //固定期限
-                Long dual = fkinfo.getTxts() - ChronoUnit.DAYS.between(fkinfo.getJxqsr(),hkinfo.getHkrq()) ;
+                Long dual = fkinfo.getJxts().longValue() - ChronoUnit.DAYS.between(fkinfo.getJxqsr(),hkinfo.getHkrq()) ;
                 if(dual > 0 ){
                     sywbrzlx = fkinfo.getLl().multiply(BigDecimal.valueOf(dual)).multiply(bj);
                 }
@@ -240,7 +240,7 @@ public class HkinfoService {
             }
 
             if( fkinfo.getJklx() ==1){ //固定期限
-                Long dual = fkinfo.getTxts() - ChronoUnit.DAYS.between(fkinfo.getJxqsr(),hkinfo.getHkrq()) ;
+                Long dual = fkinfo.getJxts().longValue() - ChronoUnit.DAYS.between(fkinfo.getJxqsr(),hkinfo.getHkrq()) ;
                 if(dual > 0 ){
                     sywbrzlx = fkinfo.getLl().multiply(BigDecimal.valueOf(dual));
 
