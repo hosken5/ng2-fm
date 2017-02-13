@@ -7,7 +7,7 @@
                 <td>付款金额</td>
                 <td>计息天数</td>
                 <td>对应利率</td>
-                <td>ccs利息收益</td>
+                <!--<td>ccs利息收益</td>-->
                 <td>备注</td>
                 <td>操作</td>
             </tr>
@@ -16,7 +16,7 @@
                 <td style="text-align: right" >{{paymentinfozy.fkje | number:'.2-2' }}</td>
                 <td>{{paymentinfozy.jxts}}</td>
                 <td>{{paymentinfozy.ll}}</td>
-                <td>{{paymentinfozy.rmtsy}}</td>
+                <!--<td>{{paymentinfozy.rmtsy}}</td>-->
                 <td>{{paymentinfozy.bz}}</td>
                 <td>
                     <a href="javascript:void(0);" (click)="openEditView(paymentinfozy)"   class="btn btn-default btn-xs">修改</a>
@@ -33,8 +33,8 @@
                 <button type="button" class="close" aria-label="Close" (click)="staticModal.hide()">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 *ngIf="isedit"  class="modal-title">修改收付款信息</h4>
-                <h4 *ngIf="!isedit" class="modal-title">新增收付款信息</h4>
+                <h4 *ngIf="isedit"  class="modal-title">修改自营付款信息</h4>
+                <h4 *ngIf="!isedit" class="modal-title">新增自营付款信息</h4>
             </div>
             <div class="modal-body">
                 <div class="form-wrap">
@@ -75,14 +75,14 @@
                             </div>
                         </div>
 
-                        <div class="form-group"   [class.has-error] = "rmtsy.dirty && !rmtsy.valid">
-                            <label class="control-label col-sm-3">瑞茂通收益:</label>
-                            <div class="col-sm-9">
-                                <input formControlName="rmtsy"  style="width:80%"/>
-                                <small *ngIf="rmtsy.dirty && rmtsy.hasError('ismoney')" class="text-danger" >请输入整数</small>
-                                <small *ngIf="rmtsy.dirty && rmtsy.hasError('required')" class="text-danger" >必输字段</small>
-                            </div>
-                        </div>
+                        <!--<div class="form-group"   [class.has-error] = "rmtsy.dirty && !rmtsy.valid">-->
+                            <!--<label class="control-label col-sm-3">瑞茂通收益:</label>-->
+                            <!--<div class="col-sm-9">-->
+                                <!--<input formControlName="rmtsy"  style="width:80%"/>-->
+                                <!--<small *ngIf="rmtsy.dirty && rmtsy.hasError('ismoney')" class="text-danger" >请输入整数</small>-->
+                                <!--<small *ngIf="rmtsy.dirty && rmtsy.hasError('required')" class="text-danger" >必输字段</small>-->
+                            <!--</div>-->
+                        <!--</div>-->
 
                         <div class="form-group"   [class.has-error] = "bz.dirty && !bz.valid">
                             <label class="control-label col-sm-3">备注:</label>
