@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.Period;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
@@ -149,8 +148,8 @@ public class HkinfoService {
 
     private  BigDecimal getYflx( BigDecimal bj , BigDecimal ll , LocalDate jxqsr ,  LocalDate stat , LocalDate end ){
         Double  lxjs = 0.0 ;
-        for (int i = Period.between(jxqsr,stat).getDays();
-             i <  Period.between(jxqsr,end).getDays();
+        for (long i = ChronoUnit.DAYS.between(jxqsr,stat);
+             i <  ChronoUnit.DAYS.between(jxqsr,end);
              i++){
                 if(i<60) {
                     lxjs = lxjs + ll.doubleValue() / 360;
@@ -174,7 +173,7 @@ public class HkinfoService {
         BigDecimal  sywbrzlx  = BigDecimal.ZERO ; //剩余外部融资利息
 
         if("2".equals(fkinfo.getFktype())){ //自营计息
-            for (int i = 0; i <  Period.between( fkinfo.getFkrq(), hkinfo.getHkrq()).getDays(); i++) {
+            for (int i = 0; i <  ChronoUnit.DAYS.between(fkinfo.getFkrq(), hkinfo.getHkrq()); i++) {
                 if(i<60){
                     ll =fkinfo.getHtzjll();
                 }else if (i<90) {
@@ -215,7 +214,7 @@ public class HkinfoService {
         Double bj  = 360.0;
         BigDecimal  sywbrzlx  = BigDecimal.ZERO ; //剩余外部融资利息
         if("2".equals(fkinfo.getFktype())){ //自营计息
-            for (int i = 0; i <  Period.between( fkinfo.getFkrq(), hkinfo.getHkrq()).getDays(); i++) {
+            for (int i = 0; i <  ChronoUnit.DAYS.between( fkinfo.getFkrq(), hkinfo.getHkrq()); i++) {
                 if(i<60){
                     ll =fkinfo.getHtzjll();
                 }else if (i<90) {
