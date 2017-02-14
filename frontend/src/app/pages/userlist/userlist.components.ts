@@ -42,6 +42,7 @@ export class UserlistComponent implements OnInit {
         this.isedit = true  ;
         //this.plainpassword.valid
         this.addUserForm.reset();
+        this.errormessage= "";
         this.addUserForm.patchValue(user);
         this.staticModal.show();
     }
@@ -58,12 +59,18 @@ export class UserlistComponent implements OnInit {
         //}
 
         console.log(this.addUserForm.value);
-        this.userService.addOrUpdateUser(this.addUserForm.value).then(()=>{
-            this.addUserForm.reset() ;
-            this.staticModal.hide() ;
-            this.reload() ;
-            console.log("succes");
+        this.userService.addOrUpdateUser(this.addUserForm.value).then((result)=>{
+            console.log("userServie.addOrUpdateUser:",result );
+            if(result.success){
+                this.addUserForm.reset() ;
+                this.staticModal.hide() ;
+                this.reload() ;
+                console.log("succes");
+            }else{
+                this.errormessage =result.error;
+            }
         }).catch((error)=>{
+            this.errormessage =error;
             console.log("failure:"+error);
         });
     }
@@ -75,6 +82,7 @@ export class UserlistComponent implements OnInit {
             this.users= data ||[]  ;
         }) ;
     }
+    errormessage:string="";
     isedit:boolean = false ;
     addUserForm:FormGroup ;
     id             = new FormControl("")  ;

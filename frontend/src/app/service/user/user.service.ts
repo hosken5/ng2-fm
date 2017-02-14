@@ -40,14 +40,16 @@ export class UserService{
             .catch(this.handleError) ;
     };
     handleError(error:any):Promise<any>{
-        console.error('An error occurred',error);
-        return  Promise.reject(error.message||error);
+        console.log('An error occurred',JSON.parse(error._body).error);
+        console.log('An error occurred',error.error);
+        console.error('An error occurred',error.error);
+        return  Promise.reject(JSON.parse(error._body).error);
     };
-    addOrUpdateUser(user:User):Promise<User>{
+    addOrUpdateUser(user:User):any{
         const url = 'user/addorupdate' ;
         return this.http.post(url,JSON.stringify(user),{headers:this.headers})
             .toPromise()
-            .then(resp=>resp.json().data as User)
+            .then(resp=>resp.json())
             .catch(this.handleError) ;
     }
 }

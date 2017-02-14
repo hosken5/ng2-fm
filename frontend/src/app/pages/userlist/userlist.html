@@ -104,7 +104,11 @@
                                 <small *ngIf="role.dirty && !role.valid" class="text-danger" >必输字段</small>
                             </div>
                         </div>
-
+                        <div class="form-group has-error " *ngIf="errormessage">
+                            <div class="col-sm-12">
+                                {{errormessage}}
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
