@@ -162,8 +162,6 @@ export class HkinfolistComponent {
         selectionTxtFontSize: '12px'
     };
 
-
-
     constructor(
         private builder:FormBuilder,
         private  router : Router,
@@ -186,20 +184,27 @@ export class HkinfolistComponent {
             pmje:this.pmje
         }) ;
 
-        this.addHkinfoForm.valueChanges.subscribe(data=>{
-            console.log(data);
-            if(data.dqr!=null && data.hkrq!=null){
-                var start = new Date(data.dqr.replace(/-/g,"/")).getTime() ;
-                var end = new Date(data.hkrq.replace(/-/g,"/")).getTime() ;
-              var  temp =   (start -end  ) / (24*60*60*1000)  ;
-              console.log(""+temp);
-              if(temp != data.txts ){
-                  this.addHkinfoForm.controls["txts"].setValue(temp);
-              }
-            }else  if(data.txts){
-                this.addHkinfoForm.controls["txts"].reset();
-            }
-        }) ;
+        //this.addHkinfoForm.valueChanges.subscribe(data=>{
+        //    console.log(data);
+        //    if(data.dqr!=null && data.hkrq!=null){
+        //        var start = new Date(data.dqr.replace(/-/g,"/")).getTime() ;
+        //        var end = new Date(data.hkrq.replace(/-/g,"/")).getTime() ;
+        //      var  temp =   (start -end  ) / (24*60*60*1000)  ;
+        //      console.log(""+temp);
+        //      if(temp && temp != data.txts ){
+        //          this.addHkinfoForm.controls["txts"].setValue(temp);
+        //      }
+        //    }else  if(data.txts){
+        //        this.addHkinfoForm.controls["txts"].reset();
+        //    }
+        //});
+
+        this.addHkinfoForm.controls["dqr"].valueChanges.subscribe(data=>{
+            this.caltxts() ;
+        });
+        this.addHkinfoForm.controls["hkrq"].valueChanges.subscribe(data=>{
+            this.caltxts() ;
+        });
 
         this.addHkinfoForm.controls["txts"].valueChanges.subscribe(data=>{
             this.cacltxx() ;
@@ -210,8 +215,22 @@ export class HkinfolistComponent {
         this.addHkinfoForm.controls["ll"].valueChanges.subscribe(data=>{
             this.cacltxx() ;
         });
-
     }
+
+    caltxts(){
+        if( this.hkfs.value=='2'){
+            var start = new Date(this.dqr.value.replace(/-/g,"/")).getTime() ;
+            var end = new Date(this.hkrq.value.replace(/-/g,"/")).getTime() ;
+            var  temp =   (start -end  ) / (24*60*60*1000)  ;
+            var oritxts = this.addHkinfoForm.controls["txts"].value ;
+            if(temp && temp != oritxts ){
+                this.addHkinfoForm.controls["txts"].setValue(temp);
+            }else {
+                this.addHkinfoForm.controls["txts"].reset();
+            }
+        }
+    }
+
     cacltxx(){
         if( this.hkfs.value=='2'){
             var pmje:number = + this.addHkinfoForm.controls["pmje"].value ;
