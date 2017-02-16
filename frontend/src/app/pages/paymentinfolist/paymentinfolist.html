@@ -142,7 +142,7 @@
                         </div>
 
                         <div class="form-group"   [class.has-error] = "hkje.dirty && !hkje.valid">
-                            <label class="control-label col-sm-3">还款金额:</label>
+                            <label class="control-label col-sm-3">还款金额(元):</label>
                             <div class="col-sm-9">
                                 <input formControlName="hkje"  style="width:80%"/>
                                 <small *ngIf="hkje.dirty && hkje.hasError('ismoney')" class="text-danger" >请输入两位小数的数字</small>
